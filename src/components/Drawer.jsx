@@ -11,7 +11,7 @@ export default function Drawer({children, isOpen, setIsOpen, title, className, o
   };
 
   return (
-    <main className={cn("fixed overflow-hidden pt-16 z-10 bg-black bg-opacity-40 inset-0 transform ease-in-out duration-300", isOpen ? "translate-x-0 transition-opacity opacity-100 duration-500" : "-translate-x-full transition-all delay-500 opacity-0", className)}>
+    <main className={cn("fixed overflow-hidden z-50 bg-black bg-opacity-40 inset-0 transform ease-in-out duration-300", isOpen ? "translate-x-0 transition-opacity opacity-100 duration-500" : "-translate-x-full transition-all delay-500 opacity-0", className)}>
       <section
         className={
           " w-screen max-w-lg right-0 absolute bg-default-50 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +

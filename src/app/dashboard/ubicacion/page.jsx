@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
-import MapComponent from "@/components/maps/MapComponent";
 import MapsComponent from "@/components/maps/MapsComponent";
 import PageTitle from "@/components/PageTitle";
 import { Button } from "@nextui-org/react";
@@ -74,7 +73,7 @@ export default function page() {
   const handleResetForm = () => {
     setFormData(formInitialData);
     setIsOpen(false);
-  }
+  };
 
   return (
     <>
@@ -82,7 +81,7 @@ export default function page() {
         <div className="flex justify-between">
           <PageTitle title="Ubicación de Cámaras" />
           <Link href="/dashboard/ubicacion/detalles">
-            <Button color="secondary" variant="flat" >
+            <Button color="secondary" variant="flat">
               Ir a Lista de Ubicaciones
             </Button>
           </Link>

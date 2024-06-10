@@ -62,18 +62,13 @@ export const menuItems = [
     ],
   }, */
   {
-    title: "Cámaras",
+    title: "Incidencias",
     list: [
       {
-        title: "Ubicaciones",
-        path: "/dashboard/ubicacion",
+        title: "Registro",
+        path: "/dashboard/incidencias",
         icon: <MdLocationPin />,
-      },
-      /* {
-        title: "Reportados",
-        path: "/dashboard/vehiculos/reportados",
-        icon: <MdPolicy />,
-      }, */
+      }
     ],
   },
   {
@@ -114,6 +109,11 @@ export const menuItems = [
   {
     title: "Mantenimiento",
     list: [
+      {
+        title: "Ubicaciones",
+        path: "/dashboard/ubicacion",
+        icon: <MdLocationPin />,
+      },
       {
         title: "Clasificación",
         path: "/dashboard/clasificacion",

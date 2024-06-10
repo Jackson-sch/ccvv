@@ -22,4 +22,4 @@ const ubicacionSchema = new Schema(
   }
 );
 
-export default models.Ubicaciones || model("Ubicaciones", ubicacionSchema)
+export default models.Ubicaciones || model("Ubicaciones", ubicacionSchema);
