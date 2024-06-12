@@ -2,8 +2,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Input, Select, SelectItem, Textarea, Image } from "@nextui-org/react";
-
+import {
+  Button,
+  Input,
+  Select,
+  SelectItem,
+  Textarea,
+  Image,
+  RadioGroup,
+  Radio,
+} from "@nextui-org/react";
 
 export default function Formulario({
   handleFormSubmit,
@@ -30,7 +38,8 @@ export default function Formulario({
   const onDrop = useCallback((acceptedFiles) => {
     console.log(acceptedFiles[0]);
   }, []);
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
+    useDropzone({ onDrop });
 
   // Filtrar las ocurrencias por clasificación
   useEffect(() => {
@@ -307,7 +316,7 @@ export default function Formulario({
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
           <div>
             <Controller
               name="latitud"
@@ -386,6 +395,16 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+          <RadioGroup
+            label="Nivel de Gravedad"
+            name="gravedad"
+            orientation="horizontal"
+          >
+            <Radio value="leve" color="primary">Leve</Radio>
+            <Radio value="alta" color="warning">Alta</Radio>
+          </RadioGroup>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <div>
             <Controller
               name="observaciones"
@@ -404,7 +423,8 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4">
-          <div className="bg-gradient-to-t from-transparent to-default-100 shadow-md rounded px-8 pt-6 pb-8 mb-6"
+          <div
+            className="bg-gradient-to-t from-transparent to-default-100 shadow-md rounded px-8 pt-6 pb-8 mb-6"
             {...getRootProps()}
           >
             <input {...getInputProps()} />
@@ -417,7 +437,7 @@ export default function Formulario({
 
           {acceptedFiles[0] && (
             <Image
-            isBlurred
+              isBlurred
               width={300}
               src={URL.createObjectURL(acceptedFiles[0])}
               alt=""
