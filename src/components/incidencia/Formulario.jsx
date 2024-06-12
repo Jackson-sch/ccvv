@@ -1,7 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
+import { Button, Input, Select, SelectItem, Textarea, Image } from "@nextui-org/react";
+
 
 export default function Formulario({
   handleFormSubmit,
@@ -25,9 +27,13 @@ export default function Formulario({
   // Estado para almacenar las ocurrencias filtradas
   const [ocurrenciasFiltradas, setOcurrenciasFiltradas] = useState([]);
 
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+
   // Filtrar las ocurrencias por clasificación
   useEffect(() => {
-    
     const nuevasOcurrencias = ocurrencia
       .filter(
         (ocurrencia) => ocurrencia.clasificacion === clasificacionSeleccionada
@@ -202,7 +208,10 @@ export default function Formulario({
                   }}
                 >
                   {clasificacion.map((item) => (
-                    <SelectItem key={item.descripcion || item._id} value={item.descripcion}>
+                    <SelectItem
+                      key={item.descripcion || item._id}
+                      value={item.descripcion}
+                    >
                       {item.descripcion}
                     </SelectItem>
                   ))}
@@ -226,7 +235,10 @@ export default function Formulario({
                   onChange={handleInputChange}
                 >
                   {ocurrenciasFiltradas.map((item) => (
-                    <SelectItem key={item.descripcion || item._id} value={item.descripcion}>
+                    <SelectItem
+                      key={item.descripcion || item._id}
+                      value={item.descripcion}
+                    >
                       {item.descripcion}
                     </SelectItem>
                   ))}
@@ -390,6 +402,27 @@ export default function Formulario({
               )}
             />
           </div>
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          <div className="bg-gradient-to-t from-transparent to-default-100 shadow-md rounded px-8 pt-6 pb-8 mb-6"
+            {...getRootProps()}
+          >
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p>Deje caer los archivos aquí ...</p>
+            ) : (
+              <p>Arrastre las imágenes aquí, o haga clic para seleccionar</p>
+            )}
+          </div>
+
+          {acceptedFiles[0] && (
+            <Image
+            isBlurred
+              width={300}
+              src={URL.createObjectURL(acceptedFiles[0])}
+              alt=""
+            />
+          )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Button variant="shadow" color="danger" onClick={() => handleReset()}>
