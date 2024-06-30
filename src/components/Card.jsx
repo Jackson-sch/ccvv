@@ -1,6 +1,4 @@
 import { cn } from "@/utils/utils";
-import { Button } from "@nextui-org/react";
-import { Trash2 } from "lucide-react";
 
 export default function Card({ ...props}) {
   

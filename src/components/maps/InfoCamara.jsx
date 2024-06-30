@@ -6,6 +6,7 @@ export default function InfoCamara({ marker }) {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-slate-800">
           {marker.nombreCamara}
+          {marker.nombreCamara === "CN" ? `_${marker.numeroCamara} 🚨` :""}
         </h2>
         <Chip
           className="uppercase"

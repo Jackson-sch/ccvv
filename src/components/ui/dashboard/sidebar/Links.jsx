@@ -76,12 +76,12 @@ export const menuItems = [
     list: [
       {
         title: "Marcas",
-        path: "/dashboard/vehiculos/marcas",
+        path: "/dashboard/marcas",
         icon: <MdFitbit />,
       },
       {
         title: "Reportados",
-        path: "/dashboard/vehiculos/reportados",
+        path: "/dashboard/reportados",
         icon: <MdPolicy />,
       },
     ],

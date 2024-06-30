@@ -56,7 +56,7 @@ export default function TableUI({
     if (hasSearchFilter) {
       filteredData = filteredData.filter((item) =>
         searchFields.some(field => 
-          item[field] && item[field].toLowerCase().includes(filterValue.toLowerCase())
+          item[field] && String(item[field]).toLowerCase().includes(filterValue.toLowerCase())
         )
       );
     }
@@ -149,8 +149,8 @@ export default function TableUI({
   ]);
 
   const bottomContent = useMemo(() => {
-    return <BottomContent page={page} pages={pages} setPage={setPage} selectedKeys={selectedKeys} filteredItems={filteredItems} />;
-  }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+    return <BottomContent page={page} pages={pages} setPage={setPage}  filteredItems={filteredItems} />;
+  }, [items.length, page, pages, hasSearchFilter]);
 
   return (
     <Table

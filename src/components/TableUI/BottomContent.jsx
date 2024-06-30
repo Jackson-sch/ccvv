@@ -5,7 +5,6 @@ export default function BottomContent({
   page,
   setPage,
   pages,
-  selectedKeys,
   filteredItems,
 }) {
   const onNextPage = useCallback(() => {

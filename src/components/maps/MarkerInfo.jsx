@@ -5,7 +5,6 @@ import {
   useAdvancedMarkerRef,
   Pin,
 } from "@vis.gl/react-google-maps";
-import { set } from "mongoose";
 import InfoCamara from "./InfoCamara";
 
 export default function MarkerInfo({ markers }) {
@@ -31,7 +30,11 @@ export default function MarkerInfo({ markers }) {
             fontWeight: "bold",
           }}
         >
-          <Pin background="#48e" borderColor="#44e" scale={1.4}>
+          <Pin
+            background={item.nombreCamara === "CN" ? "#ff0035" : "#48e"}
+            borderColor={item.nombreCamara === "CN" ? "#ff0035" : "#48e"}
+            scale={1.4}
+          >
             <span className="text-base font-bold">{item.numeroCamara}</span>
           </Pin>
         </AdvancedMarker>
@@ -39,7 +42,6 @@ export default function MarkerInfo({ markers }) {
 
       {selectedMarker && (
         <InfoWindow
-          anchor={marker.current}
           maxWidth={300}
           position={{
             lat: parseFloat(selectedMarker.latitud),

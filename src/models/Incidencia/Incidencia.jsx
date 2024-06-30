@@ -53,7 +53,14 @@ const IncidenciaSchema = new Schema(
     detalles: {
       type: String,
     },
+    imageUrl: {
+      type: String,
+    },
     observaciones: {
+      type: String,
+      required: true,
+    },
+    status: {
       type: String,
       required: true,
     },

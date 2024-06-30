@@ -1,9 +1,17 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Input, Select, SelectItem, Textarea, Image } from "@nextui-org/react";
-
+import {
+  Button,
+  Input,
+  Radio,
+  RadioGroup,
+  Select,
+  SelectItem,
+  Textarea,
+} from "@nextui-org/react";
+import ImageUploader from "@/components/ui/dashboard/ImageUploader";
+import { cn } from "@/utils/utils";
 
 export default function Formulario({
   handleFormSubmit,
@@ -26,11 +34,14 @@ export default function Formulario({
   );
   // Estado para almacenar las ocurrencias filtradas
   const [ocurrenciasFiltradas, setOcurrenciasFiltradas] = useState([]);
+  const [imageURL, setImageURL] = useState("");
+  console.log("🚀 ~ Page ~ imageURL:", imageURL);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles[0]);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+  const handleImageUpload = (url) => {
+    setImageURL(url);
+    // Actualiza el formData con la url de la imagen
+    handleInputChange({ target: { name: "imageUrl", value: url } });
+  };
 
   // Filtrar las ocurrencias por clasificación
   useEffect(() => {
@@ -40,7 +51,7 @@ export default function Formulario({
       )
       .sort((a, b) => a.descripcion.localeCompare(b.descripcion));
     setOcurrenciasFiltradas(nuevasOcurrencias);
-  }, [clasificacionSeleccionada]);
+  }, [clasificacionSeleccionada, ocurrencia]);
 
   // Resetear el formulario
   useEffect(() => {
@@ -307,7 +318,7 @@ export default function Formulario({
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid-cols-1 md:grid-cols-2 gap-4 hidden">
           <div>
             <Controller
               name="latitud"
@@ -386,6 +397,34 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+          <Controller
+            name="status"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <Select
+                {...field}
+                label="Gravedad"
+                className="w-full"
+                onChange={handleInputChange}
+              >
+                {gravedades.map((item) => (
+                  <SelectItem
+                    className={cn({
+                      "text-blue-500 bg-sky-500/20": item.value === "Leve",
+                      "text-red-500 bg-red-500/20": item.value === "Alta",
+                    })} 
+                    key={item.value}
+                    value={item.value}
+                  >
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </Select>
+            )}
+          />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <div>
             <Controller
               name="observaciones"
@@ -404,28 +443,27 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4">
-          <div className="bg-gradient-to-t from-transparent to-default-100 shadow-md rounded px-8 pt-6 pb-8 mb-6"
-            {...getRootProps()}
-          >
-            <input {...getInputProps()} />
-            {isDragActive ? (
-              <p>Deje caer los archivos aquí ...</p>
-            ) : (
-              <p>Arrastre las imágenes aquí, o haga clic para seleccionar</p>
+          <ImageUploader onImageUpload={handleImageUpload} />
+          <Controller
+            name="imageUrl"
+            control={control}
+            defaultValue={formData.imageUrl}
+            render={({ field }) => (
+              <Input
+                {...field}
+                type="text"
+                label="Imagen"
+                value={imageURL}
+                onChange={handleInputChange}
+                className="hidden"
+                readOnly
+              />
             )}
-          </div>
-
-          {acceptedFiles[0] && (
-            <Image
-            isBlurred
-              width={300}
-              src={URL.createObjectURL(acceptedFiles[0])}
-              alt=""
-            />
-          )}
+          />
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Button variant="shadow" color="danger" onClick={() => handleReset()}>
+          <Button variant="shadow" color="danger" onClick={handleReset}>
             Cancelar
           </Button>
           <Button type="submit" variant="shadow" color="secondary">
@@ -521,18 +559,18 @@ const NumeroCam = [
 ];
 
 const Operadores = [
-  { value: "Omega01", label: "Omega01" },
-  { value: "Omega02", label: "Omega02" },
-  { value: "Omega03", label: "Omega03" },
-  { value: "Omega04", label: "Omega04" },
-  { value: "Omega05", label: "Omega05" },
-  { value: "Omega06", label: "Omega06" },
-  { value: "Omega07", label: "Omega07" },
-  { value: "Omega08", label: "Omega08" },
-  { value: "Omega09", label: "Omega09" },
-  { value: "Omega10", label: "Omega10" },
-  { value: "Omega11", label: "Omega11" },
-  { value: "Omega12", label: "Omega12" },
+  { value: "Omega01", label: "Omega 01" },
+  { value: "Omega02", label: "Omega 02" },
+  { value: "Omega03", label: "Omega 03" },
+  { value: "Omega04", label: "Omega 04" },
+  { value: "Omega05", label: "Omega 05" },
+  { value: "Omega06", label: "Omega 06" },
+  { value: "Omega07", label: "Omega 07" },
+  { value: "Omega08", label: "Omega 08" },
+  { value: "Omega09", label: "Omega 09" },
+  { value: "Omega10", label: "Omega 10" },
+  { value: "Omega11", label: "Omega 11" },
+  { value: "Omega12", label: "Omega 12" },
 ];
 
 const Comisarias = [
@@ -557,4 +595,9 @@ const Zonas = [
   { value: "Rio Seco V", label: "Rio Seco V" },
   { value: "Miguel Grau", label: "Miguel Grau" },
   { value: "Alan Garcia", label: "Alan Garcia" },
+];
+
+const gravedades = [
+  { value: "Leve", label: "Leve" },
+  { value: "Alta", label: "Alta" },
 ];

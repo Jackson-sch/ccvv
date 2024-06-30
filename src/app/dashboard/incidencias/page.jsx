@@ -21,6 +21,8 @@ export default function Page() {
   const hora = format(fechaActual, "HH:mm:ss" );
   const [clasificacion, setClasificacion] = useState([]);
   const [ocurrencia, setOcurrencia] = useState([]);
+ 
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,15 +69,15 @@ export default function Page() {
   };
 
   const handleFormSubmit = () => {
-    onSubmit(formData);
-    setFormData(formInitialData);
+    onSubmit({...formData, imageUrl: formData.imageUrl });
+    /* setFormData(formInitialData); */
     setIsOpen(false);
   };
 
+
   const onSubmit = async (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
-    
     try {
+      
       const response = await fetch("/api/incidencia", {
         method: "POST",
         headers: {
