@@ -425,16 +425,6 @@ export default function Formulario({
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-          <RadioGroup
-            label="Nivel de Gravedad"
-            name="gravedad"
-            orientation="horizontal"
-          >
-            <Radio value="leve" color="primary">Leve</Radio>
-            <Radio value="alta" color="warning">Alta</Radio>
-          </RadioGroup>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <div>
             <Controller
               name="observaciones"
@@ -611,3 +601,5 @@ const gravedades = [
   { value: "Leve", label: "Leve" },
   { value: "Alta", label: "Alta" },
 ];
+
+feat: Eliminar el grupo de radio no utilizado para el nivel de gravedad en forma de incidente
