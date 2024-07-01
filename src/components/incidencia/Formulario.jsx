@@ -601,5 +601,3 @@ const gravedades = [
   { value: "Leve", label: "Leve" },
   { value: "Alta", label: "Alta" },
 ];
-
-feat: Eliminar el grupo de radio no utilizado para el nivel de gravedad en forma de incidente
