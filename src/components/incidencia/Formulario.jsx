@@ -408,10 +408,6 @@ export default function Formulario({
               >
                 {gravedades.map((item) => (
                   <SelectItem
-                    className={cn({
-                      "text-blue-500 bg-sky-500/20": item.value === "Leve",
-                      "text-red-500 bg-red-500/20": item.value === "Alta",
-                    })} 
                     key={item.value}
                     value={item.value}
                   >
