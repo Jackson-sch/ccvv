@@ -23,6 +23,7 @@ import { Children } from "react";
  * - sortable: Indica si la columna es sortable (ordenable) o no.
  */
 const columns = [
+  { name: "ID", uid: "_id"},
   { name: "OCURRENCIA", uid: "ocurrencia", sortable: true },
   { name: "N° CAMARA", uid: "camara", sortable: true },
   { name: "NOMBRES Y APELLIDOS", uid: "nombres_apellidos", sortable: true },
@@ -148,6 +149,7 @@ const columnConfig = {
           <span className="text-default-400 text-xs">Longitud:</span>{" "}
           {item.longitud}
         </p> */}
+        <p className="text-bold text-tiny capitalize text-default-400">{item.zona}</p>
       </div>
     ),
   },
