@@ -1,7 +1,6 @@
 import {
   Button,
   Chip,
-  Image,
   Modal,
   ModalBody,
   ModalContent,
@@ -59,7 +58,6 @@ const statusOptions = [
 const INITIAL_VISIBLE_COLUMNS = [
   "nombres_apellidos",
   "ocurrencia",
-  "fecha",
   "camara",
   "direccion",
   "observaciones",
@@ -103,7 +101,22 @@ const columnConfig = {
       </User>
     ),
   },
-  fecha: {
+  camara: {
+    render: (item) => (
+      <div className="flex flex-col">
+        <p className="text-bold text-small capitalize">Cámara {item.camara}</p>
+        <div className="flex flex-col">
+          <p className="text-bold text-tiny capitalize text-default-400">
+            {item.fecha}
+          </p>
+          <p className="text-bold text-tiny capitalize text-default-400">
+            {item.hora}
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  /* fecha: {
     render: (item) => (
       <div className="flex flex-col">
         <p className="text-bold text-small capitalize">{item.fecha}</p>
@@ -112,7 +125,7 @@ const columnConfig = {
         </p>
       </div>
     ),
-  },
+  }, */
   nombres_apellidos: {
     render: (item) => (
       <div className="flex flex-col">
@@ -128,18 +141,22 @@ const columnConfig = {
   direccion: {
     render: (item) => (
       <div className="flex flex-col">
-        <p className="text-bold text-small capitalize">{item.direccion}</p>
-        <p className="text-bold text-tiny capitalize text-default-400">
-          <span className="text-default-400">Latitud:</span> {item.latitud}{" "}
-          <span className="text-default-400">Longitud:</span> {item.longitud}
-        </p>
+        <p className="text-bold text-small capitalize line-clamp-1">{item.direccion.split(',')[0]}</p>
+        {/* <p className="text-bold text-tiny capitalize text-default-400 flex gap-2 justify-between">
+          <span className="text-default-400 text-xs">Latitud:</span>{" "}
+          {item.latitud}{" "}
+          <span className="text-default-400 text-xs">Longitud:</span>{" "}
+          {item.longitud}
+        </p> */}
       </div>
     ),
   },
   observaciones: {
     render: (item) => (
-      <div className="flex flex-col w-28">
-        <p className="text-bold text-small capitalize line-clamp-1">{item.observaciones}</p>
+      <div className="flex flex-col w-64">
+        <p className="text-bold text-small capitalize line-clamp-1">
+          {item.observaciones}
+        </p>
         <p className="text-bold text-tiny capitalize text-default-400">
           {item.detalles}
         </p>
@@ -219,7 +236,12 @@ export function ModalView({ item }) {
         </Button>
       </Tooltip>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="5xl">
+      <Modal
+        backdrop="blur"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="5xl"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -230,7 +252,7 @@ export function ModalView({ item }) {
                 <ContentDetails item={item}>{Children}</ContentDetails>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="shadow" onPress={onClose}>
+                <Button color="secondary" variant="flat" onPress={onClose}>
                   Close
                 </Button>
               </ModalFooter>
