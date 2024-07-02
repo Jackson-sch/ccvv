@@ -41,26 +41,26 @@ export const menuItems = [
       },
     ],
   },
-  /* {
-    title: "Analytics",
+  {
+    title: "Base",
     list: [
       {
-        title: "Revenue",
-        path: "/dashboard/revenue",
+        title: "Ocurrencias",
+        path: "/dashboard/base/ocurrencia",
         icon: <MdWork />,
       },
       {
         title: "Reports",
-        path: "/dashboard/reports",
+        path: "/dashboard/base/ocurrencia",
         icon: <MdAnalytics />,
       },
       {
         title: "Teams",
-        path: "/dashboard/teams",
+        path: "/dashboard/base/ocurrencia",
         icon: <MdPeople />,
       },
     ],
-  }, */
+  },
   {
     title: "Incidencias",
     list: [
@@ -101,7 +101,7 @@ export const menuItems = [
       },
       {
         title: "Profile",
-        path: "/dashboard/profile",
+        path: "/dashboard/users/profile",
         icon: <MdSupervisedUserCircle />,
       },
     ],

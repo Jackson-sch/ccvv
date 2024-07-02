@@ -395,6 +395,7 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+<<<<<<< HEAD
           <Controller
             name="status"
             control={control}
@@ -421,6 +422,20 @@ export default function Formulario({
               </Select>
             )}
           />
+=======
+          <RadioGroup
+            label="Nivel de Gravedad"
+            name="gravedad"
+            orientation="horizontal"
+          >
+            <Radio value="leve" color="primary">
+              Leve
+            </Radio>
+            <Radio value="alta" color="warning">
+              Alta
+            </Radio>
+          </RadioGroup>
+>>>>>>> 7976df1 (idx)
         </div>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <div>

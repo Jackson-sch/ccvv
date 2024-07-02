@@ -1,5 +1,6 @@
 import Card, { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
+import BarChartTurno from "@/components/incidencia/BarChartTurno";
 import BarChart from "@/components/ui/dashboard/BarChart";
 import SalesCard from "@/components/ui/dashboard/SalesCard";
 import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
@@ -18,6 +19,10 @@ export default function page() {
         <CardContent>
           <p className="text-sm">Total Revenue</p>
           <BarChart />
+        </CardContent>
+        <CardContent>
+          <p className="text-sm">Incidencias por Turno</p>
+          <BarChartTurno />
         </CardContent>
         <CardContent>
           <section>
