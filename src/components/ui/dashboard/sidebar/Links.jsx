@@ -13,6 +13,7 @@ import {
   MdPolicy,
   MdMap,
   MdLocationPin,
+  MdDataset,
 } from "react-icons/md";
 
 export const menuItems = [
@@ -68,7 +69,12 @@ export const menuItems = [
         title: "Registro",
         path: "/dashboard/incidencias",
         icon: <MdLocationPin />,
-      }
+      },
+      {
+        title: "Lista",
+        path: "/dashboard/incidencias/lista",
+        icon: <MdDataset />,
+      },
     ],
   },
   {
@@ -95,8 +101,8 @@ export const menuItems = [
         icon: <MdOutlineSettings />,
       },
       {
-        title: "Help",
-        path: "/dashboard/help",
+        title: "Lista",
+        path: "/dashboard/users",
         icon: <MdHelpCenter />,
       },
       {
