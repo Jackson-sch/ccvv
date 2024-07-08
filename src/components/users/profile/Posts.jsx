@@ -1,12 +1,13 @@
 import React from "react";
 import { CardContent } from "@/components/Card";
-import { Button, Divider, Image } from "@nextui-org/react";
-import { CameraIcon, HeartIcon, MessageCircle, ThumbsUp } from "lucide-react";
+import { Button, Divider, Image, ScrollShadow } from "@nextui-org/react";
+import { MessageCircle, ThumbsUp } from "lucide-react";
 
 export default function Posts({ data }) {
-  console.log("🚀 ~ Posts ~ data:", data);
   return (
-    <CardContent className="flex justify-center px-20 py-9">
+    <ScrollShadow hideScrollBar className="w-full">
+      <CardContent className="flex justify-center px-20 py-9">
+        
       {data.map((post) => (
         <div key={post._id}>
           <div className="flex items-center mb-3">
@@ -46,5 +47,7 @@ export default function Posts({ data }) {
         </div>
       ))}
     </CardContent>
+    </ScrollShadow>
+    
   );
 }

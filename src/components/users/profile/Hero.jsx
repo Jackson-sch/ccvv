@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Hero() {
+export default function Hero({data}) {
   return (
-    <div className="bg-gradient-to-t to-indigo-400 from-indigo-300/50 p-8 rounded-lg shadow-md flex justify-between items-center">
+    <div className="bg-gradient-to-t to-indigo-500 from-indigo-700/50 p-8 rounded-lg shadow-md flex justify-between items-center">
       <div>
-        <h1 className="text-3xl text-default-50 font-bold mb-2">Good Morning, Victor!</h1>
+        <h1 className="text-3xl text-default-50 font-bold mb-2">Buen día, {data.name}!</h1>
         <p className="text-default-300 mb-4">
           Here's what happening with your store today
         </p>

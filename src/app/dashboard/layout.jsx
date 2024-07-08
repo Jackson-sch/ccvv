@@ -6,10 +6,10 @@ export default function layout({ children }) {
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-        <div className="w-full">
+        <div className="w-full top-0 fixed z-50">
           <NavbarHeader />
         </div>
-        <div className="w-full p-12">{children}</div>
+        <div className="w-full p-12 h-screen mt-16">{children}</div>
       </div>
     </div>
   );

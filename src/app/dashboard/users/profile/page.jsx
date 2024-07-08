@@ -35,21 +35,20 @@ export default function page() {
 
   return (
     <>
-      <Hero />
+      <Hero data={user} />
       <div className="grid grid-rows-3 grid-flow-col gap-4 mt-4">
         <div className="row-span-3">
           <Profile data={user} />
         </div>
-        <div className="col-span-2 w-full">
-            <Tabs aria-label="Profile Tabs">
-              <Tab key="posts" title="Posts">
-                <Posts data={posts} />
-                
-              </Tab>
-              <Tab key="perfil" title="Perfil">
-                <Formulario />
-              </Tab>
-            </Tabs>
+        <div className="col-span-2 w-full h-screen">
+          <Tabs aria-label="Profile Tabs">
+            <Tab key="posts" title="Posts">
+              <Posts data={posts} />
+            </Tab>
+            <Tab key="perfil" title="Perfil">
+              <Formulario />
+            </Tab>
+          </Tabs>
         </div>
       </div>
     </>
