@@ -59,7 +59,7 @@ export default function ImageUploader({ onImageUpload }) {
             <p>Deje caer los archivos aquí ...</p>
           ) : (
             <>
-              <p>
+              <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                 <span className="font-semibold">Haga clic para cargar</span> o
                 arrastre la imagen aquí
               </p>
