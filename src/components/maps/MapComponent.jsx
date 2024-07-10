@@ -9,7 +9,7 @@ export default function MapsComponent({
   item,
   center,
   zoom,
-  mapContainerStyle = { width: "100%", height: "20vh" },
+  mapContainerStyle = { width: "100%", height: "30vh" },
 }) {
   return (
     <div style={mapContainerStyle}>

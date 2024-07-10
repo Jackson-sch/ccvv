@@ -9,7 +9,6 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import ImageUploader from "@/components/ui/dashboard/ImageUploader";
-import { cn } from "@/utils/utils";
 
 export default function Formulario({
   handleFormSubmit,

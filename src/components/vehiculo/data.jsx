@@ -30,7 +30,7 @@ const columns = [
 
 const INITIAL_VISIBLE_COLUMNS = ["placa", "urlImagen", "actions"];
 
-const url = "/dashboard/ocurrencias/";
+const url = "/dashboard/reportados/";
 
 const searchFields = ["descripcion", "clasificacion"];
 
@@ -83,4 +83,13 @@ const statusColorMap = {
   pending: "secondary",
 };
 
-export { columns, INITIAL_VISIBLE_COLUMNS, url, searchFields, columnConfig };
+const formInitialData = {
+  placa: "",
+  color: "",
+  modelo: "",
+  prioridad: "",
+  detalles: "",
+  imageUrl: "",
+}
+
+export { columns, INITIAL_VISIBLE_COLUMNS, url, searchFields, columnConfig, formInitialData };
