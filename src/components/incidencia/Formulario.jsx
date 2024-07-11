@@ -310,6 +310,7 @@ export default function Formulario({
                   isInvalid={errors.direccion}
                   errorMessage={errors.direccion && "La dirección es requerida"}
                   onChange={handleInputChange}
+                  readOnly
                 />
               )}
             />
