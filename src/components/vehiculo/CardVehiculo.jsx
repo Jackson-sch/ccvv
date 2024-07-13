@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function CardVehiculoItem({ item, url, handleDelete, statusColorMap }) {
   return (
-    <div className="bg-gradient-to-t from-transparent to-default-50 shadow-md rounded-md hover:scale-105 transform transition-all duration-300 z-50">
+    <div className="bg-gradient-to-t from-transparent to-default-50 shadow-md rounded-md hover:scale-105 transform transition-all duration-300 z-50 hover:shadow-xl">
       <div className="flex flex-col items-center justify-center m-auto p-4 gap-4">
         <div className="w-full flex items-center justify-center">
           <Image
@@ -16,7 +16,7 @@ function CardVehiculoItem({ item, url, handleDelete, statusColorMap }) {
         </div>
         <span className="font-semibold text-xl uppercase">{item.placa}</span>
         <div className="flex items-center justify-between gap-4 w-full">
-          <p className="text-default-400 uppercase text-sm">{item.modelo}</p>
+          <p className="text-default-400 uppercase text-sm">{item.marca}</p>
           <p className="text-default-400 uppercase text-sm">{item.color}</p>
           <Chip
             variant="flat"
@@ -26,7 +26,7 @@ function CardVehiculoItem({ item, url, handleDelete, statusColorMap }) {
             {item.prioridad}
           </Chip>
         </div>
-        <ScrollShadow hideScrollBar className="h-[80px] mb-10">
+        <ScrollShadow hideScrollBar className="h-[80px] mb-12">
           <p className="uppercase text-pretty text-default-700 text-tiny">
             {item.detalles}
           </p>
@@ -50,7 +50,12 @@ function CardVehiculoItem({ item, url, handleDelete, statusColorMap }) {
   );
 }
 
-export default function CardVehiculo({ data, url, handleDelete, statusColorMap }) {
+export default function CardVehiculo({
+  data,
+  url,
+  handleDelete,
+  statusColorMap,
+}) {
   return (
     <div className="grid grid-cols-4 gap-6">
       {data.map((item) => (

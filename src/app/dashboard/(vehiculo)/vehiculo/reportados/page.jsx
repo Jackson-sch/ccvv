@@ -9,7 +9,7 @@ import {
   searchFields,
   columnConfig,
   url,
-  statusColorMap
+  statusColorMap,
 } from "@/components/vehiculo/data";
 import CardVehiculo from "@/components/vehiculo/CardVehiculo";
 import InputSearch from "@/components/vehiculo/InputSearch";
@@ -71,8 +71,10 @@ export default function page() {
   // Filtrar los vehículos reportados
   const filteredVehiculos = vehiculosReportados.filter(
     (vehiculo) =>
-      vehiculo.placa.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      vehiculo.color.toLowerCase().includes(searchTerm.toLowerCase())
+      vehiculo.placa?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vehiculo.color?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vehiculo.marca?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vehiculo.prioridad?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calcula los vehiculos a mostrar en la pagina
@@ -90,11 +92,17 @@ export default function page() {
   return (
     <>
       <CardContent className=" mb-4">
+        <PageTitle
+          title="Vehículos reportados"
+          descripcion="En este módulo se encuentran los vehículos reportados, ya sea por robo o por cualquier tipo de requisitoria que presenten."
+        />
         <div className="flex justify-between items-center my-6">
           <InputSearch onChange={handleSearch} value={searchTerm} />
           <ButtonAdd url={url} />
         </div>
-        <span className="text-sm text-default-500">Total vehículos reportados: {total} </span>
+        <span className="text-sm text-default-500">
+          Total vehículos reportados: {total}{" "}
+        </span>
         <CardVehiculo
           data={currentItems}
           url={url}

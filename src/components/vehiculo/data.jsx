@@ -85,7 +85,7 @@ const statusColorMap = {
 const formInitialData = {
   placa: "",
   color: "",
-  modelo: "",
+  marca: "",
   prioridad: "",
   detalles: "",
   imageUrl: "",

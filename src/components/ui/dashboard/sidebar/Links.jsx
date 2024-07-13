@@ -86,7 +86,7 @@ export const menuItems = [
         icon: <MdFitbit />,
       },
       {
-        title: "Lista",
+        title: "Reportados",
         path: "/dashboard/vehiculo/reportados",
         icon: <MdPolicy />,
       },

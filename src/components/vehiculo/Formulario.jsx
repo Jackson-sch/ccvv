@@ -65,19 +65,19 @@ export default function Formulario({
           </div>
           <div>
             <Controller
-              name="modelo"
+              name="marca"
               control={control}
-              defaultValue={formData ? formData.modelo : ""}
+              defaultValue={formData ? formData.marca : ""}
               rules={{ required: true }}
               render={({ field }) => (
                 <Select
                   {...field}
                   selectedKeys={[field.value]}
-                  label="Modelo"
+                  label="Marca"
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Modelo.map((item) => (
+                  {Marca.map((item) => (
                     <SelectItem key={item.value} value={item.value}>
                       {item.label}
                     </SelectItem>
@@ -182,7 +182,7 @@ const Prioridad = [
   { value: "Alta", label: "Alta" },
 ];
 
-const Modelo = [
+const Marca = [
   { value: "toyota", label: "Toyota" },
   { value: "honda", label: "Honda" },
   { value: "ford", label: "Ford" },

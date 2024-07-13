@@ -5,7 +5,7 @@ const vehiculoReportadoSchema = new Schema({
     type: String,
     trim: true,
   },
-  modelo: {
+  marca: {
     type: String,
     trim: true,
   },
