@@ -83,7 +83,7 @@ export default function page() {
     indexOfLastItem
   );
 
-  // Calcular el totol de registros
+  // Calcular el total de registros
   const totalItems = Math.ceil(filteredVehiculos.length / itemsPerPage);
   const total = Math.ceil(vehiculosReportados.length);
 
