@@ -9,13 +9,16 @@ export default function Formulario({
   formData,
   handleInputChange,
   handleResetForm,
+  isEditing,
 }) {
   const {
     handleSubmit,
     reset,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: formData,
+  });
 
   const [imageURL, setImageURL] = useState("");
   
@@ -46,7 +49,7 @@ export default function Formulario({
             <Controller
               name="placa"
               control={control}
-              defaultValue={formData.placa}
+              defaultValue=""
               rules={{ required: true }}
               render={({ field }) => (
                 <Input
@@ -64,10 +67,12 @@ export default function Formulario({
             <Controller
               name="modelo"
               control={control}
+              defaultValue={formData ? formData.modelo : ""}
               rules={{ required: true }}
               render={({ field }) => (
                 <Select
                   {...field}
+                  selectedKeys={[field.value]}
                   label="Modelo"
                   className="w-full"
                   onChange={handleInputChange}
@@ -87,6 +92,7 @@ export default function Formulario({
             <Controller
               name="color"
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <Input
                   {...field}
@@ -100,12 +106,14 @@ export default function Formulario({
           </div>
           <div>
             <Controller
-              name="status"
+              name="prioridad"
               control={control}
+              defaultValue={formData ? formData.prioridad : ""}
               render={({ field }) => (
                 <Select
                   {...field}
-                  label="Gravedad"
+                  selectedKeys={[field.value]}
+                  label="Prioridad"
                   className="w-full"
                   onChange={handleInputChange}
                 >
@@ -137,18 +145,18 @@ export default function Formulario({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4">
-          <ImageUploader onImageUpload={handleImageUpload} />
+          <ImageUploader onImageUpload={handleImageUpload} imageURL={imageURL} />
           <Controller
             name="imageUrl"
             control={control}
+            defaultValue={formData ? formData.imageUrl : ""}
             render={({ field }) => (
               <Input
                 {...field}
                 type="text"
                 label="Imagen"
-                value={imageURL}
                 onChange={handleInputChange}
-                className=""
+                className="hidden"
                 readOnly
               />
             )}

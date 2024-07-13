@@ -87,12 +87,7 @@ export const menuItems = [
       },
       {
         title: "Lista",
-        path: "/dashboard/reportados",
-        icon: <MdPolicy />,
-      },
-      {
-        title: "Agregar Vehículo",
-        path: "/dashboard/add",
+        path: "/dashboard/vehiculo/reportados",
         icon: <MdPolicy />,
       },
     ],

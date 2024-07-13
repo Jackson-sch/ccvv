@@ -30,7 +30,7 @@ const columns = [
 
 const INITIAL_VISIBLE_COLUMNS = ["placa", "urlImagen", "actions"];
 
-const url = "/dashboard/reportados/";
+const url = "/dashboard/vehiculo/reportados/";
 
 const searchFields = ["descripcion", "clasificacion"];
 
@@ -38,7 +38,7 @@ const columnConfig = {
   urlImagen: {
     render: (item) => (
       <User
-        avatarProps={{ radius: "lg", src: item.urlImagen }}
+        avatarProps={{ radius: "lg", src: item.imageUrl }}
         description={item.marca + " - " + item.color}
         name={item.placa}
         title={item.color}
@@ -77,10 +77,9 @@ const columnConfig = {
 };
 
 const statusColorMap = {
-  active: "success",
-  inactive: "warning",
-  blocked: "danger",
-  pending: "secondary",
+  Leve: "success",
+  Media: "warning",
+  Alta: "danger",
 };
 
 const formInitialData = {
@@ -92,4 +91,4 @@ const formInitialData = {
   imageUrl: "",
 }
 
-export { columns, INITIAL_VISIBLE_COLUMNS, url, searchFields, columnConfig, formInitialData };
+export { columns, INITIAL_VISIBLE_COLUMNS, url, searchFields, columnConfig, formInitialData, statusColorMap };

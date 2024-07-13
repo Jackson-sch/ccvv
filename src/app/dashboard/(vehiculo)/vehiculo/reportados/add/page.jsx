@@ -1,14 +1,40 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import { formInitialData } from "@/components/vehiculo/data";
 import Formulario from "@/components/vehiculo/Formulario";
-import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 export default function page() {
+  const [vehiculos, setVehiculos] = useState([]);
   const [formData, setFormData] = useState(formInitialData);
+  const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
+  const params = useParams();
+
+  const fetchVehiculos = async () => {
+    const response = await fetch("/api/vehiculo");
+    const data = await response.json();
+    setVehiculos(data);
+  }
+
+  const getVehiculo = async (id) => {
+    const response = await fetch(`/api/vehiculo/${params.id}`);
+    const data = await response.json();
+    setFormData(data);
+    setIsEditing(true);
+  }
+
+  useEffect(() => {
+    fetchVehiculos();
+    const vehiculoId = params.id;
+    if (vehiculoId) {
+      getVehiculo(vehiculoId);
+    }
+  }, [params.id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,9 +46,11 @@ export default function page() {
   };
 
   const onSubmit = async (data) => {
+    const url = isEditing ? `/api/vehiculo/${params.id}` : "/api/vehiculo";
+    const method = isEditing ? "PUT" : "POST";
     try {
-      const response = await fetch("/api/vehiculo", {
-        method: "POST",
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,13 +58,11 @@ export default function page() {
       });
 
       if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Vehículo agregado",
-          text: "El vehículo ha sido agregado correctamente",
-          timer: 1500,
-        });
-        setFormData("");
+        toast.success(isEditing ? "Vehículo actualizado correctamente" : "Vehículo creado con éxito");
+        router.push("/dashboard/vehiculo/reportados");
+        setIsEditing(false);
+        setFormData(formInitialData);
+        fetchVehiculos();
       } else {
         toast.error("Error al agregar el vehículo");
       }
@@ -47,18 +73,20 @@ export default function page() {
   };
 
   const handleResetForm = () => {
-    setFormData("");
+    setIsEditing(false);
+    setFormData(formInitialData);
   };
 
   return (
     <>
       <CardContent className="w-[80%] m-auto">
         <PageTitle
-          title="Agregar Vehículo"
+          title={!isEditing ? "Agregar Vehículo" : "Editar Vehículo"}
           descripcion="Este módulo permite ingresar información sobre vehículos que se encuentran bajo investigación o que han sido involucrados en actividades ilícitas. El objetivo es facilitar el seguimiento y la identificación de estos vehículos por parte de las autoridades competentes."
         />
         <Formulario
           formData={formData}
+          isEditing={isEditing}
           handleInputChange={handleInputChange}
           handleFormSubmit={handleFormSubmit}
           handleResetForm={handleResetForm}

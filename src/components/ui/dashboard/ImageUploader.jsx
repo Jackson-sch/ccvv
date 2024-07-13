@@ -3,8 +3,9 @@ import { CloudUpload, Trash } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-export default function ImageUploader({ onImageUpload }) {
+export default function ImageUploader({ onImageUpload, imageUrl }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  
 
   const onDrop = useCallback(
     async (acceptedFiles) => {
