@@ -53,7 +53,7 @@ export default function ImageUploader({ onImageUpload, imageUrl }) {
       {...getRootProps()}
     >
       <div>
-        <div className="flex flex-col items-center justify-center pb-6 pt-5">
+        <div className="flex flex-col items-center justify-center pb-2 pt-5">
           <CloudUpload />
           <input {...getInputProps()} />
           {isDragActive ? (
