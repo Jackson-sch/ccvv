@@ -13,9 +13,7 @@ export default function Sidebar() {
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <aside className={`h-screen ${
-      expanded ? " overflow-y-auto" : ""
-    }`}>
+    <aside className={`h-screen ${expanded ? " overflow-y-auto" : ""}`}>
       <nav className="flex flex-col bg-background h-screen border-r border-default-50">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
@@ -34,14 +32,14 @@ export default function Sidebar() {
         </div>
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3 py-2">
-            <p className={cn("mb-2 text-slate-500", expanded ? "" : "hidden")}>GENERAL</p>
+            <p className={cn("mb-2 text-slate-500", expanded ? "" : "hidden")}>
+              GENERAL
+            </p>
             {dataGeneral.map((cat) => (
-              <span key={cat.title}>
+              <span className="ml-3" key={cat.title}>
                 <span
                   className={`my-2 text-xs md:text-sm font-bold ${
-                    expanded
-                      ? "visible"
-                      : "hidden"
+                    expanded ? "visible" : "hidden"
                   }`}
                 >
                   {expanded ? cat.title : cat.title.slice(0, 3).toUpperCase()}
@@ -53,13 +51,14 @@ export default function Sidebar() {
             ))}
 
             <Divider />
+            <p className={cn("my-2 text-slate-500", expanded ? "" : "hidden")}>
+              ADMIN
+            </p>
             {dataAdmin.map((cat) => (
-              <span key={cat.title}>
+              <span className="ml-3" key={cat.title}>
                 <span
                   className={`my-2 text-xs md:text-sm font-bold ${
-                    expanded
-                      ? "visible"
-                      : "hidden"
+                    expanded ? "visible" : "hidden"
                   }`}
                 >
                   {expanded ? cat.title : cat.title.slice(0, 3).toUpperCase()}
@@ -73,24 +72,9 @@ export default function Sidebar() {
         </SidebarContext.Provider>
 
         <div className="border-t border-default-50 flex p-3">
-          <img
-            src="/assets/avatars/avatar-carson-darrin.png"
-            alt="avatar"
-            className="w-10 h-10 rounded-md"
-          />
-          <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${
-              expanded ? "w-52 ml-3" : "w-0"
-            }`}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">Jackson Sebastian</h4>
-              <span className="text-xs text-gray-600">
-                jacksondarwin.12@gmail.com
-              </span>
-            </div>
-            <MoreVertical size={20} />
-          </div>
+          <footer className="p-3 mt-3 text-center">
+            2024. Todos los derechos reservados
+          </footer>
         </div>
       </nav>
     </aside>
@@ -105,11 +89,10 @@ export function SidebarItem({ item }) {
   return (
     <Link
       href={item.path}
-      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
-        isActive
-          ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-600"
-          : "hover:bg-indigo-50 text-gray-600"
-      }`}
+      className={cn(
+        `relative flex text-sm text-default-500 items-center py-2 px-3 ml-3 my-1 font-medium transition-colors group  hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer`,
+        isActive && "bg-slate-400/20 text-default-900"
+      )}
     >
       {item.icon}
       <span

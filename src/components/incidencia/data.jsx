@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import ActionsButtons from "../TableUI/Actions";
 import { EyeIcon } from "lucide-react";
-import ContentDetails from "../ocurrencia/ContentDetails";
+import ContentDetails from "./ContentDetailsModal";
 import { Children } from "react";
 
 /**
@@ -23,7 +23,7 @@ import { Children } from "react";
  * - sortable: Indica si la columna es sortable (ordenable) o no.
  */
 const columns = [
-  { name: "ID", uid: "_id"},
+  { name: "ID", uid: "_id" },
   { name: "OCURRENCIA", uid: "ocurrencia", sortable: true },
   { name: "N° CAMARA", uid: "camara", sortable: true },
   { name: "NOMBRES Y APELLIDOS", uid: "nombres_apellidos", sortable: true },
@@ -142,14 +142,18 @@ const columnConfig = {
   direccion: {
     render: (item) => (
       <div className="flex flex-col">
-        <p className="text-bold text-small capitalize line-clamp-1">{item.direccion.split(',')[0]}</p>
+        <p className="text-bold text-small capitalize line-clamp-1">
+          {item.direccion.split(",")[0]}
+        </p>
         {/* <p className="text-bold text-tiny capitalize text-default-400 flex gap-2 justify-between">
           <span className="text-default-400 text-xs">Latitud:</span>{" "}
           {item.latitud}{" "}
           <span className="text-default-400 text-xs">Longitud:</span>{" "}
           {item.longitud}
         </p> */}
-        <p className="text-bold text-tiny capitalize text-default-400">{item.zona}</p>
+        <p className="text-bold text-tiny capitalize text-default-400">
+          {item.zona}
+        </p>
       </div>
     ),
   },

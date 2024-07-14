@@ -24,7 +24,7 @@ const columns = [
 
 const INITIAL_VISIBLE_COLUMNS = ["descripcion", , "actions"];
 
-const url = "/dashboard/ocurrencias/";
+const url = "/dashboard/admin/ocurrencias";
 
 const searchFields = ["descripcion", "clasificacion"];
 

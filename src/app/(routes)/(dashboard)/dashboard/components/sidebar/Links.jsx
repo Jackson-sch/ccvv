@@ -1,3 +1,5 @@
+import { Megaphone } from "lucide-react";
+import { FaDashcube } from "react-icons/fa";
 import {
   MdDashboard,
   MdSupervisedUserCircle,
@@ -15,17 +17,17 @@ import {
 
 export const dataGeneral = [
   {
-    title: "GENERAL",
+    title: "Dashboard",
     list: [
       {
         title: "Dashboard",
         path: "/dashboard",
-        icon: <MdDashboard />,
+        icon: <FaDashcube width={20} height={20} strokeWidth={2}  />,
       },
       {
-        title: "Transactions",
+        title: "Lo más Relevante",
         path: "/dashboard/transactions",
-        icon: <MdAttachMoney />,
+        icon: <Megaphone width={20} height={20} strokeWidth={2} />,
       },
     ],
   },
@@ -37,7 +39,6 @@ export const dataGeneral = [
         path: "/dashboard/base/ocurrencia",
         icon: <MdWork />,
       },
-
     ],
   },
   {
@@ -65,12 +66,11 @@ export const dataGeneral = [
       },
     ],
   },
-
 ];
 
 export const dataAdmin = [
   {
-    title: "Admin",
+    title: "Mantenimiento",
     list: [
       {
         title: "Settings",
@@ -78,45 +78,45 @@ export const dataAdmin = [
         icon: <MdOutlineSettings />,
       },
       {
-        title: "Lista",
-        path: "/dashboard/users",
+        title: "Lista Usuarios",
+        path: "/dashboard/admin/users",
         icon: <MdHelpCenter />,
       },
       {
-        title: "Profile",
-        path: "/dashboard/users/profile",
+        title: "Perfil Usuario",
+        path: "/dashboard/admin/users/profile",
         icon: <MdSupervisedUserCircle />,
       },
       {
-        title: "Ubicaciones",
-        path: "/dashboard/ubicacion",
+        title: "Ubicacion Cámaras",
+        path: "/dashboard/admin/ubicacion",
         icon: <MdLocationPin />,
       },
       {
-        title: "Marcas",
-        path: "/dashboard/marcas",
+        title: "Marca Vehículos",
+        path: "/dashboard/admin/marcas",
         icon: <MdFitbit />,
       },
       {
-        title: "Ocurrencias",
-        path: "/dashboard/ocurrencias",
+        title: "Tipo Ocurrencia",
+        path: "/dashboard/admin/ocurrencias",
         icon: <MdHelpCenter />,
       },
       {
-        title: "Clasificación",
-        path: "/dashboard/clasificacion",
+        title: "Tipo Clasificación",
+        path: "/dashboard/admin/clasificacion",
         icon: <MdHelpCenter />,
       },
       {
-        title: "Workstation",
-        path: "/dashboard/workstation",
+        title: "Omegas",
+        path: "/dashboard/admin/workstation",
         icon: <MdDesktopWindows />,
       },
       {
         title: "Zonas",
-        path: "/dashboard/zonas",
+        path: "/dashboard/admin/zonas",
         icon: <MdMap />,
       },
     ],
   },
-]
+];

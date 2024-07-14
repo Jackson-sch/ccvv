@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import TableUI from "../../../../../components/TableUI/TableUI"; 
+import TableUI from "@/components/TableUI/TableUI"; 
 import {
   columns,
   INITIAL_VISIBLE_COLUMNS,
   searchFields,
   columnConfig,
   statusOptions,
-} from "../../../../../components/incidencia/data.jsx"; 
+} from "@/components/incidencia/data.jsx"; 
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 

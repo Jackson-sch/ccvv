@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import MapsComponent from "../../../../components/maps/MapsComponent";
-import { formInitialData } from "../../../../components/incidencia/data"; 
+import MapsComponent from "@/components/maps/MapsComponent";
+import { formInitialData } from "@/components/incidencia/data"; 
 import Drawer from "@/components/Drawer";
-import Formulario from "../../../../components/incidencia/Formulario"; 
+import Formulario from "@/components/incidencia/Formulario";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { format } from "@formkit/tempo";
