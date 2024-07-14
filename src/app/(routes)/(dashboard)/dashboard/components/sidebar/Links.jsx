@@ -1,9 +1,6 @@
-import { Megaphone } from "lucide-react";
-import { FaDashcube } from "react-icons/fa";
+import { LayoutDashboard, Megaphone } from "lucide-react";
 import {
-  MdDashboard,
   MdSupervisedUserCircle,
-  MdAttachMoney,
   MdWork,
   MdOutlineSettings,
   MdHelpCenter,
@@ -22,7 +19,7 @@ export const dataGeneral = [
       {
         title: "Dashboard",
         path: "/dashboard",
-        icon: <FaDashcube width={20} height={20} strokeWidth={2}  />,
+        icon: <LayoutDashboard width={20} height={20} strokeWidth={2}  />,
       },
       {
         title: "Lo más Relevante",
