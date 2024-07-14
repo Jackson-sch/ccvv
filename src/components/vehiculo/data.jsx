@@ -30,7 +30,7 @@ const columns = [
 
 const INITIAL_VISIBLE_COLUMNS = ["placa", "urlImagen", "actions"];
 
-const url = "/dashboard/vehiculo/reportados/";
+const url = "/vehiculo/reportados/";
 
 const searchFields = ["descripcion", "clasificacion"];
 

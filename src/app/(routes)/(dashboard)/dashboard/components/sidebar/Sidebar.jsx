@@ -3,7 +3,9 @@ import { useState, useContext, createContext } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
-import { menuItems } from "./Links";
+import { dataAdmin, dataGeneral } from "./Links";
+import { Divider } from "@nextui-org/react";
+import { cn } from "@/utils/utils";
 
 const SidebarContext = createContext();
 
@@ -32,7 +34,26 @@ export default function Sidebar() {
         </div>
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3 py-2">
-            {menuItems.map((cat) => (
+            <p className={cn("mb-2 text-slate-500", expanded ? "" : "hidden")}>GENERAL</p>
+            {dataGeneral.map((cat) => (
+              <span key={cat.title}>
+                <span
+                  className={`my-2 text-xs md:text-sm font-bold ${
+                    expanded
+                      ? "visible"
+                      : "hidden"
+                  }`}
+                >
+                  {expanded ? cat.title : cat.title.slice(0, 3).toUpperCase()}
+                </span>
+                {cat.list.map((item) => (
+                  <SidebarItem key={item.title} item={item} />
+                ))}
+              </span>
+            ))}
+
+            <Divider />
+            {dataAdmin.map((cat) => (
               <span key={cat.title}>
                 <span
                   className={`my-2 text-xs md:text-sm font-bold ${

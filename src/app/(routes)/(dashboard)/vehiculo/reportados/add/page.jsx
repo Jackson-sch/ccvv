@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import { formInitialData } from "@/components/vehiculo/data";
-import Formulario from "@/components/vehiculo/Formulario";
+import { formInitialData } from "../../../../../../components/vehiculo/data";
+import Formulario from "../../../../../../components/vehiculo/Formulario";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 

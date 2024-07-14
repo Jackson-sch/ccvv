@@ -1,5 +1,5 @@
 import { CardContent } from '@/components/Card'
-import Formulario from '@/components/base/ocurrencia/Formulario'
+import Formulario from '@/app/(routes)/(dashboard)/dashboard/components/base/ocurrencia/Formulario'
 import React from 'react'
 
 export default function page() {

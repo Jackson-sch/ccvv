@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import TableUI from "@/components/TableUI/TableUI";
+/* import TableUI from "@/components/TableUI/TableUI"; */
 import {
   columns,
   INITIAL_VISIBLE_COLUMNS,
@@ -10,13 +10,14 @@ import {
   columnConfig,
   url,
   statusColorMap,
-} from "@/components/vehiculo/data";
-import CardVehiculo from "@/components/vehiculo/CardVehiculo";
-import InputSearch from "@/components/vehiculo/InputSearch";
-import Pagination from "@/components/vehiculo/Pagination";
-import ButtonAdd from "@/components/vehiculo/ButtonAdd";
+} from "../../../../../components/vehiculo/data";
+
+import InputSearch from "../../../../../components/vehiculo/InputSearch";
+import Pagination from "../../../../../components/vehiculo/Pagination";
+import ButtonAdd from "../../../../../components/vehiculo/ButtonAdd";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import CardVehiculo from "../../../../../components/vehiculo/CardVehiculo";
 
 export default function page() {
   const [vehiculosReportados, setVehiculosReportados] = useState([]);

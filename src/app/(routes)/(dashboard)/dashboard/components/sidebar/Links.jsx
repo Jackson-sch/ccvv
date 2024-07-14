@@ -1,11 +1,8 @@
 import {
   MdDashboard,
   MdSupervisedUserCircle,
-  MdShoppingBag,
   MdAttachMoney,
   MdWork,
-  MdAnalytics,
-  MdPeople,
   MdOutlineSettings,
   MdHelpCenter,
   MdDesktopWindows,
@@ -16,24 +13,14 @@ import {
   MdDataset,
 } from "react-icons/md";
 
-export const menuItems = [
+export const dataGeneral = [
   {
-    title: "Pages",
+    title: "GENERAL",
     list: [
       {
         title: "Dashboard",
         path: "/dashboard",
         icon: <MdDashboard />,
-      },
-      {
-        title: "Users",
-        path: "/dashboard/users",
-        icon: <MdSupervisedUserCircle />,
-      },
-      {
-        title: "Products",
-        path: "/dashboard/products",
-        icon: <MdShoppingBag />,
       },
       {
         title: "Transactions",
@@ -50,16 +37,7 @@ export const menuItems = [
         path: "/dashboard/base/ocurrencia",
         icon: <MdWork />,
       },
-      {
-        title: "Reports",
-        path: "/dashboard/base/ocurrencia",
-        icon: <MdAnalytics />,
-      },
-      {
-        title: "Teams",
-        path: "/dashboard/base/ocurrencia",
-        icon: <MdPeople />,
-      },
+
     ],
   },
   {
@@ -67,12 +45,12 @@ export const menuItems = [
     list: [
       {
         title: "Registro",
-        path: "/dashboard/incidencias",
+        path: "/incidencias",
         icon: <MdLocationPin />,
       },
       {
         title: "Lista",
-        path: "/dashboard/incidencias/lista",
+        path: "/incidencias/lista",
         icon: <MdDataset />,
       },
     ],
@@ -81,19 +59,18 @@ export const menuItems = [
     title: "Vehículos",
     list: [
       {
-        title: "Marcas",
-        path: "/dashboard/marcas",
-        icon: <MdFitbit />,
-      },
-      {
         title: "Reportados",
-        path: "/dashboard/vehiculo/reportados",
+        path: "/vehiculo/reportados",
         icon: <MdPolicy />,
       },
     ],
   },
+
+];
+
+export const dataAdmin = [
   {
-    title: "User",
+    title: "Admin",
     list: [
       {
         title: "Settings",
@@ -110,24 +87,24 @@ export const menuItems = [
         path: "/dashboard/users/profile",
         icon: <MdSupervisedUserCircle />,
       },
-    ],
-  },
-  {
-    title: "Mantenimiento",
-    list: [
       {
         title: "Ubicaciones",
         path: "/dashboard/ubicacion",
         icon: <MdLocationPin />,
       },
       {
-        title: "Clasificación",
-        path: "/dashboard/clasificacion",
-        icon: <MdHelpCenter />,
+        title: "Marcas",
+        path: "/dashboard/marcas",
+        icon: <MdFitbit />,
       },
       {
         title: "Ocurrencias",
         path: "/dashboard/ocurrencias",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "Clasificación",
+        path: "/dashboard/clasificacion",
         icon: <MdHelpCenter />,
       },
       {
@@ -142,4 +119,4 @@ export const menuItems = [
       },
     ],
   },
-];
+]

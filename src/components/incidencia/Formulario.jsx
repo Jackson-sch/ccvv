@@ -8,7 +8,7 @@ import {
   SelectItem,
   Textarea,
 } from "@nextui-org/react";
-import ImageUploader from "@/components/ui/dashboard/ImageUploader";
+import ImageUploader from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/ImageUploader";
 
 export default function Formulario({
   handleFormSubmit,

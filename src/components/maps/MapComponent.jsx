@@ -5,7 +5,7 @@ import { Avatar } from "@nextui-org/react";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-export default function MapsComponent({
+export default function MapComponent({
   item,
   center,
   zoom,
