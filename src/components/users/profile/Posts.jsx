@@ -26,11 +26,11 @@ export default function Posts({ data }) {
             <p className="mb-4 text-sm">{post.observaciones}</p>
 
             <Image
-              /* isBlurred */
+              isBlurred
               src={post.imageUrl}
               alt="How Innovation Works"
-              width={500}
-              height={300}
+              width={800}
+              height={400}
             />
 
             <div className="flex gap-4 items-center my-6">

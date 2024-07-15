@@ -71,7 +71,7 @@ export default function Sidebar() {
           </ul>
         </SidebarContext.Provider>
 
-        <div className="border-t border-default-50 flex p-3">
+        <div className={cn("border-t border-default-50 flex p-3", expanded ? "" : "hidden")}>
           <footer className="p-3 mt-3 text-center">
             2024. Todos los derechos reservados
           </footer>

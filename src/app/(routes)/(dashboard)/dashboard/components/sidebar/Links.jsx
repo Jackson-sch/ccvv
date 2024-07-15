@@ -23,7 +23,7 @@ export const dataGeneral = [
       },
       {
         title: "Lo más Relevante",
-        path: "/dashboard/transactions",
+        path: "/posts-relevantes",
         icon: <Megaphone width={20} height={20} strokeWidth={2} />,
       },
     ],
