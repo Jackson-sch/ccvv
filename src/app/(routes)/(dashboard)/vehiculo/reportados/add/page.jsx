@@ -59,7 +59,7 @@ export default function page() {
 
       if (response.ok) {
         toast.success(isEditing ? "Vehículo actualizado correctamente" : "Vehículo creado con éxito");
-        router.push("/dashboard/vehiculo/reportados");
+        router.push("/vehiculo/reportados");
         setIsEditing(false);
         setFormData(formInitialData);
         fetchVehiculos();
