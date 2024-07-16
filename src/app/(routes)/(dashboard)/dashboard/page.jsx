@@ -40,11 +40,6 @@ export default function page() {
           ))}
         </CardContent>
       </section>
-      <section className="grid grid-cols-1 gap-4 transition-all lg:grid-cols-2">
-        <Posts data={incidenciasRelevantes} />
-
-        <PostsVehiculos data={vehiculoReportado} />
-      </section>
     </div>
   );
 }

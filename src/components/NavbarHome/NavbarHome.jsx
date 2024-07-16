@@ -25,6 +25,7 @@ export default function NavbarHome() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
+
           <Button as={Link} color="primary" href="/dashboard" variant="flat">
           Iniciar sesión
                 <User className="ml-2 w-4 h-4" />
