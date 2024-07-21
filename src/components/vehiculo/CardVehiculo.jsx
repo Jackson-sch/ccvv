@@ -57,7 +57,7 @@ export default function CardVehiculo({
   statusColorMap,
 }) {
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid md:grid-col-2 lg:grid-cols-4 gap-6">
       {data.map((item) => (
         <CardVehiculoItem
           key={item._id}

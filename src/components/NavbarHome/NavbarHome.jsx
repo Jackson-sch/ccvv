@@ -28,7 +28,7 @@ export default function NavbarHome() {
 
           <Button as={Link} color="primary" href="/dashboard" variant="flat">
           Iniciar sesión
-                <User className="ml-2 w-4 h-4" />
+            <User className="ml-2 w-4 h-4" />
           </Button>
         </NavbarItem>
       </NavbarContent>

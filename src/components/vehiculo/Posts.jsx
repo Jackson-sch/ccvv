@@ -6,33 +6,34 @@ import { MessageCircle, ThumbsUp } from "lucide-react";
 export default function PostsVehiculos({ data }) {
   return (
     <ScrollShadow hideScrollBar className="w-full">
-      <CardContent className="flex justify-center px-20 py-9">
-        {data.map((post) => (
-          <div key={post._id}>
+      <CardContent className="flex flex-col items-center px-4 py-9 md:px-20">
+        {data.map((item) => (
+          <div key={item._id} className="w-full max-w-2xl mb-8">
             <div className="flex items-center mb-3">
               <img
-                src={post.imageUrl}
+                src={item.imageUrl}
                 alt="Mathew Anderson"
                 className="w-10 h-10 rounded-full mr-3"
               />
               <div>
-                <p className="font-semibold uppercase text-xl">{post.placa}</p>
+                <p className="font-semibold uppercase text-lg md:text-xl">{item.placa}</p>
                 <p className="text-xs text-gray-400 capitalize">
-                  {post.marca} {post.color}
+                  {item.marca} {item.color}
                 </p>
               </div>
             </div>
 
             <p className="mb-4 text-sm capitalize text-pretty">
-              {post.detalles}
+              {item.detalles}
             </p>
 
             <Image
               isBlurred
-              src={post.imageUrl}
+              src={item.imageUrl}
               alt="How Innovation Works"
-              width={800}
-              height={400}
+              width="100%"
+              height="auto"
+              className="object-cover rounded-lg"
             />
 
             <div className="flex gap-4 items-center my-6">
