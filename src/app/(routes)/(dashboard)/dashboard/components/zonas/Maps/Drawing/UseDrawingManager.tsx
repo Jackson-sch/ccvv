@@ -2,7 +2,7 @@ import {useMap, useMapsLibrary} from '@vis.gl/react-google-maps';
 import {useEffect, useState} from 'react';
 
 export function useDrawingManager(
-  initialValue = null
+  initialValue: google.maps.drawing.DrawingManager | null = null
 ) {
   const map = useMap();
   const drawing = useMapsLibrary('drawing');

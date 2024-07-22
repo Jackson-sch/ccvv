@@ -1,10 +1,11 @@
 import { CardContent } from "@/components/Card";
 import { Button, Chip } from "@nextui-org/react";
 import { Delete, Edit, Trash } from "lucide-react";
+import ButtonEdit from "./ButtonEdit/ButtonEdit";
 
 export default function ListWorkstation() {
   return (
-    <div className="grid w-full grid-cols-1 -order-last gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-3">
+    <div className="grid w-full grid-cols-1 -order-last gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-3 pb-6">
       {cardData.map((card, index) => (
         <CardContent
           key={index}
@@ -19,8 +20,8 @@ export default function ListWorkstation() {
             <p className="text-sm">{card.ip}</p>
           </div>
           <div className="flex justify-between mt-3">
-            <Button size="sm" endContent={<Edit size={14}/>}>Editar</Button>
-            <Button size="sm" endContent={<Trash size={14} />}>Eliminar</Button>
+            <ButtonEdit />
+            <Button size="sm" endContent={<Trash size={14} strokeWidth={1} />}>Eliminar</Button>
           </div>
         </CardContent>
       ))}

@@ -4,7 +4,7 @@ import {useMap} from '@vis.gl/react-google-maps';
 import reducer, {
   useDrawingManagerEvents,
   useOverlaySnapshots
-} from './Drawing/UndoRedo'
+} from './UndoRedo'
 
 import {DrawingActionKind} from './Types';
 

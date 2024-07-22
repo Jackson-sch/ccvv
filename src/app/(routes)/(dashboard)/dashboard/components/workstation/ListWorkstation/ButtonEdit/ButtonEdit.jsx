@@ -8,26 +8,26 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { Plus } from "lucide-react";
-import FormAdd from "../FormAdd/FormAdd";
+import { Edit } from "lucide-react";
+import FormEdit from "../FormEdit/FormEdit";
 
-export default function ButtonAdd() {
+export default function ButtonEdit() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <Button onPress={onOpen} endContent={<Plus size={16} strokeWidth={1} />}>
-        Agregar
+      <Button size="sm" onPress={onOpen} endContent={<Edit size={14} strokeWidth={1} />}>
+        Editar
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Agregar Nueva Estación de Trabajo
+                Editar Estación de Trabajo
               </ModalHeader>
               <ModalBody className="mb-4">
-                <FormAdd onClose={onClose}/>
+                <FormEdit onClose={onClose}/>
               </ModalBody>
             </>
           )}
