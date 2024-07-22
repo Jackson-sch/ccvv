@@ -13,6 +13,9 @@ export default function page() {
       <div className="flex justify-end">
         <ButtonAdd />
       </div>
+      <div>
+        
+      </div>
       <ListWorkstation />
     </div>
   );

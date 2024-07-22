@@ -50,7 +50,7 @@ export default function Formulario({
             />
           </div>
           <div className="flex justify-end items-center gap-4">
-            <Link href="/dashboard/clasificacion">
+            <Link href="/dashboard/admin/clasificacion">
               <Button
                 color="danger"
                 size="lg"
