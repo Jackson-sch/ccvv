@@ -51,6 +51,11 @@ export const dataGeneral = [
         path: "/incidencias/lista",
         icon: <MdDataset />,
       },
+      {
+        title: "Mapa del Calor",
+        path: "/incidencias/mapa-del-calor",
+        icon: <MdMap />,
+      }
     ],
   },
   {

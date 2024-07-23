@@ -1,6 +1,5 @@
 import NavbarHome from "@/components/NavbarHome/NavbarHome";
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
-import { Input } from "@nextui-org/react";
 import React from "react";
 
 export default function page() {

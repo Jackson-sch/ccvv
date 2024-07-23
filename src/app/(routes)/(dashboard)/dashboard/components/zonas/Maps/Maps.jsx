@@ -16,7 +16,7 @@ const center = {
   lng: -78.9990145,
 };
 
-const mapContainerStyle = { width: "100%", height: "40vh" };
+const mapContainerStyle = { width: "100%", height: "80vh" };
 
 export default function Maps() {
   const [zoom, setZoom] = useState(15);
@@ -29,8 +29,9 @@ export default function Maps() {
         <Map
           gestureHandling="greedy"
           defaultCenter={center}
-          defaultZoom={15}
+          zoom={zoom}
           style={mapContainerStyle}
+          onZoomChanged={ev => setZoom(ev.detail.zoom)}
         >
           <MapControl position={ControlPosition.TOP_LEFT}>
           <div
