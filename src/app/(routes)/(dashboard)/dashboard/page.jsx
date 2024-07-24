@@ -1,13 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
 import Card, { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import BarChartTurno from "@/components/incidencia/BarChartTurno";
 import BarChart from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/BarChart";
 import SalesCard from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/SalesCard";
 import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
-import Posts from "@/components/users/profile/Posts";
-import PostsVehiculos from "@/components/vehiculo/Posts";
+import PieChartIncidenciasRelevantes from "@/components/incidencia/PieChartIncidenciasRelevantes";
 
 export default function page() {
 
@@ -22,6 +20,9 @@ export default function page() {
       </section>
 
       <section className="grid grid-cols-1 gap-4 transition-all lg:grid-cols-2">
+        <CardContent>
+          <PieChartIncidenciasRelevantes />
+        </CardContent>
         <CardContent>
           <p className="text-sm">Total Revenue</p>
           <BarChart />
