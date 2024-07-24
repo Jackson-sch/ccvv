@@ -19,6 +19,7 @@ export default function page() {
       data={incidencias}
       center={{ lat: -8.0798797, lng: -79.0027169 }}
       zoom={16}
+      mapContainerStyle={{ width: "100%", height: "80vh" }}
     />
   );
 }
