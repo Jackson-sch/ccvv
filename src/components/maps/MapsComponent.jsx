@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import React, { useState } from "react";
+import { APIProvider, ControlPosition, Map } from "@vis.gl/react-google-maps";
 import MarkerInfo from "./MarkerInfo";
+import { CustomMapControl } from "./MapControl/MapControl";
+import MapHandler from "./MapControl/MapHandler";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -20,12 +22,21 @@ export default function MapsComponent({
   fecha,
   hora,
 }) {
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
   const handleMarkerClick = async (e) => {
     const lat = e.detail.latLng.lat;
     const lng = e.detail.latLng.lng;
     const direccion = await getGeoCode({ lat, lng });
     setNewMarker({ lat, lng });
-    setFormData({ ...formData, latitud: lat, longitud: lng, direccion, fecha: fecha, hora: hora});
+    setFormData({
+      ...formData,
+      latitud: lat,
+      longitud: lng,
+      direccion,
+      fecha: fecha,
+      hora: hora,
+    });
     setIsOpen(true);
   };
 
@@ -53,6 +64,13 @@ export default function MapsComponent({
           <MarkerInfo markers={markers} />
           {children}
         </Map>
+
+        <CustomMapControl
+          controlPosition={ControlPosition.TOP}
+          onPlaceSelect={setSelectedPlace}
+        />
+
+        <MapHandler place={selectedPlace} />
       </APIProvider>
     </div>
   );
