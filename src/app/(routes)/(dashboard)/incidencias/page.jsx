@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import MapsComponent from "@/components/maps/MapsComponent";
+
 import { formInitialData } from "@/components/incidencia/data"; 
 import Drawer from "@/components/Drawer";
 import Formulario from "@/components/incidencia/Formulario";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { format } from "@formkit/tempo";
+import MapsComponent from "@/components/maps/MapsComponent";
+
 
 export default function Page() {
   const [markers, setMarkers] = useState([]);
@@ -89,13 +91,13 @@ export default function Page() {
       if (response.ok) {
         Swal.fire({
           icon: "success",
-          title: "Ubicación creada con éxito",
+          title: "Incidencia registrada correctamente",
           showConfirmButton: false,
           timer: 1500,
         });
         fetchMarkers();
       } else {
-        toast.error("Error al crear la ubicación");
+        toast.error("Error al registrar la incidencia");
       }
     } catch (error) {
       toast.error("Error al enviar la solicitud");

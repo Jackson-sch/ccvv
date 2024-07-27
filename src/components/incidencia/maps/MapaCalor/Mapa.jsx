@@ -1,25 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  AdvancedMarker,
   Map,
-  Pin,
   APIProvider,
 } from "@vis.gl/react-google-maps";
-import {
-  PlaceReviews,
-  PlaceDataProvider,
-  PlaceDirectionsButton,
-  IconButton,
-  PlaceOverview,
-  SplitLayout,
-  OverlayLayout,
-  PlacePicker,
-} from "@googlemaps/extended-component-library/react";
 import HeatMap from "./HeatMap";
 import Loading from "./loading";
-import OverlayComponent from "./OverlayComponent";
-import PlacePickerComponent from "./PlacePickerComponent";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -30,9 +16,6 @@ export default function Mapa({ data, center, zoom, mapContainerStyle }) {
   }));
 
   const [isLoading, setIsLoading] = useState(true);
-  const overlayLayoutRef = useRef(null);
-  const pickerRef = useRef(null);
-  const [college, setCollege] = useState(undefined);
 
   useEffect(() => {
     setIsLoading(false);

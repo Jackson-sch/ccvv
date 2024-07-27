@@ -1,17 +1,18 @@
-import {useMap} from '@vis.gl/react-google-maps';
-import React, {useEffect} from 'react';
+import { useMap } from "@vis.gl/react-google-maps";
+import React, { useEffect } from "react";
 
-
-const MapHandler = ({place}) => {
+const MapHandler = ({ place, marker }) => {
   const map = useMap();
 
   useEffect(() => {
-    if (!map || !place) return;
+    if (!map || !place || !marker) return;
 
     if (place.geometry?.viewport) {
       map.fitBounds(place.geometry?.viewport);
     }
-  }, [map, place]);
+
+    marker.position = place.geometry?.location;
+  }, [map, place, marker]);
 
   return null;
 };

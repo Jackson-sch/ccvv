@@ -5,23 +5,30 @@ import {
   ControlPosition,
   Map,
   MapControl,
-  DrawingManager,
 } from "@vis.gl/react-google-maps";
-import {CustomZoomControl} from "./CustomControl"
+import DrawingTool from "./DrawingTool";
+import { fitBoundsAndRestrict } from "@/utils/mapUtils";
+import ZonasOverlay from "./ZonasOverlay";
+import LeyendaZonas from "./LeyendaZonas";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 const center = {
-  lat: -8.0843273,
-  lng: -78.9990145,
+  lat: -8.074602502066698,
+  lng: -78.99854554604522,
 };
 
 const mapContainerStyle = { width: "100%", height: "80vh" };
 
-export default function Maps() {
+export default function Maps({ onShapeComplete, bounds, zonas }) {
   const [zoom, setZoom] = useState(15);
-  const [controlPosition, setControlPosition] = useState(ControlPosition.TOP_LEFT);
+  const mapRef = useRef(null);
 
+  useEffect(() => {
+    if (mapRef.current) {
+      fitBoundsAndRestrict(mapRef.current, bounds);
+    }
+  }, [mapRef.current, bounds]);
 
   return (
     <div style={mapContainerStyle}>
@@ -30,24 +37,17 @@ export default function Maps() {
           gestureHandling="greedy"
           defaultCenter={center}
           zoom={zoom}
+          minZoom={15}
           style={mapContainerStyle}
-          onZoomChanged={ev => setZoom(ev.detail.zoom)}
+          onZoomChanged={(ev) => setZoom(ev.detail.zoom)}
         >
-          <MapControl position={ControlPosition.TOP_LEFT}>
-          <div
-            style={{
-              background: 'white',
-              padding: '1em'
-            }}>
-            Zoom: {zoom.toFixed(2)}
-          </div>
-        </MapControl>
-        <CustomZoomControl
-          controlPosition={controlPosition}
-          zoom={zoom}
-          onZoomChange={zoom => setZoom(zoom)}
-        />
+          <ZonasOverlay zonas={zonas} />
+          
         </Map>
+        <MapControl position={ControlPosition.TOP_CENTER}>
+          <DrawingTool onShapeComplete={onShapeComplete} />
+        </MapControl>
+        <LeyendaZonas zonas={zonas} />
       </APIProvider>
     </div>
   );

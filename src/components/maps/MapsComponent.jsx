@@ -1,20 +1,25 @@
 "use client";
 import React, { useState } from "react";
-import { APIProvider, ControlPosition, Map } from "@vis.gl/react-google-maps";
-import MarkerInfo from "./MarkerInfo";
+import {
+  AdvancedMarker,
+  APIProvider,
+  Map,
+  Pin,
+  useAdvancedMarkerRef,
+} from "@vis.gl/react-google-maps";
+
 import { CustomMapControl } from "./MapControl/MapControl";
+import MarkerInfo from "../ubicacion/maps/MarkerInfo";
 import MapHandler from "./MapControl/MapHandler";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 export default function MapsComponent({
   markers = [],
-  center = { lat: -8.0798797, lng: -79.0027169 },
+  center = { lat: -8.074602502066698, lng: -78.99854554604522 },
   zoom,
   mapContainerStyle = { width: "100%", height: "90vh" },
-  newMarker,
   setNewMarker,
-  isOpen,
   setIsOpen,
   formData,
   setFormData,
@@ -23,6 +28,7 @@ export default function MapsComponent({
   hora,
 }) {
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [markerRef, marker] = useAdvancedMarkerRef();
 
   const handleMarkerClick = async (e) => {
     const lat = e.detail.latLng.lat;
@@ -56,6 +62,7 @@ export default function MapsComponent({
         <Map
           mapContainerStyle={mapContainerStyle}
           defaultZoom={zoom}
+          minZoom={15}
           defaultCenter={center}
           gestureHandling="greedy"
           options={{ disableDefaultUI: true, mapId: "6db90ff1b783dd57" }}
@@ -63,14 +70,19 @@ export default function MapsComponent({
         >
           <MarkerInfo markers={markers} />
           {children}
+          <AdvancedMarker ref={markerRef} position={null}>
+            <Pin
+              background={"#eee82f"}
+              glyphColor={"#3f2909"}
+              borderColor={"#3f2909"}
+              scale={1.5}
+            />
+          </AdvancedMarker>
         </Map>
 
-        <CustomMapControl
-          controlPosition={ControlPosition.TOP}
-          onPlaceSelect={setSelectedPlace}
-        />
+        <CustomMapControl onPlaceSelect={setSelectedPlace} />
 
-        <MapHandler place={selectedPlace} />
+        <MapHandler place={selectedPlace} marker={marker} />
       </APIProvider>
     </div>
   );

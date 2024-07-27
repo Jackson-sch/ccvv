@@ -1,7 +1,8 @@
 import React from "react";
-import MapComponent from "../maps/MapComponent";
+
 import { Chip, Image } from "@nextui-org/react";
 import PageTitle from "@/components/PageTitle";
+import MapComponent from "../ubicacion/maps/MapComponent";
 
 export default function ContentDetails({ item }) {
   const center = {

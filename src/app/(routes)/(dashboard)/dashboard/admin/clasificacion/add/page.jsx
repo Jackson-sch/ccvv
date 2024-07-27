@@ -51,7 +51,7 @@ export default function page() {
           ? "Clasificación actualizada correctamente"
           : "Clasificación creada con éxito"
       );
-      router.push("/dashboard/clasificacion");
+      router.push("/dashboard/admin/clasificacion");
       setIsEditing(false);
       setEditingClasificacion({});
       fetchClasificacion();

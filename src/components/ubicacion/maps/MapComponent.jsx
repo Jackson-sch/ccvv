@@ -5,12 +5,13 @@ import { Avatar } from "@nextui-org/react";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-export default function MapComponent({
+export default function MapaUbicacionDetails({
   item,
   center,
   zoom,
   mapContainerStyle = { width: "100%", height: "30vh" },
 }) {
+  console.log("🚀 ~ item:", item)
   return (
     <div style={mapContainerStyle}>
       <APIProvider apiKey={API_KEY}>
@@ -31,7 +32,7 @@ export default function MapComponent({
           <AdvancedMarker position={center} >
             <Pin background="#ff0035" borderColor="#ff0035" scale={2.5}>
               {/* <span className="text-base font-bold">CN</span> */}
-              <Avatar text="CN" src={item.imageUrl} size="lg" />
+              <Avatar text="CN" src={item?.imageUrl} size="lg" />
             </Pin>
           </AdvancedMarker>
 

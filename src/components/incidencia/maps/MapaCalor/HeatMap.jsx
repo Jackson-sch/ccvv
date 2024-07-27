@@ -1,5 +1,5 @@
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 export default function HeatMap({ geojson, radius, opacity }) {
   const map = useMap();

@@ -32,7 +32,6 @@ export default function Formulario({
   // Estado para almacenar las ocurrencias filtradas
   const [ocurrenciasFiltradas, setOcurrenciasFiltradas] = useState([]);
   const [imageURL, setImageURL] = useState("");
-  console.log("🚀 ~ Page ~ imageURL:", imageURL);
 
   const handleImageUpload = (url) => {
     setImageURL(url);

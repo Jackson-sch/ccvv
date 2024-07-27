@@ -1,17 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
-import MapsComponent from "@/components/maps/MapsComponent";
+
 import PageTitle from "@/components/PageTitle";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
 // Data inicial del formulario
-import { formInitialData } from "@/components/ubicacion/data";
+import { formInitialData, url } from "@/components/ubicacion/data";
 import Drawer from "@/components/Drawer";
 import Formulario from "@/components/ubicacion/Formulario";
 import Swal from "sweetalert2";
+import MapsComponent from "@/components/maps/MapsComponent";
 
 export default function page() {
   const [markers, setMarkers] = useState([]);
@@ -75,12 +76,13 @@ export default function page() {
     setIsOpen(false);
   };
 
+  
   return (
     <>
       <CardContent className="mb-4 flex justify-between">
         <div className="flex justify-between">
           <PageTitle title="Ubicación de Cámaras" />
-          <Link href="/dashboard/ubicacion/detalles">
+          <Link href={`${url}/detalles`}>
             <Button color="secondary" variant="flat">
               Ir a Lista de Ubicaciones
             </Button>

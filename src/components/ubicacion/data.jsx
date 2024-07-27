@@ -43,7 +43,7 @@ const INITIAL_VISIBLE_COLUMNS = [
  * La URL para el tablero.
  * @type {string}
  */
-const url = "/dashboard/ubicacion";
+const url = "/dashboard/admin/ubicacion";
 
 /**
  * Array de campos que se pueden usar para buscar en la tabla.

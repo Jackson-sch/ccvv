@@ -7,8 +7,8 @@ import {
 } from "@vis.gl/react-google-maps";
 import InfoCamara from "./InfoCamara";
 
+
 export default function MarkerInfo({ markers }) {
-  const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
   return (

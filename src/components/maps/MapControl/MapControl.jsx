@@ -1,16 +1,16 @@
 import React from "react";
 import { ControlPosition, MapControl } from "@vis.gl/react-google-maps";
 
-import { PlaceAutocompleteClassic } from "./PlaceAutocompleteClassic";
+import { PlaceAutocomplete } from "./PlaceAutocomplete";
 
 export const CustomMapControl = ({
-  controlPosition,
+  position,
   onPlaceSelect,
 }) => {
   return (
-    <MapControl position={controlPosition}>
-      <div className="autocomplete-control">
-        <PlaceAutocompleteClassic onPlaceSelect={onPlaceSelect} />
+    <MapControl position={ControlPosition.TOP_LEFT}>
+      <div className="m-2 bg-transparent">
+        <PlaceAutocomplete onPlaceSelect={onPlaceSelect} />
       </div>
     </MapControl>
   );
