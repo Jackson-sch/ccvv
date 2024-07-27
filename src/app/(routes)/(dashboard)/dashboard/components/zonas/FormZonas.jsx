@@ -1,15 +1,10 @@
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import { Button, Input } from "@nextui-org/react";
-import Link from "next/link";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-export default function FormZonas({
-  onSubmit,
-  /* editingZona, */
-  coordinates,
-}) {
+export default function FormZonas({ onSubmit, coordinates, handleCancel }) {
   const {
     handleSubmit,
     reset,
@@ -19,11 +14,16 @@ export default function FormZonas({
     /* defaultValues: editingZona, */
   });
 
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
+    reset();
+  };
+
   return (
     <CardContent className="w-full lg:w-1/2 m-auto mb-4">
       <PageTitle title="Nueva Zona" />
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         className="flex flex-col w-full m-auto p-3"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -63,11 +63,14 @@ export default function FormZonas({
           <Button type="submit" color="success" size="sm" variant="shadow">
             Guardar
           </Button>
-          <Link href="/dashboard/zonas">
-            <Button color="danger" size="sm" variant="shadow">
-              Cancelar
-            </Button>
-          </Link>
+          <Button
+            color="danger"
+            size="sm"
+            variant="shadow"
+            onClick={handleCancel}
+          >
+            Cancelar
+          </Button>
         </div>
       </form>
     </CardContent>

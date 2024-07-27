@@ -10,7 +10,7 @@ export default function LeyendaZonas({ zonas }) {
     <MapControl position={ControlPosition.LEFT_BOTTOM}>
       <ScrollShadow
         hideScrollBar
-        className="bg-background w-72 h-[300px] relative p-4 rounded-lg shadow-xl "
+        className="bg-background w-72 h-[300px] relative p-6 rounded-lg shadow-xl "
       >
         {sortedZonas.map((zona, index) => (
           <div key={index}>

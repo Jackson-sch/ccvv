@@ -15,7 +15,7 @@ export default function ZonasOverlay({ zonas }) {
         paths,
         map,
         fillColor: zona.color,
-        fillOpacity: 0.70,
+        fillOpacity: 0.7,
         strokeWeight: 2,
         clickable: true,
         editable: false,
@@ -25,8 +25,7 @@ export default function ZonasOverlay({ zonas }) {
       const bounds = new google.maps.LatLngBounds();
       paths.forEach((path) => bounds.extend(path));
       const infoWindow = new google.maps.InfoWindow({
-        content: zona.name,
-        fontColor: "#333",
+        content: createInfoWindowContent(zona),
         position: bounds.getCenter(),
       });
 
@@ -68,3 +67,11 @@ export default function ZonasOverlay({ zonas }) {
   }, [map, zonas]);
   return null;
 }
+
+const createInfoWindowContent = (zona) => {
+  return `
+    <div>
+      <h1 class="text-slate-950 text-lg font-bold">${zona.name}</h1>
+    </div>
+  `;
+};

@@ -42,7 +42,6 @@ export default function Maps({ onShapeComplete, bounds, zonas }) {
           onZoomChanged={(ev) => setZoom(ev.detail.zoom)}
         >
           <ZonasOverlay zonas={zonas} />
-          
         </Map>
         <MapControl position={ControlPosition.TOP_CENTER}>
           <DrawingTool onShapeComplete={onShapeComplete} />

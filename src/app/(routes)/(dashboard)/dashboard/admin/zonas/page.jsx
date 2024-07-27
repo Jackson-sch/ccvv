@@ -8,6 +8,7 @@ export default function page() {
   const [coordinates, setCoordinates] = useState([]);
   const [zonas, setZonas] = useState([]);
   const [isPolygonComplete, setIsPolygonComplete] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Obtenga zonas existentes del servidor
@@ -65,10 +66,16 @@ export default function page() {
     }
   };
 
+  const handleCancel = () => {
+    setIsPolygonComplete
+      ? setIsPolygonComplete(false)
+      : router.push("/dashboard/admin/zonas");
+  }
+
   return (
     <>
       {isPolygonComplete && (
-        <FormZonas coordinates={coordinates} onSubmit={onSubmit} />
+        <FormZonas coordinates={coordinates} onSubmit={onSubmit} handleCancel={handleCancel} />
       )}
       <Maps
         onShapeComplete={handleShapeComplete}

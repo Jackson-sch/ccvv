@@ -10,7 +10,8 @@ const DrawingTool = ({ onShapeComplete }) => {
     if (!drawing || !map) return;
 
     const drawingManager = new google.maps.drawing.DrawingManager({
-      drawingMode: google.maps.drawing.OverlayType.POLYGON,
+      /* drawingMode: google.maps.drawing.OverlayType.POLYGON, */
+      drawingMode: null,
       drawingControl: true,
       drawingControlOptions: {
         position: google.maps.ControlPosition.TOP_CENTER,
