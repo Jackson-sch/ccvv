@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 
-import { formInitialData } from "@/components/incidencia/data"; 
+import { formInitialData } from "@/components/incidencia/data";
 import Drawer from "@/components/Drawer";
 import Formulario from "@/components/incidencia/Formulario";
 import Swal from "sweetalert2";
@@ -11,30 +11,40 @@ import toast from "react-hot-toast";
 import { format } from "@formkit/tempo";
 import MapsComponent from "@/components/maps/MapsComponent";
 
-
 export default function Page() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [formData, setFormData] = useState(formInitialData);
   const [fechaActual] = useState(new Date());
   const fecha = format(fechaActual, "YYYY-MM-DD");
-  const hora = format(fechaActual, "HH:mm:ss" );
+  const hora = format(fechaActual, "HH:mm:ss");
   const [clasificacion, setClasificacion] = useState([]);
   const [ocurrencia, setOcurrencia] = useState([]);
- 
+  const [zonas, setZonas] = useState([]);
+  const [numeroCamara, setNumeroCamara] = useState([]);
+  const [operadores, setOperadores] = useState([]);
+  console.log("🚀 ~ Page ~ operadores:", operadores)
   
 
+  // Ejecuta los fetch para obtener los datos iniciales cuando el componente se monta
   useEffect(() => {
     const fetchData = async () => {
       await fetchMarkers();
       await fetchClasificaciones();
       await fetchOcurrencias();
+      await fetchZonas();
+      await fetchNumeroCamara();
+      await fetchOperadores();
     };
     fetchData();
-  }, []);
+  }, []); // La matriz de dependencia vacía asegura que este efecto se ejecute solo una vez en el montaje de componentes
 
+  /**
+   * Estas funciones usan async/esperan para obtener datos de diferentes puntos finales de API y establecen el recuperado
+   * datos en variables de estado.
+   */
   const fetchMarkers = async () => {
     try {
       const response = await fetch("/api/ubicacion");
@@ -65,21 +75,51 @@ export default function Page() {
     }
   };
 
+  const fetchZonas = async () => {
+    try {
+      const response = await fetch("/api/zona");
+      const data = await response.json();
+      setZonas(data);
+    } catch (error) {
+      console.log("Error fetching zonas:", error);
+    }
+  };
+
+  const fetchNumeroCamara = async () => {
+    try {
+      const response = await fetch("/api/ubicacion");
+      const data = await response.json();
+      setNumeroCamara(data);
+    } catch (error) {
+      console.log("Error fetching numeroCamara:", error);
+    }
+  };
+
+  const fetchOperadores = async () => {
+    try {
+      const response = await fetch("/api/workstation");
+      const data = await response.json();
+      setOperadores(data);
+    } catch (error) {
+      console.log("Error fetching operadores:", error);
+    }
+  };
+
+  /* Fin de las funciones de obtención de datos */
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleFormSubmit = () => {
-    onSubmit({...formData, imageUrl: formData.imageUrl });
+    onSubmit({ ...formData, imageUrl: formData.imageUrl });
     /* setFormData(formInitialData); */
     setIsOpen(false);
   };
 
-
   const onSubmit = async (data) => {
     try {
-      
       const response = await fetch("/api/incidencia", {
         method: "POST",
         headers: {
@@ -128,7 +168,11 @@ export default function Page() {
         fecha={fecha}
         hora={hora}
       />
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen} title="Registrar Incidencia">
+      <Drawer
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title="Registrar Incidencia"
+      >
         <Formulario
           formData={formData}
           handleInputChange={handleInputChange}
@@ -136,6 +180,8 @@ export default function Page() {
           handleResetForm={handleResetForm}
           clasificacion={clasificacion}
           ocurrencia={ocurrencia}
+          zonas={zonas}
+          numeroCamara={numeroCamara}
         />
       </Drawer>
     </CardContent>

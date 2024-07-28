@@ -11,7 +11,7 @@ import {
 import { Plus } from "lucide-react";
 import FormAdd from "../FormAdd/FormAdd";
 
-export default function ButtonAdd() {
+export default function ButtonAdd({onSubmit}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -27,7 +27,7 @@ export default function ButtonAdd() {
                 Agregar Nueva Estación de Trabajo
               </ModalHeader>
               <ModalBody className="mb-4">
-                <FormAdd onClose={onClose}/>
+                <FormAdd onClose={onClose} onSubmit={onSubmit}/>
               </ModalBody>
             </>
           )}

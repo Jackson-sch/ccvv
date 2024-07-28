@@ -16,7 +16,7 @@ export default function ZonasOverlay({ zonas }) {
         map,
         fillColor: zona.color,
         fillOpacity: 0.7,
-        strokeWeight: 2,
+        strokeWeight: 1,
         clickable: true,
         editable: false,
       });

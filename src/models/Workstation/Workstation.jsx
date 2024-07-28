@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const workstationSchema = new Schema(
+const WorkstationSchema = new Schema(
   {
     name: {
       type: String,
@@ -8,7 +8,6 @@ const workstationSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["active", "inactive"],
     },
     hostname: String,
     ip: String,
@@ -18,4 +17,4 @@ const workstationSchema = new Schema(
   }
 );
 
-export default models.Workstation || model("Workstation", workstationSchema)
+export default models.Workstation || model("Workstation", WorkstationSchema)

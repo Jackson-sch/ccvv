@@ -1,13 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Button,
-  Input,
-  Select,
-  SelectItem,
-  Textarea,
-} from "@nextui-org/react";
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import ImageUploader from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/ImageUploader";
 
 export default function Formulario({
@@ -17,6 +11,8 @@ export default function Formulario({
   handleResetForm,
   clasificacion,
   ocurrencia,
+  zonas,
+  numeroCamara,
 }) {
   const {
     handleSubmit,
@@ -58,6 +54,17 @@ export default function Formulario({
     reset(formData);
     handleResetForm();
   };
+
+  const zonasOrdenadas = zonas.sort((a, b) => a.name.localeCompare(b.name));
+  const cameras = numeroCamara.sort((a, b) => {
+    if (a.nombreCamara === "CN" && b.nombreCamara !== "CN") {
+      return -1;
+    } else if (a.nombreCamara !== "CN" && b.nombreCamara === "CN") {
+      return 1;
+    } else {
+      return a.numeroCamara.localeCompare(b.numeroCamara);
+    }
+  });
 
   return (
     <>
@@ -142,9 +149,14 @@ export default function Formulario({
                   className="max-w-xs"
                   onChange={handleInputChange}
                 >
-                  {NumeroCam.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {cameras.map((item) => (
+                    <SelectItem
+                      key={item.numeroCamara}
+                      value={item.numeroCamara}
+                    >
+                      {item.nombreCamara === "CN"
+                        ? `CN_${item.numeroCamara}`
+                        : item.numeroCamara}
                     </SelectItem>
                   ))}
                 </Select>
@@ -367,9 +379,9 @@ export default function Formulario({
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Zonas.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {zonasOrdenadas.map((item) => (
+                    <SelectItem key={item.name} value={item.name}>
+                      {item.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -406,10 +418,7 @@ export default function Formulario({
                 onChange={handleInputChange}
               >
                 {gravedades.map((item) => (
-                  <SelectItem
-                    key={item.value}
-                    value={item.value}
-                  >
+                  <SelectItem key={item.value} value={item.value}>
                     {item.label}
                   </SelectItem>
                 ))}
@@ -577,18 +586,6 @@ const Turno = [
   { value: "Noche", label: "Noche" },
 ];
 
-const Zonas = [
-  { value: "El Porvenir Central", label: "El Porvenir Central" },
-  { value: "Mampuesto", label: "Mampuesto" },
-  { value: "La Merced", label: "La Merced" },
-  { value: "Rio Seco I", label: "Rio Seco I" },
-  { value: "Rio Seco II", label: "Rio Seco II" },
-  { value: "Rio Seco III", label: "Rio Seco III" },
-  { value: "Rio Seco IV", label: "Rio Seco IV" },
-  { value: "Rio Seco V", label: "Rio Seco V" },
-  { value: "Miguel Grau", label: "Miguel Grau" },
-  { value: "Alan Garcia", label: "Alan Garcia" },
-];
 
 const gravedades = [
   { value: "Leve", label: "Leve" },
