@@ -25,8 +25,6 @@ export default function Page() {
   const [zonas, setZonas] = useState([]);
   const [numeroCamara, setNumeroCamara] = useState([]);
   const [operadores, setOperadores] = useState([]);
-  console.log("🚀 ~ Page ~ operadores:", operadores)
-  
 
   // Ejecuta los fetch para obtener los datos iniciales cuando el componente se monta
   useEffect(() => {
@@ -182,6 +180,7 @@ export default function Page() {
           ocurrencia={ocurrencia}
           zonas={zonas}
           numeroCamara={numeroCamara}
+          operadores={operadores}
         />
       </Drawer>
     </CardContent>

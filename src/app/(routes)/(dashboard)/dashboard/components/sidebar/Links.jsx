@@ -76,7 +76,7 @@ export const dataAdmin = [
     list: [
       {
         title: "Settings",
-        path: "/dashboard/settings",
+        path: "/dashboard/admin/settings",
         icon: <MdOutlineSettings />,
       },
       {
