@@ -12,7 +12,7 @@ import {
   columnConfig,
   statusOptions,
 } from "@/components/ubicacion/data";
-import { fetchUbicaciones } from "@/app/api/fetchingData";
+import { fetchUbicaciones } from "@/utils/fetchingData";
 
 export default function page() {
   const [ubicacion, setUbicacion] = useState([]);

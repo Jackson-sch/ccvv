@@ -13,7 +13,7 @@ import Drawer from "@/components/Drawer";
 import Formulario from "@/components/ubicacion/Formulario";
 import Swal from "sweetalert2";
 import MapsComponent from "@/components/maps/MapsComponent";
-import { fetchMarkers } from "@/app/api/fetchingData";
+import { fetchMarkers } from "@/utils/fetchingData";
 
 export default function page() {
   const [markers, setMarkers] = useState([]);

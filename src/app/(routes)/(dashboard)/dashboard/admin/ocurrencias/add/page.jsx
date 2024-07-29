@@ -4,7 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 
 import toast from "react-hot-toast";
 import Formulario from "@/components/ocurrencia/Formulario";
-import { fetchClasificaciones, fetchOcurrencias } from "@/app/api/fetchingData";
+import { fetchClasificaciones, fetchOcurrencias } from "@/utils/fetchingData";
 
 export default function page() {
   const [ocurrencias, setOcurrencias] = useState([]);

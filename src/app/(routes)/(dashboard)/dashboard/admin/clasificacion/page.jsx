@@ -11,7 +11,7 @@ import {
   url,
 } from "@/components/clasificacion/data";
 import toast from "react-hot-toast";
-import { fetchClasificaciones } from "@/app/api/fetchingData";
+import { fetchClasificaciones } from "@/utils/fetchingData";
 
 export default function page() {
   const [clasificacion, setClasificacion] = useState([]);

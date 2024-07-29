@@ -1,5 +1,5 @@
 "use client";
-import { fetchIncidencias, fetchVehiculos } from "@/app/api/fetchingData";
+import { fetchIncidencias, fetchVehiculos } from "@/utils/fetchingData";
 import { CardContent } from "@/components/Card";
 import Posts from "@/components/users/profile/Posts";
 import PostsVehiculos from "@/components/vehiculo/Posts";

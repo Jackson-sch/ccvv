@@ -20,13 +20,13 @@ import {
   fetchTurno,
   fetchComisarias,
   fetchGravedades,
-} from "@/app/api/fetchingData";
+} from "@/utils/fetchingData";
 
 export default function Page() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(formInitialData);
   const [fechaActual] = useState(new Date());
   const fecha = format(fechaActual, "YYYY-MM-DD");

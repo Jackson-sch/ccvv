@@ -12,7 +12,7 @@ import {
 } from "@/components/users/data";
 import PageTitle from "@/components/PageTitle";
 import toast from "react-hot-toast";
-import { fetchUsers } from "@/app/api/fetchingData";
+import { fetchUsers } from "@/utils/fetchingData";
 
 export default function Users() {
   const [users, setUsers] = useState([]);

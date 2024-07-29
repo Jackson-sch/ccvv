@@ -7,7 +7,7 @@ import { formInitialData } from "../../../../../../components/vehiculo/data";
 import Formulario from "../../../../../../components/vehiculo/Formulario";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { fetchVehiculos } from "@/app/api/fetchingData";
+import { fetchVehiculos } from "@/utils/fetchingData";
 
 export default function page() {
   const [vehiculos, setVehiculos] = useState([]);

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Maps from "../../components/zonas/Maps/Maps";
 import FormZonas from "../../components/zonas/FormZonas";
 import { useParams, useRouter } from "next/navigation";
-import { fetchZonas } from "@/app/api/fetchingData";
+import { fetchZonas } from "@/utils/fetchingData";
 
 export default function page() {
   const [coordinates, setCoordinates] = useState([]);
@@ -14,12 +14,12 @@ export default function page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const zonasData = await fetchZonas()
+        const zonasData = await fetchZonas();
         setZonas(zonasData);
       } catch (error) {
-        console.log("Error fetching zonas:", error)
+        console.log("Error fetching zonas:", error);
       }
-    }
+    };
     fetchData();
   }, []);
 
@@ -73,12 +73,16 @@ export default function page() {
     setIsPolygonComplete
       ? setIsPolygonComplete(false)
       : router.push("/dashboard/admin/zonas");
-  }
+  };
 
   return (
     <>
       {isPolygonComplete && (
-        <FormZonas coordinates={coordinates} onSubmit={onSubmit} handleCancel={handleCancel} />
+        <FormZonas
+          coordinates={coordinates}
+          onSubmit={onSubmit}
+          handleCancel={handleCancel}
+        />
       )}
       <Maps
         onShapeComplete={handleShapeComplete}

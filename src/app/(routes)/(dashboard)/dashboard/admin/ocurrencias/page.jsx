@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
@@ -7,10 +7,10 @@ import {
   columns,
   INITIAL_VISIBLE_COLUMNS,
   searchFields,
-  columnConfig
+  columnConfig,
 } from "@/components/ocurrencia/data";
 import toast from "react-hot-toast";
-import { fetchOcurrencias } from "@/app/api/fetchingData";
+import { fetchOcurrencias } from "@/utils/fetchingData";
 
 export default function page() {
   const [ocurrencias, setOcurrencias] = useState([]);
@@ -18,13 +18,13 @@ export default function page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ocurrenciasData = await fetchOcurrencias()
-        setOcurrencias(ocurrenciasData)
+        const ocurrenciasData = await fetchOcurrencias();
+        setOcurrencias(ocurrenciasData);
       } catch (error) {
-        console.log("Error fetching ocurrencias:", error)
+        console.log("Error fetching ocurrencias:", error);
       }
-    }
-    fetchData()
+    };
+    fetchData();
   }, []);
 
   const handleDelete = async (id) => {
@@ -47,7 +47,7 @@ export default function page() {
       // Maneja el error de eliminación
       alert("Error al eliminar la ocurrencia");
     }
-  }
+  };
 
   return (
     <CardContent>
@@ -62,5 +62,5 @@ export default function page() {
         columnConfig={columnConfig}
       />
     </CardContent>
-  )
+  );
 }

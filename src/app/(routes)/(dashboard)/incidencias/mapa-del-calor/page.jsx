@@ -1,5 +1,5 @@
 "use client";
-import { fetchIncidencias } from "@/app/api/fetchingData";
+import { fetchIncidencias } from "@/utils/fetchingData";
 import Mapa from "@/components/incidencia/maps/MapaCalor/Mapa";
 import PageTitle from "@/components/PageTitle";
 import React, { useEffect, useState } from "react";

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Formulario from "@/components/clasificacion/Formulario";
 import toast from "react-hot-toast";
-import { fetchClasificaciones } from "@/app/api/fetchingData";
+import { fetchClasificaciones } from "@/utils/fetchingData";
 
 export default function page() {
   const [clasificacion, setClasificacion] = useState([]);

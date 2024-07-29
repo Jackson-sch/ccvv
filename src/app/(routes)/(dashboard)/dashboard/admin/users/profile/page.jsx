@@ -5,7 +5,7 @@ import Profile from "@/components/users/profile/Profile";
 import { Tab, Tabs } from "@nextui-org/react";
 import Formulario from "@/components/users/Formulario";
 import Posts from "@/components/users/profile/Posts";
-import { fetchIncidencias, fetchUsers } from "@/app/api/fetchingData";
+import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 
 export default function page() {
   const [user, setUser] = useState([]);
@@ -13,7 +13,7 @@ export default function page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const incidenciasData = await fetchIncidencias()
+      const incidenciasData = await fetchIncidencias();
       // Ordena los datos por fecha y hora. Asegúrate de ajustar 'fecha' y 'hora' a tus campos reales.
       const datosOrdenados = incidenciasData.sort((a, b) => {
         const fechaHoraA = new Date(`${a.fecha}T${a.hora}`);
@@ -25,8 +25,8 @@ export default function page() {
       setPosts(ultimosCincoRegistros);
 
       // Obten los daots de users
-      const usersData = await fetchUsers()
-      setUser(usersData)
+      const usersData = await fetchUsers();
+      setUser(usersData);
     };
     fetchData();
   }, []);

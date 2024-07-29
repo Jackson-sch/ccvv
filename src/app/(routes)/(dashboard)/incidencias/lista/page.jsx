@@ -13,7 +13,7 @@ import {
 } from "@/components/incidencia/data.jsx";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { fetchIncidencias } from "@/app/api/fetchingData";
+import { fetchIncidencias } from "@/utils/fetchingData";
 
 export default function page() {
   const [incidencias, setIncidencias] = useState([]);

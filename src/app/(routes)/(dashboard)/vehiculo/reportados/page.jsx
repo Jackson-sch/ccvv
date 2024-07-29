@@ -18,7 +18,7 @@ import ButtonAdd from "@/components/vehiculo/ButtonAdd";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import CardVehiculo from "@/components/vehiculo/CardVehiculo";
-import { fetchVehiculos } from "@/app/api/fetchingData";
+import { fetchVehiculos } from "@/utils/fetchingData";
 
 export default function page() {
   const [vehiculosReportados, setVehiculosReportados] = useState([]);
@@ -29,12 +29,12 @@ export default function page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const vehiculosData =  await fetchVehiculos()
+        const vehiculosData = await fetchVehiculos();
         setVehiculosReportados(vehiculosData);
       } catch (error) {
         console.error("Error fetching vehiculos:", error);
       }
-    }
+    };
     fetchData();
   }, []);
 
