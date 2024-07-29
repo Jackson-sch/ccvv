@@ -9,14 +9,13 @@ import {
 } from "@nextui-org/react";
 import ButtonDelete from "../../ButtonDelete/ButtonDelete";
 
-
-export default function ListTurno({ turnos, handleDelete }) {
+export default function ListTurno({ gravedades, handleDelete }) {
 
   const renderCell = useCallback((item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
       case "name":
-        return cellValue;
+        return <p className="capitalize">{cellValue}</p>
       case "actions":
         return (
           <div className="relative flex items-center gap-2 justify-end">
@@ -33,7 +32,7 @@ export default function ListTurno({ turnos, handleDelete }) {
   }, []);
 
   return (
-    <Table isStriped aria-label="Turno">
+    <Table isStriped aria-label="Gravedad">
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn
@@ -45,7 +44,7 @@ export default function ListTurno({ turnos, handleDelete }) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No turnos found"} items={turnos}>
+      <TableBody emptyContent={"No data found"} items={gravedades}>
         {(item) => (
           <TableRow key={item._id}>
             {(columnKey) => (

@@ -12,15 +12,22 @@ import {
   columnConfig,
   statusOptions,
 } from "@/components/ubicacion/data";
+import { fetchUbicaciones } from "@/app/api/fetchingData";
 
 export default function page() {
   const [ubicacion, setUbicacion] = useState([]);
 
   // Obtiene la lista de ubicaciones
   useEffect(() => {
-    fetch("/api/ubicacion")
-      .then((res) => res.json())
-      .then((data) => setUbicacion(data));
+    const fetchData = async () => {
+      try {
+        const ubicacionesData = await fetchUbicaciones();
+        setUbicacion(ubicacionesData);
+      } catch (error) {
+        console.log("Error fetching markers:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   // función para eliminar una ubicacion

@@ -3,18 +3,21 @@ import React, { useEffect, useState } from "react";
 import PageTitle from "@/components/PageTitle";
 import ButtonAdd from "../../components/workstation/ButtonAdd/ButtonAdd";
 import ListWorkstation from "../../components/workstation/ListWorkstation/ListWorkstation";
+import { fetchWorkstations } from "@/app/api/fetchingData";
 
 export default function page() {
   const [operadores, setOperadores] = useState([]);
 
   useEffect(() => {
-    // Obtenga workstations existentes del servidor
-    const fetchWorkstations = async () => {
-      const response = await fetch("/api/workstation");
-      const data = await response.json();
-      setOperadores(data);
-    };
-    fetchWorkstations();
+    const fetchData = async () => {
+      try {
+        const operadoresData = await fetchWorkstations()
+        setOperadores(operadoresData);
+      } catch (error) {
+        console.log("Error fetching operadores:", error)
+      }
+    }
+    fetchData();
   }, []);
   
 

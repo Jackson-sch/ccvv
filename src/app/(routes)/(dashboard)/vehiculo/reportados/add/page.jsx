@@ -7,6 +7,7 @@ import { formInitialData } from "../../../../../../components/vehiculo/data";
 import Formulario from "../../../../../../components/vehiculo/Formulario";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { fetchVehiculos } from "@/app/api/fetchingData";
 
 export default function page() {
   const [vehiculos, setVehiculos] = useState([]);
@@ -15,18 +16,12 @@ export default function page() {
   const router = useRouter();
   const params = useParams();
 
-  const fetchVehiculos = async () => {
-    const response = await fetch("/api/vehiculo");
-    const data = await response.json();
-    setVehiculos(data);
-  }
-
   const getVehiculo = async (id) => {
     const response = await fetch(`/api/vehiculo/${params.id}`);
     const data = await response.json();
     setFormData(data);
     setIsEditing(true);
-  }
+  };
 
   useEffect(() => {
     fetchVehiculos();
@@ -58,7 +53,11 @@ export default function page() {
       });
 
       if (response.ok) {
-        toast.success(isEditing ? "Vehículo actualizado correctamente" : "Vehículo creado con éxito");
+        toast.success(
+          isEditing
+            ? "Vehículo actualizado correctamente"
+            : "Vehículo creado con éxito"
+        );
         router.push("/vehiculo/reportados");
         setIsEditing(false);
         setFormData(formInitialData);

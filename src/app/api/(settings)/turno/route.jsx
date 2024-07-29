@@ -5,13 +5,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
   await dbConnect();
   const turnos = await Turno.find();
-  return NextResponse.json({ turnos });
+  return NextResponse.json(turnos);
 }
 
 export async function POST(request) {
-  await dbConnect();
-  const data = await request.json();
-  const turno = new Turno(data);
-  const savedTurno = await turno.save();
-  return NextResponse.json({ savedTurno });
+  try {
+    const body = await request.json();
+    const newTurno = new Turno(body);
+    const savedTurno = await newTurno.save();
+    return NextResponse.json(savedTurno, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(error.message, { status: 500 });
+  }
 }

@@ -29,7 +29,7 @@ export default function ButtonAdd({ onSubmit }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Agregar Nuevo Turno
+                Agregar Nueva Gravedad
               </ModalHeader>
               <ModalBody className="mb-4">
                 <FormAdd onClose={onClose} onSubmit={onSubmit} />

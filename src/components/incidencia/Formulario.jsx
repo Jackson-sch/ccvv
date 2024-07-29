@@ -14,6 +14,9 @@ export default function Formulario({
   zonas,
   numeroCamara,
   operadores,
+  turno,
+  comisarias,
+  gravedades,
 }) {
   const {
     handleSubmit,
@@ -78,7 +81,7 @@ export default function Formulario({
             <Controller
               name="fecha"
               control={control}
-              defaultValue={formData.turno}
+              defaultValue={formData.fecha}
               render={({ field }) => (
                 <Input
                   {...field}
@@ -127,9 +130,9 @@ export default function Formulario({
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Turno.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {turno.map((item) => (
+                    <SelectItem key={item.name} value={item.name}>
+                      {item.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -281,9 +284,9 @@ export default function Formulario({
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Comisarias.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {comisarias.map((item) => (
+                    <SelectItem key={item.name} value={item.name}>
+                      {item.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -419,8 +422,8 @@ export default function Formulario({
                 onChange={handleInputChange}
               >
                 {gravedades.map((item) => (
-                  <SelectItem key={item.value} value={item.value}>
-                    {item.label}
+                  <SelectItem key={item.name} value={item.name}>
+                    {item.name}
                   </SelectItem>
                 ))}
               </Select>
@@ -479,19 +482,3 @@ export default function Formulario({
 }
 
 
-const Comisarias = [
-  { value: "Nicolas Alcazar", label: "Nicolas Alcazar" },
-  { value: "Sanchez Carrion", label: "Sanchez Carrion" },
-];
-
-const Turno = [
-  { value: "Mañana", label: "Mañana" },
-  { value: "Tarde", label: "Tarde" },
-  { value: "Noche", label: "Noche" },
-];
-
-
-const gravedades = [
-  { value: "Leve", label: "Leve" },
-  { value: "Alta", label: "Alta" },
-];

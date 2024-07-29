@@ -10,16 +10,21 @@ import {
   columnConfig
 } from "@/components/ocurrencia/data";
 import toast from "react-hot-toast";
+import { fetchOcurrencias } from "@/app/api/fetchingData";
 
 export default function page() {
   const [ocurrencias, setOcurrencias] = useState([]);
 
   useEffect(() => {
-    fetch("/api/ocurrencia")
-      .then((res) => res.json())
-      .then((data) => 
-        setOcurrencias(data)
-      )
+    const fetchData = async () => {
+      try {
+        const ocurrenciasData = await fetchOcurrencias()
+        setOcurrencias(ocurrenciasData)
+      } catch (error) {
+        console.log("Error fetching ocurrencias:", error)
+      }
+    }
+    fetchData()
   }, []);
 
   const handleDelete = async (id) => {

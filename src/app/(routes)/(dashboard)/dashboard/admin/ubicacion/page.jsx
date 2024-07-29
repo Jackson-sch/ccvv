@@ -13,6 +13,7 @@ import Drawer from "@/components/Drawer";
 import Formulario from "@/components/ubicacion/Formulario";
 import Swal from "sweetalert2";
 import MapsComponent from "@/components/maps/MapsComponent";
+import { fetchMarkers } from "@/app/api/fetchingData";
 
 export default function page() {
   const [markers, setMarkers] = useState([]);
@@ -34,16 +35,17 @@ export default function page() {
     setIsOpen(false);
   };
 
-  // Obtener las ubicaciones de las cámaras
-  const fetchMarkers = async () => {
-    const response = await fetch("/api/ubicacion");
-    const data = await response.json();
-    setMarkers(data);
-  };
-
   // Obtener las ubicaciones de las cámaras al cargar la página
   useEffect(() => {
-    fetchMarkers();
+    const fetchData = async () => {
+      try {
+        const ubicacionesData = await fetchMarkers();
+        setMarkers(ubicacionesData);
+      } catch (error) {
+        console.log("Error fetching markers:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   // Enviar la ubicación de la cámara al servidor
@@ -76,7 +78,6 @@ export default function page() {
     setIsOpen(false);
   };
 
-  
   return (
     <>
       <CardContent className="mb-4 flex justify-between">

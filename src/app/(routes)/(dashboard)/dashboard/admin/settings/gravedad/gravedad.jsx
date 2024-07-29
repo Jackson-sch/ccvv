@@ -2,48 +2,47 @@
 import React, { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
-import ButtonAdd from "../../../components/settings/(turno)/ButtonAdd/ButtonAdd";
-import ListTurno from "../../../components/settings/(turno)/ListTurno/ListTurno";
+import ListTurno from "../../../components/settings/(gravedad)/ListGravedad/ListGravedad";
+import ButtonAdd from "../../../components/settings/(gravedad)/ButtonAdd/ButtonAdd";
 
-export default function Turno() {
-  const [turnos, setTurnos] = useState([]);
-  console.log("🚀 ~ Turno ~ turnos:", turnos)
+export default function Gravedad() {
+  const [gravedades, setGravedades] = useState([])
 
   useEffect(() => {
-    const fetchTurnos = async () => {
+    const fetchGravedades = async () => {
       try {
-        const response = await fetch("/api/turno");
+        const response = await fetch("/api/gravedad");
         const data = await response.json();
-        setTurnos(data);
+        setGravedades(data);
       } catch (error) {
-        console.error("Error fetching comisarias:", error);
+        console.error("Error fetching gravedad:", error);
       }
     };
 
-    fetchTurnos();
+    fetchGravedades();
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/api/turno/${id}`, {
+      const response = await fetch(`/api/gravedad/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
         throw new Error(`HTTP error status: ${response.status}`);
       }
 
-      // Actualiza el estado de las turnos para reflejar la eliminación
-      setTurnos((currentTurnos) => currentTurnos.filter((t) => t._id !== id));
-      toast.success("Turno eliminada con éxito");
+      // Actualiza el estado de la gravedad para reflejar la eliminación
+      setGravedades((currentGravedad) => currentGravedad.filter((g) => g._id !== id));
+      toast.success("Registro eliminado con éxito");
     } catch (error) {
-      console.error("Error deleting Turno:", error);
-      alert("Error deleting turno");
+      console.error("Error deleting Gravedad:", error);
+      alert("Error deleting gravedad");
     }
   };
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("/api/turno", {
+      const response = await fetch("/api/gravedad", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,8 +51,8 @@ export default function Turno() {
       });
 
       if (response.ok) {
-        const savedTurno = await response.json();
-        setTurnos([...turnos, savedTurno]);
+        const savedGravedad = await response.json();
+        setGravedades([...gravedades, savedGravedad]);
       } else {
         console.error("Error:", response.statusText);
       }
@@ -65,7 +64,7 @@ export default function Turno() {
   return (
     <>
       <TopContent onSubmit={onSubmit} />
-      <ListTurno turnos={turnos} handleDelete={handleDelete} />
+      <ListTurno gravedades={gravedades} handleDelete={handleDelete} />
     </>
   );
 }

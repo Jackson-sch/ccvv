@@ -10,14 +10,15 @@ import {
   columnConfig,
   url,
   statusColorMap,
-} from "../../../../../components/vehiculo/data";
+} from "@/components/vehiculo/data";
 
-import InputSearch from "../../../../../components/vehiculo/InputSearch";
-import Pagination from "../../../../../components/vehiculo/Pagination";
-import ButtonAdd from "../../../../../components/vehiculo/ButtonAdd";
+import InputSearch from "@/components/vehiculo/InputSearch";
+import Pagination from "@/components/vehiculo/Pagination";
+import ButtonAdd from "@/components/vehiculo/ButtonAdd";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import CardVehiculo from "../../../../../components/vehiculo/CardVehiculo";
+import CardVehiculo from "@/components/vehiculo/CardVehiculo";
+import { fetchVehiculos } from "@/app/api/fetchingData";
 
 export default function page() {
   const [vehiculosReportados, setVehiculosReportados] = useState([]);
@@ -26,9 +27,15 @@ export default function page() {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    fetch("/api/vehiculo")
-      .then((res) => res.json())
-      .then((data) => setVehiculosReportados(data));
+    const fetchData = async () => {
+      try {
+        const vehiculosData =  await fetchVehiculos()
+        setVehiculosReportados(vehiculosData);
+      } catch (error) {
+        console.error("Error fetching vehiculos:", error);
+      }
+    }
+    fetchData();
   }, []);
 
   const handleDelete = async (id) => {

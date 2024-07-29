@@ -10,6 +10,17 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { format } from "@formkit/tempo";
 import MapsComponent from "@/components/maps/MapsComponent";
+import {
+  fetchClasificaciones,
+  fetchMarkers,
+  fetchOcurrencias,
+  fetchZonas,
+  fetchNumeroCamara,
+  fetchOperadores,
+  fetchTurno,
+  fetchComisarias,
+  fetchGravedades,
+} from "@/app/api/fetchingData";
 
 export default function Page() {
   const [markers, setMarkers] = useState([]);
@@ -25,85 +36,46 @@ export default function Page() {
   const [zonas, setZonas] = useState([]);
   const [numeroCamara, setNumeroCamara] = useState([]);
   const [operadores, setOperadores] = useState([]);
+  const [turno, setTurno] = useState([]);
+  const [comisarias, setComisarias] = useState([]);
+  const [gravedades, setGravedades] = useState([]);
 
   // Ejecuta los fetch para obtener los datos iniciales cuando el componente se monta
   useEffect(() => {
     const fetchData = async () => {
-      await fetchMarkers();
-      await fetchClasificaciones();
-      await fetchOcurrencias();
-      await fetchZonas();
-      await fetchNumeroCamara();
-      await fetchOperadores();
+      try {
+        const markersData = await fetchMarkers();
+        setMarkers(markersData);
+
+        const clasificacionesData = await fetchClasificaciones();
+        setClasificacion(clasificacionesData);
+
+        const ocurrenciasData = await fetchOcurrencias();
+        setOcurrencia(ocurrenciasData);
+
+        const zonasData = await fetchZonas();
+        setZonas(zonasData);
+
+        const numeroCamaraData = await fetchNumeroCamara();
+        setNumeroCamara(numeroCamaraData);
+
+        const operadoresData = await fetchOperadores();
+        setOperadores(operadoresData);
+
+        const turnoData = await fetchTurno();
+        setTurno(turnoData);
+
+        const comisariasData = await fetchComisarias();
+        setComisarias(comisariasData);
+
+        const gravedadesData = await fetchGravedades();
+        setGravedades(gravedadesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchData();
   }, []); // La matriz de dependencia vacía asegura que este efecto se ejecute solo una vez en el montaje de componentes
-
-  /**
-   * Estas funciones usan async/esperan para obtener datos de diferentes puntos finales de API y establecen el recuperado
-   * datos en variables de estado.
-   */
-  const fetchMarkers = async () => {
-    try {
-      const response = await fetch("/api/ubicacion");
-      const data = await response.json();
-      setMarkers(data);
-    } catch (error) {
-      console.error("Error fetching markers:", error);
-    }
-  };
-
-  const fetchClasificaciones = async () => {
-    try {
-      const response = await fetch("/api/clasificacion");
-      const data = await response.json();
-      setClasificacion(data);
-    } catch (error) {
-      console.error("Error fetching clasificaciones:", error);
-    }
-  };
-
-  const fetchOcurrencias = async () => {
-    try {
-      const response = await fetch("/api/ocurrencia");
-      const data = await response.json();
-      setOcurrencia(data);
-    } catch (error) {
-      console.error("Error fetching ocurrencias:", error);
-    }
-  };
-
-  const fetchZonas = async () => {
-    try {
-      const response = await fetch("/api/zona");
-      const data = await response.json();
-      setZonas(data);
-    } catch (error) {
-      console.log("Error fetching zonas:", error);
-    }
-  };
-
-  const fetchNumeroCamara = async () => {
-    try {
-      const response = await fetch("/api/ubicacion");
-      const data = await response.json();
-      setNumeroCamara(data);
-    } catch (error) {
-      console.log("Error fetching numeroCamara:", error);
-    }
-  };
-
-  const fetchOperadores = async () => {
-    try {
-      const response = await fetch("/api/workstation");
-      const data = await response.json();
-      setOperadores(data);
-    } catch (error) {
-      console.log("Error fetching operadores:", error);
-    }
-  };
-
-  /* Fin de las funciones de obtención de datos */
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -181,6 +153,9 @@ export default function Page() {
           zonas={zonas}
           numeroCamara={numeroCamara}
           operadores={operadores}
+          turno={turno}
+          comisarias={comisarias}
+          gravedades={gravedades}
         />
       </Drawer>
     </CardContent>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Formulario from "@/components/clasificacion/Formulario";
 import toast from "react-hot-toast";
+import { fetchClasificaciones } from "@/app/api/fetchingData";
 
 export default function page() {
   const [clasificacion, setClasificacion] = useState([]);
@@ -10,12 +11,6 @@ export default function page() {
   const [editingClasificacion, setEditingClasificacion] = useState({});
   const router = useRouter();
   const params = useParams();
-
-  const fetchClasificacion = async () => {
-    const response = await fetch("/api/clasificacion");
-    const data = await response.json();
-    setClasificacion(data);
-  };
 
   const getClasificacion = async (id) => {
     const response = await fetch(`/api/clasificacion/${params.id}`);
@@ -25,7 +20,7 @@ export default function page() {
   };
 
   useEffect(() => {
-    fetchClasificacion();
+    fetchClasificaciones();
     const clasificacionId = params.id;
     if (clasificacionId) {
       getClasificacion(clasificacionId);

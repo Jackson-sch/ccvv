@@ -4,6 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 import Formulario from "@/components/users/Formulario";
 import { initialUserData } from "@/utils/initialUserData";
 import toast from "react-hot-toast";
+import { fetchUsers } from "@/app/api/fetchingData";
 
 export default function AddPage() {
   const [users, setUsers] = useState([]);
@@ -11,12 +12,6 @@ export default function AddPage() {
   const [editingUser, setEditingUser] = useState(initialUserData);
   const router = useRouter();
   const params = useParams();
-
-  const fetchUser = async () => {
-    const response = await fetch("/api/user");
-    const data = await response.json();
-    setUsers(data);
-  };
 
   const getUser = async (id) => {
     const response = await fetch(`/api/user/${params.id}`);
@@ -26,7 +21,7 @@ export default function AddPage() {
   }
 
   useEffect(() => {
-    fetchUser();
+    fetchUsers();
     const userId = params.id;
     if (userId) {
       getUser(userId);

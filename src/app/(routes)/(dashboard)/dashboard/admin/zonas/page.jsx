@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Maps from "../../components/zonas/Maps/Maps";
 import FormZonas from "../../components/zonas/FormZonas";
 import { useParams, useRouter } from "next/navigation";
+import { fetchZonas } from "@/app/api/fetchingData";
 
 export default function page() {
   const [coordinates, setCoordinates] = useState([]);
@@ -11,13 +12,15 @@ export default function page() {
   const router = useRouter();
 
   useEffect(() => {
-    // Obtenga zonas existentes del servidor
-    const fetchZonas = async () => {
-      const response = await fetch("/api/zona");
-      const data = await response.json();
-      setZonas(data);
-    };
-    fetchZonas();
+    const fetchData = async () => {
+      try {
+        const zonasData = await fetchZonas()
+        setZonas(zonasData);
+      } catch (error) {
+        console.log("Error fetching zonas:", error)
+      }
+    }
+    fetchData();
   }, []);
 
   const handleShapeComplete = (event) => {

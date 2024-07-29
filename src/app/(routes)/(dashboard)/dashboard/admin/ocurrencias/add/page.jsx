@@ -4,6 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 
 import toast from "react-hot-toast";
 import Formulario from "@/components/ocurrencia/Formulario";
+import { fetchClasificaciones, fetchOcurrencias } from "@/app/api/fetchingData";
 
 export default function page() {
   const [ocurrencias, setOcurrencias] = useState([]);
@@ -13,25 +14,6 @@ export default function page() {
   const router = useRouter();
   const params = useParams();
 
-  const fetchClasificacion = async () => {
-    const response = await fetch("/api/clasificacion");
-    const data = await response.json();
-    setClasificaciones(data);
-  };
-
-  const fetchOcurrencia = async () => {
-    try {
-      const response = await fetch("/api/ocurrencia");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setOcurrencias(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const getOcurrencia = async (id) => {
     const response = await fetch(`/api/ocurrencia/${params.id}`);
     const data = await response.json();
@@ -40,12 +22,8 @@ export default function page() {
   };
 
   useEffect(() => {
-    fetchClasificacion();
-    
-  }, []);
-
-  useEffect(() => {
-    fetchOcurrencia();
+    fetchClasificaciones();
+    fetchOcurrencias();
     const ocurrenciaId = params.id;
     if (ocurrenciaId) {
       getOcurrencia(ocurrenciaId);
@@ -53,10 +31,7 @@ export default function page() {
   }, [params.id]);
 
   const onSubmit = async (data) => {
-
-   const url = isEditing
-      ? `/api/ocurrencia/${params.id}`
-      : "/api/ocurrencia";
+    const url = isEditing ? `/api/ocurrencia/${params.id}` : "/api/ocurrencia";
     const method = isEditing ? "PUT" : "POST";
 
     const response = await fetch(url, {

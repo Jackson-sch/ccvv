@@ -1,4 +1,5 @@
 "use client";
+import { fetchIncidencias } from "@/app/api/fetchingData";
 import Mapa from "@/components/incidencia/maps/MapaCalor/Mapa";
 import PageTitle from "@/components/PageTitle";
 import React, { useEffect, useState } from "react";
@@ -8,9 +9,12 @@ export default function page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/incidencia");
-      const data = await response.json();
-      setIncidencias(data);
+      try {
+        const incidenciasData = await fetchIncidencias();
+        setIncidencias(incidenciasData);
+      } catch (error) {
+        console.error("Error fetching incidencias:", error);
+      }
     };
     fetchData();
   }, []);

@@ -3,25 +3,29 @@ import React, { useEffect, useState } from "react";
 
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-import TableUI from "@/components/TableUI/TableUI"; 
+import TableUI from "@/components/TableUI/TableUI";
 import {
   columns,
   INITIAL_VISIBLE_COLUMNS,
   searchFields,
   columnConfig,
   statusOptions,
-} from "@/components/incidencia/data.jsx"; 
+} from "@/components/incidencia/data.jsx";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { fetchIncidencias } from "@/app/api/fetchingData";
 
 export default function page() {
   const [incidencias, setIncidencias] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/incidencia");
-      const data = await response.json();
-      setIncidencias(data);
+      try {
+        const incidenciasData = await fetchIncidencias();
+        setIncidencias(incidenciasData);
+      } catch (error) {
+        console.error("Error fetching incidencias:", error);
+      }
     };
     fetchData();
   }, []);

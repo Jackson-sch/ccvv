@@ -12,14 +12,21 @@ import {
 } from "@/components/users/data";
 import PageTitle from "@/components/PageTitle";
 import toast from "react-hot-toast";
+import { fetchUsers } from "@/app/api/fetchingData";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("/api/user")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    const fetchData = async () => {
+      try {
+        const usersData = await fetchUsers();
+        setUsers(usersData);
+      } catch (error) {
+        console.log("Error fetching users:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const handleDelete = async (id) => {

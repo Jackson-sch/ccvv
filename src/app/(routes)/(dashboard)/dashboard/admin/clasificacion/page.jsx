@@ -11,14 +11,21 @@ import {
   url,
 } from "@/components/clasificacion/data";
 import toast from "react-hot-toast";
+import { fetchClasificaciones } from "@/app/api/fetchingData";
 
 export default function page() {
   const [clasificacion, setClasificacion] = useState([]);
 
   useEffect(() => {
-    fetch("/api/clasificacion")
-      .then((res) => res.json())
-      .then((data) => setClasificacion(data));
+    const fetchData = async () => {
+      try {
+        const clasificacionesData = await fetchClasificaciones();
+        setClasificacion(clasificacionesData);
+      } catch (error) {
+        console.error("Error fetching clasificaciones:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const handleDelete = async (id) => {
@@ -32,9 +39,7 @@ export default function page() {
 
       // Actualiza el estado de los usuarios para reflejar la eliminación
       setClasificacion((currentClasificacion) =>
-        currentClasificacion.filter(
-          (clasificacion) => clasificacion._id !== id
-        )
+        currentClasificacion.filter((clasificacion) => clasificacion._id !== id)
       );
       toast.success("Clasificación eliminada con éxito");
       console.log("Clasificación eliminada con éxito");
