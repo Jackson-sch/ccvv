@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import {
-  Input,
   Table,
   TableBody,
   TableCell,
@@ -8,9 +7,11 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import ButtonDelete from "../ButtonDelete/ButtonDelete";
+import ButtonDelete from "../../ButtonDelete/ButtonDelete";
 
-export default function ListComisaria({ comisarias, handleDelete }) {
+
+export default function ListTurno({ turnos = [], handleDelete }) {
+
   const renderCell = useCallback((item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
@@ -21,7 +22,7 @@ export default function ListComisaria({ comisarias, handleDelete }) {
           <div className="relative flex items-center gap-2 justify-end">
             <ButtonDelete
               id={item._id}
-              url="/api/comisaria"
+              url="/api/turno"
               handleDelete={handleDelete}
             />
           </div>
@@ -32,7 +33,7 @@ export default function ListComisaria({ comisarias, handleDelete }) {
   }, []);
 
   return (
-    <Table isStriped aria-label="Comisaria">
+    <Table isStriped aria-label="Turno">
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn
@@ -44,7 +45,7 @@ export default function ListComisaria({ comisarias, handleDelete }) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={comisarias}>
+      <TableBody emptyContent={"No turnos found"} items={turnos}>
         {(item) => (
           <TableRow key={item._id}>
             {(columnKey) => (

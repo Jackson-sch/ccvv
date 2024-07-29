@@ -2,6 +2,7 @@ import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import React from "react";
 import Comisaria from "./comisaria/comisaria";
+import Turno from "./turno/turno";
 
 export default function page() {
   return (
@@ -18,6 +19,7 @@ export default function page() {
           title="Turno"
           descripcion="En este módulo se muestras los turnos de trabajo, puedes agregarlos o modificarlos"
         />
+        {/* <Turno /> */}
       </CardContent>
       <CardContent title="Gravedad">
         <PageTitle
