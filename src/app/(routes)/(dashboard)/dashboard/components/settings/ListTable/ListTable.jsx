@@ -7,24 +7,18 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import ButtonDelete from "../../ButtonDelete/ButtonDelete";
+import ButtonDelete from "../ButtonDelete/ButtonDelete";
 
-
-export default function ListTurno({ turnos, handleDelete }) {
-
+export default function ListTable({ data, handleDelete }) {
   const renderCell = useCallback((item, columnKey) => {
     const cellValue = item[columnKey];
     switch (columnKey) {
       case "name":
-        return cellValue;
+        return <p className="capitalize">{cellValue}</p>;
       case "actions":
         return (
           <div className="relative flex items-center gap-2 justify-end">
-            <ButtonDelete
-              id={item._id}
-              url="/api/turno"
-              handleDelete={handleDelete}
-            />
+            <ButtonDelete id={item._id} handleDelete={handleDelete} />
           </div>
         );
       default:
@@ -45,7 +39,7 @@ export default function ListTurno({ turnos, handleDelete }) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No turnos found"} items={turnos}>
+      <TableBody emptyContent={"No data found"} items={data}>
         {(item) => (
           <TableRow key={item._id}>
             {(columnKey) => (
@@ -60,8 +54,8 @@ export default function ListTurno({ turnos, handleDelete }) {
 
 const columns = [
   /*   { name: "ID", uid: "id", sortable: true }, */
-  { name: "NAME", uid: "name", sortable: true },
-  { name: "Actions", uid: "actions", sortable: false },
+  { name: "DESCRIPCION", uid: "name", sortable: true },
+  { name: "ACCIONES", uid: "actions", sortable: false },
 ];
 
 export { columns };

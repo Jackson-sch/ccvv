@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ButtonAdd from "../../../components/settings/(comisaria)/ButtonAdd/ButtonAdd";
-import ListComisaria from "../../../components/settings/(comisaria)/ListComisaria/ListComisaria";
 import toast from "react-hot-toast";
+import ButtonAdd from "../../../components/settings/(comisaria)/ButtonAdd/ButtonAdd";
+import ListTable from "../../../components/settings/ListTable/ListTable";
 
 export default function Comisaria() {
   const [comisarias, setComisarias] = useState([]);
@@ -65,7 +65,7 @@ export default function Comisaria() {
   return (
     <>
       <TopContent onSubmit={onSubmit} />
-      <ListComisaria comisarias={comisarias} handleDelete={handleDelete} />
+      <ListTable data={comisarias} handleDelete={handleDelete} />
     </>
   );
 }

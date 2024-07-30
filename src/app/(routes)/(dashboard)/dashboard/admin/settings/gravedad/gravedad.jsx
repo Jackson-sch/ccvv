@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
-import ListTurno from "../../../components/settings/(gravedad)/ListGravedad/ListGravedad";
+
 import ButtonAdd from "../../../components/settings/(gravedad)/ButtonAdd/ButtonAdd";
+import ListTable from "../../../components/settings/ListTable/ListTable";
 
 export default function Gravedad() {
-  const [gravedades, setGravedades] = useState([])
+  const [gravedades, setGravedades] = useState([]);
 
   useEffect(() => {
     const fetchGravedades = async () => {
@@ -32,7 +33,9 @@ export default function Gravedad() {
       }
 
       // Actualiza el estado de la gravedad para reflejar la eliminación
-      setGravedades((currentGravedad) => currentGravedad.filter((g) => g._id !== id));
+      setGravedades((currentGravedad) =>
+        currentGravedad.filter((g) => g._id !== id)
+      );
       toast.success("Registro eliminado con éxito");
     } catch (error) {
       console.error("Error deleting Gravedad:", error);
@@ -64,7 +67,7 @@ export default function Gravedad() {
   return (
     <>
       <TopContent onSubmit={onSubmit} />
-      <ListTurno gravedades={gravedades} handleDelete={handleDelete} />
+      <ListTable data={gravedades} handleDelete={handleDelete} />
     </>
   );
 }
