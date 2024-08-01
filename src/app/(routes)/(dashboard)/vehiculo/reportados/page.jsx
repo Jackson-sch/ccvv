@@ -2,12 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-/* import TableUI from "@/components/TableUI/TableUI"; */
 import {
-  columns,
-  INITIAL_VISIBLE_COLUMNS,
-  searchFields,
-  columnConfig,
   url,
   statusColorMap,
 } from "@/components/vehiculo/data";
