@@ -8,7 +8,7 @@ export default function PostsVehiculos({ data }) {
     <ScrollShadow hideScrollBar className="w-full">
       <CardContent className="flex flex-col items-center px-4 py-9 md:px-20">
         {data.map((item) => (
-          <div key={item._id} className="w-full max-w-2xl mb-8">
+          <div key={item._id}>
             <div className="flex items-center mb-3">
               <img
                 src={item.imageUrl}
@@ -30,10 +30,9 @@ export default function PostsVehiculos({ data }) {
             <Image
               isBlurred
               src={item.imageUrl}
-              alt="How Innovation Works"
-              width="100%"
-              height="auto"
-              className="object-cover rounded-lg"
+              alt={item.placa}
+              width={800}
+              height={400}
             />
 
             <div className="flex gap-4 items-center my-6">

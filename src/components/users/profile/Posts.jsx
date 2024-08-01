@@ -28,7 +28,7 @@ export default function Posts({ data }) {
             <Image
               isBlurred
               src={post.imageUrl}
-              alt="How Innovation Works"
+              alt={post.observaciones}
               width={800}
               height={400}
             />
