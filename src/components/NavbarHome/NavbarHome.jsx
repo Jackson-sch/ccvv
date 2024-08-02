@@ -6,7 +6,7 @@ import { User } from "lucide-react";
 
 export default function NavbarHome() {
   return (
-    <Navbar>
+    <Navbar >
       <NavbarBrand>
         <Image src="/webby2-dark.svg" width={50} height={50} alt="logo" />
         {/* <p className="font-bold text-inherit">ACME</p> */}

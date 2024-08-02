@@ -1,8 +1,8 @@
 import React from "react";
-
-import { Chip, Image } from "@nextui-org/react";
+import { Chip, Image, ScrollShadow, User } from "@nextui-org/react";
 import PageTitle from "@/components/PageTitle";
 import MapComponent from "../ubicacion/maps/MapComponent";
+import { CardContent, Container } from "../Card";
 
 export default function ContentDetails({ item }) {
   const center = {
@@ -11,108 +11,83 @@ export default function ContentDetails({ item }) {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/2 mr-4">
-        <ImageSection imageUrl={item.imageUrl} detalles={item.detalles} />
-      </div>
-      <div className="w-1/2">
-        <HeaderSection item={item} />
-        <AddressSection item={item} />
-        <OperatorSection item={item} />
-        <ObservationsSection observaciones={item.observaciones} />
+    <ScrollShadow hideScrollBar size={10} className="h-[80vh] p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <MapSection item={item} center={center} />
+        <OperatorSection item={item} />
+        <div className="col-span-1 lg:col-span-2">
+          <ImageSection imageUrl={item.imageUrl} detalles={item.detalles} />
+        </div>
       </div>
-    </div>
+    </ScrollShadow>
   );
 }
 
-const ImageSection = ({ imageUrl, detalles }) => (
-  <div className="flex flex-col">
+const ImageSection = ({ imageUrl }) => (
+  <Container className="flex justify-center">
     <Image
       src={imageUrl}
-      width={500}
-      isZoomed
       alt="Imagen de la ocurrencia"
-      className="mt-2 mb-4"
+      className="rounded-lg shadow-md"
     />
-    <span className="text-2xl font-semibold uppercase bg-gradient-to-t from-transparent to-default-100 shadow-md rounded p-8">
-      {detalles}
-    </span>
-  </div>
+  </Container>
 );
 
-const HeaderSection = ({ item }) => (
-  <div>
-    <div>
-      <PageTitle title={item.ocurrencia} />
-      <span className="text-xs text-default-500">{item.clasificacion}</span>
-    </div>
-    <div className="flex justify-between items-center mt-4">
-      <p className="text-2xl font-bold">Cámara {item.camara}</p>
+const OperatorSection = ({ item }) => (
+  <Container className="bg-default-50 p-4 rounded-lg">
+    <div className="flex items-center justify-between mb-2">
+      <User
+        name={item.nombres_apellidos}
+        description={`${item.fecha} ${item.hora} ${item.turno}`}
+      />
       <Chip
-        size="lg"
+        size="sm"
         variant="flat"
-        color={
-          item.status === "Leve"
-            ? "success"
-            : item.status === "Alta"
-            ? "danger"
-            : "default"
-        }
+        color={getColor(item.status)}
+        className="capitalize"
       >
         {item.status}
       </Chip>
     </div>
-    <DateAndTimeSection item={item} />
-  </div>
-);
-
-const DateAndTimeSection = ({ item }) => (
-  <div className="flex items-center gap-4 mb-2">
-    <div>
-      <span className="font-bold text-sm text-default-500">{item.fecha}</span>
-      <span className="font-bold ml-2 text-sm text-default-500">
-        {item.hora}
-      </span>
+    <div className="flex justify-between items-center pb-3">
+      <p className="font-bold text-sm text-default-500">{item.operador}</p>
+      <p className="font-bold text-sm text-default-500">{item.sector_mapa}</p>
     </div>
-    <div>
-      <p className="font-bold text-sm text-default-500">{item.turno}</p>
+    <p className="text-default-500 text-sm leading-relaxed">
+      {item.observaciones}
+    </p>
+    <div className="flex justify-end items-center pt-3">
+      <p className="font-bold text-sm text-default-500">{item.comisaria}</p>
     </div>
-  </div>
-);
-
-const AddressSection = ({ item }) => (
-  <div className="flex flex-col my-4">
-    <div className="flex justify-between items-center">
-      <span className="text-sm">{item.direccion}</span>
-      <span className="text-sm text-default-500">{item.sector_mapa}</span>
-    </div>
-    <div className="flex gap-4">
-      <span className="text-xs text-default-500">{item.latitud}</span>
-      <span className="text-xs text-default-500">{item.longitud}</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="text-sm text-default-500">{item.zona}</span>
-      <span className="text-sm text-default-500">{item.comisaria}</span>
-    </div>
-  </div>
-);
-
-const OperatorSection = ({ item }) => (
-  <div className="flex items-center justify-between mb-4">
-    <p className="text-lg text-default-600">{item.nombres_apellidos}</p>
-    <p className="font-bold text-sm text-default-500">{item.operador}</p>
-  </div>
-);
-
-const ObservationsSection = ({ observaciones }) => (
-  <div className="bg-gradient-to-t from-transparent to-default-100 shadow-md rounded px-2 pt-6 pb-8 mb-4">
-    <p className="mb-4 text-sm text-pretty leading-relaxed">{observaciones}</p>
-  </div>
+  </Container>
 );
 
 const MapSection = ({ item, center }) => (
-  <div className="mt-4">
-    <MapComponent item={item} center={center} zoom={16} />
-  </div>
+  <Container className="flex flex-col gap-4">
+    <MapComponent
+      item={item}
+      center={center}
+      zoom={16}
+      className="rounded-lg shadow-lg"
+    />
+    <div className="p-4">
+      <PageTitle className="text-xl font-bold" title={item.ocurrencia} />
+      <p className="text-xs text-default-500">{item.clasificacion}</p>
+      <div className="flex justify-between">
+        <p className="text-sm text-default-500">{item.direccion}</p>
+        <p className="text-sm text-default-500">Cámara {item.camara}</p>
+      </div>
+    </div>
+  </Container>
 );
+
+const getColor = (status) => {
+  switch (status) {
+    case "Leve":
+      return "success";
+    case "Alta":
+      return "danger";
+    default:
+      return "default";
+  }
+};

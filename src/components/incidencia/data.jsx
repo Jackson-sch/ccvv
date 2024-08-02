@@ -247,6 +247,7 @@ export function ModalView({ item }) {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="5xl"
+        className="bg-default-50"
       >
         <ModalContent>
           {(onClose) => (
@@ -254,7 +255,7 @@ export function ModalView({ item }) {
               <ModalHeader className="flex flex-col gap-1 border-b border-default-300">
                 Detalles de la Ocurrencia
               </ModalHeader>
-              <ModalBody className="pt-8">
+              <ModalBody>
                 <ContentDetails item={item}>{Children}</ContentDetails>
               </ModalBody>
               <ModalFooter>

@@ -1,5 +1,6 @@
-'use client'
+"use client";
 
+import Clock from "@/components/Clock/Clock";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import {
   Navbar,
@@ -12,18 +13,17 @@ import {
   DropdownMenu,
   Avatar,
   DropdownSection,
-  User
+  User,
 } from "@nextui-org/react";
-import { MdLogout, MdPerson, MdSettings } from "react-icons/md"
-
+import { MdLogout, MdPerson, MdSettings } from "react-icons/md";
 
 function NavbarHeader() {
   return (
-    <Navbar isBlurred isBordered>
+    <Navbar isBlurred isBordered >
       <NavbarContent justify="start">
-      <NavbarBrand className="mr-4">
-          <p className="hidden sm:block font-bold text-inherit">WEBBY</p>
-        </NavbarBrand>
+        <Clock />
+      </NavbarContent>
+      <NavbarContent justify="center">
         <Input
           classNames={{
             base: "max-w-full sm:max-w-[20rem] h-10",
@@ -39,8 +39,7 @@ function NavbarHeader() {
         />
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="end">
-        
+      <NavbarContent className="items-center" justify="end">
         <ThemeSwitcher />
         <Dropdown placement="bottom-end" backdrop="blur">
           <DropdownTrigger>

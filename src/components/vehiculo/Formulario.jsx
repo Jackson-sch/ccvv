@@ -9,7 +9,8 @@ export default function Formulario({
   formData,
   handleInputChange,
   handleResetForm,
-  isEditing,
+  gravedades,
+  marcas,
 }) {
   const {
     handleSubmit,
@@ -77,9 +78,9 @@ export default function Formulario({
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Marca.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {marcas.map((item) => (
+                    <SelectItem key={item.name} value={item.name}>
+                      {item.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -117,9 +118,9 @@ export default function Formulario({
                   className="w-full"
                   onChange={handleInputChange}
                 >
-                  {Prioridad.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {gravedades.map((item) => (
+                    <SelectItem key={item.name} value={item.name}>
+                      {item.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -176,32 +177,3 @@ export default function Formulario({
   );
 }
 
-const Prioridad = [
-  { value: "Leve", label: "Leve" },
-  { value: "Media", label: "Media" },
-  { value: "Alta", label: "Alta" },
-];
-
-const Marca = [
-  { value: "toyota", label: "Toyota" },
-  { value: "honda", label: "Honda" },
-  { value: "ford", label: "Ford" },
-  { value: "chevrolet", label: "Chevrolet" },
-  { value: "volkswagen", label: "Volkswagen" },
-  // ... add more items here
-  { value: "audi", label: "Audi" },
-  { value: "bmw", label: "BMW" },
-  { value: "mercedes-benz", label: "Mercedes-Benz" },
-  { value: "nissan", label: "Nissan" },
-  { value: "subaru", label: "Subaru" },
-  { value: "mazda", label: "Mazda" },
-  { value: "hyundai", label: "Hyundai" },
-  { value: "kia", label: "Kia" },
-  { value: "volvo", label: "Volvo" },
-  { value: "jaguar", label: "Jaguar" },
-  { value: "land-rover", label: "Land Rover" },
-  { value: "porsche", label: "Porsche" },
-  { value: "tesla", label: "Tesla" },
-  { value: "lexus", label: "Lexus" },
-  { value: "maserati", label: "Maserati" },
-];

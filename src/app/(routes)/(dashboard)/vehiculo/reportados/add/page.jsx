@@ -7,10 +7,15 @@ import { formInitialData } from "../../../../../../components/vehiculo/data";
 import Formulario from "../../../../../../components/vehiculo/Formulario";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { fetchVehiculos } from "@/utils/fetchingData";
+import {
+  fetchVehiculos,
+  fetchGravedades,
+  fetchMarcas,
+} from "@/utils/fetchingData";
 
 export default function page() {
-  const [vehiculos, setVehiculos] = useState([]);
+  const [marcas, setMarcas] = useState([]);
+  const [gravedades, setGravedades] = useState([]);
   const [formData, setFormData] = useState(formInitialData);
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
@@ -24,11 +29,23 @@ export default function page() {
   };
 
   useEffect(() => {
-    fetchVehiculos();
-    const vehiculoId = params.id;
-    if (vehiculoId) {
-      getVehiculo(vehiculoId);
-    }
+    const fetchData = async () => {
+      try {
+        const gravedadesData = await fetchGravedades();
+        setGravedades(gravedadesData);
+
+        const marcasData = await fetchMarcas();
+        setMarcas(marcasData);
+
+        const vehiculoId = params.id;
+        if (vehiculoId) {
+          getVehiculo(vehiculoId);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
   }, [params.id]);
 
   const handleInputChange = (e) => {
@@ -74,6 +91,7 @@ export default function page() {
   const handleResetForm = () => {
     setIsEditing(false);
     setFormData(formInitialData);
+    router.push("/vehiculo/reportados");
   };
 
   return (
@@ -89,6 +107,8 @@ export default function page() {
           handleInputChange={handleInputChange}
           handleFormSubmit={handleFormSubmit}
           handleResetForm={handleResetForm}
+          gravedades={gravedades}
+          marcas={marcas}
         />
       </CardContent>
     </>

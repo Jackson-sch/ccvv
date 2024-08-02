@@ -3,9 +3,9 @@ import Sidebar from "./dashboard/components/sidebar/Sidebar";
 
 export default function layout({ children }) {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex flex-1 h-screen overflow-hidden">
       <Sidebar />
-      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+      <div className="relative w-full flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <div className="w-full top-0 fixed z-50">
           <NavbarHeader />
         </div>

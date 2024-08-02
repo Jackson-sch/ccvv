@@ -138,3 +138,12 @@ export const fetchMarkers = async () => {
     }
   };
   
+  export const fetchMarcas = async () => {
+    try {
+      const response = await fetch("/api/marca");
+      return await response.json();
+    } catch (error) {
+      console.log("Error fetching marcas:", error);
+      throw error;
+    }
+  };
