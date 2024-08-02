@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import PageTitle from "@/components/PageTitle";
-import ButtonAdd from "../../components/workstation/ButtonAdd/ButtonAdd";
-import ListWorkstation from "../../components/workstation/ListWorkstation/ListWorkstation";
+import ButtonAdd from "@dashboard/components/workstation/ButtonAdd/ButtonAdd";
+import ListWorkstation from "@dashboard/components/workstation/ListWorkstation/ListWorkstation";
 import { fetchWorkstations } from "@/utils/fetchingData";
 
 export default function page() {

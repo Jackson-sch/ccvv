@@ -9,7 +9,7 @@ import {
 } from "@vis.gl/react-google-maps";
 
 import { CustomMapControl } from "./MapControl/MapControl";
-import MarkerInfo from "../ubicacion/maps/MarkerInfo";
+import MarkerInfo from "@/app/(routes)/(dashboard)/dashboard/components/ubicacion/maps/MarkerInfo";
 import MapHandler from "./MapControl/MapHandler";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;

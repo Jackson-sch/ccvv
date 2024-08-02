@@ -9,7 +9,7 @@ import {
   searchFields,
   columnConfig,
   url,
-} from "@/components/clasificacion/data";
+} from "@dashboard/components/clasificacion/data";
 import toast from "react-hot-toast";
 import { fetchClasificaciones } from "@/utils/fetchingData";
 

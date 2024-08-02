@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 
 import toast from "react-hot-toast";
-import Formulario from "@/components/ocurrencia/Formulario";
+
 import { fetchClasificaciones, fetchOcurrencias } from "@/utils/fetchingData";
+import Formulario from "@dashboard/components/ocurrencia/Formulario";
 
 export default function page() {
   const [ocurrencias, setOcurrencias] = useState([]);
   const [clasificaciones, setClasificaciones] = useState([]);
+  console.log("🚀 ~ page ~ clasificaciones:", clasificaciones);
   const [isEditing, setIsEditing] = useState(false);
   const [editingOcurrencia, setEditingOcurrencia] = useState({});
   const router = useRouter();
@@ -22,12 +24,24 @@ export default function page() {
   };
 
   useEffect(() => {
-    fetchClasificaciones();
-    fetchOcurrencias();
-    const ocurrenciaId = params.id;
-    if (ocurrenciaId) {
-      getOcurrencia(ocurrenciaId);
-    }
+    const fetchData = async () => {
+      try {
+        const clasificacionesData = await fetchClasificaciones();
+        setClasificaciones(clasificacionesData);
+
+        const ocurrenciasData = await fetchOcurrencias();
+        setOcurrencias(ocurrenciasData);
+
+        const ocurrenciaId = params.id;
+        if (ocurrenciaId) {
+          getOcurrencia(ocurrenciaId);
+        }
+      } catch (error) {
+        console.log("Error fetching ocurrencias:", error);
+      }
+    };
+
+    fetchData();
   }, [params.id]);
 
   const onSubmit = async (data) => {
@@ -48,10 +62,10 @@ export default function page() {
           ? "Ocurrencia actualizada correctamente"
           : "Ocurrencia creada con éxito"
       );
-      router.push("/dashboard/ocurrencias");
+      router.push("/dashboard/admin/ocurrencias");
       setIsEditing(false);
       setEditingOcurrencia({});
-      fetchOcurrencia();
+      setOcurrencias();
     } else {
       console.error("Error:", response.statusText);
     }

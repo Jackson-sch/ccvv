@@ -8,9 +8,9 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 
 // Data inicial del formulario
-import { formInitialData, url } from "@/components/ubicacion/data";
+import { formInitialData, url } from "@dashboard/components/ubicacion/data";
 import Drawer from "@/components/Drawer";
-import Formulario from "@/components/ubicacion/Formulario";
+import Formulario from "@dashboard/components/ubicacion/Formulario";
 import Swal from "sweetalert2";
 import MapsComponent from "@/components/maps/MapsComponent";
 import { fetchMarkers } from "@/utils/fetchingData";

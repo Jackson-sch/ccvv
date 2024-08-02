@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Formulario from "@/components/clasificacion/Formulario";
+
 import toast from "react-hot-toast";
 import { fetchClasificaciones } from "@/utils/fetchingData";
+import Formulario from "@dashboard/components/clasificacion/Formulario";
 
 export default function page() {
   const [clasificacion, setClasificacion] = useState([]);
@@ -49,7 +50,7 @@ export default function page() {
       router.push("/dashboard/admin/clasificacion");
       setIsEditing(false);
       setEditingClasificacion({});
-      fetchClasificacion();
+      setClasificacion();
     } else {
       console.error("Error:", response.statusText);
     }

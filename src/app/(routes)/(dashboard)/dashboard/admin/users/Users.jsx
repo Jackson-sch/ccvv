@@ -9,7 +9,7 @@ import {
   searchFields,
   columnConfig,
   url,
-} from "@/components/users/data";
+} from "@dashboard/components/users/data";
 import PageTitle from "@/components/PageTitle";
 import toast from "react-hot-toast";
 import { fetchUsers } from "@/utils/fetchingData";

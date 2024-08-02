@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
-import { CardContent } from "../Card";
-import PageTitle from "../PageTitle";
+import { CardContent } from "@/components/Card";
+import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
 
 export default function Formulario({

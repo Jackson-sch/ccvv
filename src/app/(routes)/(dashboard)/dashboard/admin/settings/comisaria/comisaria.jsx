@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import ButtonAdd from "../../../components/settings/(comisaria)/ButtonAdd/ButtonAdd";
-import ListTable from "../../../components/settings/ListTable/ListTable";
+import ButtonAdd from "@dashboard/components/settings/(comisaria)/ButtonAdd/ButtonAdd";
+import ListTable from "@dashboard/components/settings/ListTable/ListTable";
 
 export default function Comisaria() {
   const [comisarias, setComisarias] = useState([]);

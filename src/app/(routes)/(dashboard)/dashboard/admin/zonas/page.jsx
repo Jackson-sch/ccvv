@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Maps from "../../components/zonas/Maps/Maps";
-import FormZonas from "../../components/zonas/FormZonas";
+import Maps from "@dashboard/components/zonas/Maps/Maps";
+import FormZonas from "@dashboard/components/zonas/FormZonas";
 import { useParams, useRouter } from "next/navigation";
 import { fetchZonas } from "@/utils/fetchingData";
 

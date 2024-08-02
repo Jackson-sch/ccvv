@@ -8,7 +8,8 @@ import {
   INITIAL_VISIBLE_COLUMNS,
   searchFields,
   columnConfig,
-} from "@/components/ocurrencia/data";
+  url,
+} from "@dashboard/components/ocurrencia/data";
 import toast from "react-hot-toast";
 import { fetchOcurrencias } from "@/utils/fetchingData";
 
@@ -60,6 +61,7 @@ export default function page() {
         INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
         handleDelete={handleDelete}
         columnConfig={columnConfig}
+        url={url}
       />
     </CardContent>
   );

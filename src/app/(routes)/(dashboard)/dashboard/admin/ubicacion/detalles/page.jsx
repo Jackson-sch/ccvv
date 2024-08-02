@@ -11,7 +11,7 @@ import {
   searchFields,
   columnConfig,
   statusOptions,
-} from "@/components/ubicacion/data";
+} from "@dashboard/components/ubicacion/data";
 import { fetchUbicaciones } from "@/utils/fetchingData";
 
 export default function page() {

@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Hero from "@/components/users/profile/Hero";
-import Profile from "@/components/users/profile/Profile";
+import Hero from "@dashboard/components/users/profile/Hero";
+import Profile from "@dashboard/components/users/profile/Profile";
 import { Tab, Tabs } from "@nextui-org/react";
-import Formulario from "@/components/users/Formulario";
-import Posts from "@/components/users/profile/Posts";
+import Formulario from "@dashboard/components/users/Formulario";
+import Posts from "@dashboard/components/users/profile/Posts";
 import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 
 export default function page() {

@@ -1,4 +1,7 @@
-import ActionsButtons from "../TableUI/Actions";
+
+import ActionsButtons from "@/components/TableUI/Actions";
+import { User } from "@nextui-org/react";
+
 
 const columns = [
   {
@@ -8,12 +11,7 @@ const columns = [
   },
   {
     uid: "descripcion",
-    name: "DESCRIPCION",
-    sortable: true,
-  },
-  {
-    uid: "clasificacion",
-    name: "CLASIFICACIÓN",
+    name: "DESCRIPCIÓN",
     sortable: true,
   },
   {
@@ -22,35 +20,35 @@ const columns = [
   },
 ];
 
-const INITIAL_VISIBLE_COLUMNS = ["descripcion", , "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["descripcion", "actions"];
 
-const url = "/dashboard/admin/ocurrencias";
+const url = "/dashboard/admin/clasificacion/";
 
-const searchFields = ["descripcion", "clasificacion"];
+const searchFields = ["descripcion"];
 
 const columnConfig = {
-  name: {
+  descripcion: {
     render: (item) => (
       <User
         avatarProps={{ radius: "lg", src: item.avatar }}
-        description={item.email}
-        name={item.name}
+        color="primary"
+        name={item.descripcion}
       >
-        {item.email}
+        {item.descripcion}
       </User>
     ),
   },
-  descripcion: {
+/*   descripcion: {
     render: (item) => (
       <div className="flex flex-col">
         <p className="text-bold text-small capitalize">{item.descripcion}</p>
         <p className="text-bold text-tiny capitalize text-default-400">
-          {item.clasificacion}
+          {item.descripcion}
         </p>
       </div>
     ),
-  },
-  status: {
+  }, */
+  /* status: {
     render: (item) => (
       <Chip
         className="capitalize"
@@ -61,9 +59,11 @@ const columnConfig = {
         {item.status}
       </Chip>
     ),
-  },
+  }, */
   actions: {
-    render: (item, handleDelete) => <ActionsButtons item={item} handleDelete={handleDelete} url={url} />,
+    render: (item, handleDelete) => (
+      <ActionsButtons item={item} handleDelete={handleDelete} url={url} />
+    ),
   },
 };
 
@@ -73,6 +73,5 @@ const statusColorMap = {
   blocked: "danger",
   pending: "secondary",
 };
-
 
 export { columns, INITIAL_VISIBLE_COLUMNS, url, searchFields, columnConfig };

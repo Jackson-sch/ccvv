@@ -1,5 +1,5 @@
 import { Chip, User } from "@nextui-org/react";
-import ActionsButtons from "../TableUI/Actions";
+import ActionsButtons from "@/components/TableUI/Actions";
 
 /**
  * Arreglo que contiene las columnas de la tabla de usuarios.
@@ -41,7 +41,7 @@ const INITIAL_VISIBLE_COLUMNS = ["name", "rol", "status", "actions"];
  * La URL para el tablero de usuarios.
  * @type {string}
  */
-const url = "/dashboard/users/";
+const url = "/dashboard/admin/users/";
 
 /**
  * Array de campos que se pueden usar para buscar usuarios.

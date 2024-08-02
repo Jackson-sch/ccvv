@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import ButtonAdd from "../../../components/settings/(turno)/ButtonAdd/ButtonAdd";
-import ListTable from "../../../components/settings/ListTable/ListTable";
+import ButtonAdd from "@dashboard/components/settings/(turno)/ButtonAdd/ButtonAdd";
+import ListTable from "@dashboard/components/settings/ListTable/ListTable";
 
 export default function Turno() {
   const [turnos, setTurnos] = useState([]);
-  console.log("🚀 ~ Turno ~ turnos:", turnos);
 
   useEffect(() => {
     const fetchTurnos = async () => {

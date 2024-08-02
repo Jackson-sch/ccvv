@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { CardContent } from "../Card";
+import { CardContent } from "@/components/Card";
 import { Eye, EyeOff } from "lucide-react";
 import { initialUserData } from "@/utils/initialUserData";
 import Link from "next/link";

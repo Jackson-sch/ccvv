@@ -6,7 +6,7 @@ import {
   Map,
   Pin,
 } from "@vis.gl/react-google-maps";
-import { Avatar, radio } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 

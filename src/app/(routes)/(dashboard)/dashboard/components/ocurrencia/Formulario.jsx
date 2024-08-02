@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { CardContent } from "../Card";
-import PageTitle from "../PageTitle";
+import { CardContent } from "@/components/Card";
+import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
 
 export default function Formulario({
@@ -41,7 +41,9 @@ export default function Formulario({
             <Controller
               name="clasificacion"
               control={control}
-              defaultValue={editingOcurrencia ? editingOcurrencia.clasificacion : ""}
+              defaultValue={
+                editingOcurrencia ? editingOcurrencia.clasificacion : ""
+              }
               render={({ field }) => (
                 <Select
                   {...field}
@@ -50,10 +52,7 @@ export default function Formulario({
                   className="w-full"
                 >
                   {clasificaciones.map((item) => (
-                    <SelectItem
-                      key={item.descripcion}
-                      value={item.descripcion}
-                    >
+                    <SelectItem key={item.descripcion} value={item.descripcion}>
                       {item.descripcion}
                     </SelectItem>
                   ))}
@@ -81,7 +80,7 @@ export default function Formulario({
         </div>
 
         <div className="flex justify-end gap-4 mt-8">
-          <Link href="/dashboard/ocurrencias">
+          <Link href="/dashboard/admin/ocurrencias">
             <Button onClick={() => reset()} variant="shadow" color="danger">
               Cancelar
             </Button>

@@ -1,5 +1,5 @@
 import { Chip, User } from "@nextui-org/react";
-import ActionsButtons from "../TableUI/Actions";
+import ActionsButtons from "@/components/TableUI/Actions";
 
 /**
  * Arreglo que contiene las columnas de la tabla de usuarios.

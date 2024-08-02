@@ -95,11 +95,6 @@ export const dataAdmin = [
         icon: <MdLocationPin />,
       },
       {
-        title: "Marca Vehículos",
-        path: "/dashboard/admin/marcas",
-        icon: <MdFitbit />,
-      },
-      {
         title: "Tipo Ocurrencia",
         path: "/dashboard/admin/ocurrencias",
         icon: <MdHelpCenter />,

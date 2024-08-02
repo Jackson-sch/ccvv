@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Formulario from "@/components/users/Formulario";
+import Formulario from "@dashboard/components/users/Formulario";
 import { initialUserData } from "@/utils/initialUserData";
 import toast from "react-hot-toast";
 import { fetchUsers } from "@/utils/fetchingData";
@@ -21,11 +21,21 @@ export default function AddPage() {
   };
 
   useEffect(() => {
-    fetchUsers();
-    const userId = params.id;
-    if (userId) {
-      getUser(userId);
-    }
+    const fetchData = async () => {
+      try {
+        const usersData = await fetchUsers();
+        setUsers(usersData);
+
+        const userId = params.id;
+        if (userId) {
+          getUser(userId);
+        }
+      } catch (error) {
+        console.log("Error fetching users:", error);
+      }
+    };
+
+    fetchData();
   }, [params.id]);
 
   const onSubmit = async (data) => {
@@ -45,10 +55,10 @@ export default function AddPage() {
           ? "Usuario actualizado correctamente"
           : "Usuario creado con éxito"
       );
-      router.push("/dashboard/users");
+      router.push("/dashboard/admin/users");
       setIsEditing(false);
       setEditingUser(initialUserData);
-      fetchUser();
+      setUsers();
     } else {
       console.error("Error:", response.statusText);
     }
@@ -57,6 +67,7 @@ export default function AddPage() {
   const resetForm = () => {
     setIsEditing(false);
     setEditingUser(initialUserData);
+    router.push("/dashboard/admin/users");
   };
 
   return (
