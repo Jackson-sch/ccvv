@@ -1,19 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
-
 import PageTitle from "@/components/PageTitle";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import toast from "react-hot-toast";
-
-// Data inicial del formulario
-import { formInitialData, url } from "@dashboard/components/ubicacion/data";
+import Swal from "sweetalert2";
 import Drawer from "@/components/Drawer";
 import Formulario from "@dashboard/components/ubicacion/Formulario";
-import Swal from "sweetalert2";
 import MapsComponent from "@/components/maps/MapsComponent";
 import { fetchMarkers } from "@/utils/fetchingData";
+import { formInitialData, url } from "@dashboard/components/ubicacion/data";
 
 export default function Page() {
   const [markers, setMarkers] = useState([]);
@@ -22,20 +19,17 @@ export default function Page() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(formInitialData);
 
-  // Manejar el cambio de los inputs del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Manejar el envío del formulario
   const handleFormSubmit = () => {
     onSubmit(formData);
     setFormData(formInitialData);
     setIsOpen(false);
   };
 
-  // Obtener las ubicaciones de las cámaras al cargar la página
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,7 +42,6 @@ export default function Page() {
     fetchData();
   }, []);
 
-  // Enviar la ubicación de la cámara al servidor
   const onSubmit = async (data) => {
     const response = await fetch("/api/ubicacion", {
       method: "POST",
@@ -59,7 +52,6 @@ export default function Page() {
     });
 
     if (response.ok) {
-      /* toast.success("Ubicación creada con éxito"); */
       Swal.fire({
         icon: "success",
         title: "Ubicación creada con éxito",
@@ -72,7 +64,6 @@ export default function Page() {
     }
   };
 
-  // Resetear el formulario
   const handleResetForm = () => {
     setFormData(formInitialData);
     setIsOpen(false);

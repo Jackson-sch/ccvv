@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
-
 import { formInitialData } from "@/components/incidencia/data";
 import Drawer from "@/components/Drawer";
 import Formulario from "@/components/incidencia/Formulario";
@@ -40,7 +39,6 @@ export default function Page() {
   const [comisarias, setComisarias] = useState([]);
   const [gravedades, setGravedades] = useState([]);
 
-  // Ejecuta los fetch para obtener los datos iniciales cuando el componente se monta
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -75,7 +73,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []); // La matriz de dependencia vacía asegura que este efecto se ejecute solo una vez en el montaje de componentes
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -84,7 +82,6 @@ export default function Page() {
 
   const handleFormSubmit = () => {
     onSubmit({ ...formData, imageUrl: formData.imageUrl });
-    /* setFormData(formInitialData); */
     setIsOpen(false);
   };
 

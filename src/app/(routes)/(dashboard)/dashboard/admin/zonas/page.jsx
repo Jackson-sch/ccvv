@@ -1,9 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Maps from "@dashboard/components/zonas/Maps/Maps";
+import dynamic from "next/dynamic";
 import FormZonas from "@dashboard/components/zonas/FormZonas";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { fetchZonas } from "@/utils/fetchingData";
+
+// Cargar el componente Maps dinámicamente solo en el cliente
+const Maps = dynamic(() => import("@dashboard/components/zonas/Maps/Maps"), {
+  ssr: false, // Desactiva el renderizado en el servidor
+});
 
 export default function Page() {
   const [coordinates, setCoordinates] = useState([]);
@@ -24,11 +29,9 @@ export default function Page() {
   }, []);
 
   const handleShapeComplete = (event) => {
-    if (event.type === google.maps.drawing.OverlayType.POLYGON) {
+    if (event.type === window.google.maps.drawing.OverlayType.POLYGON) {
       const path = event.overlay.getPath();
-      const coords = path
-        .getArray()
-        .map((latlng) => [latlng.lat(), latlng.lng()]);
+      const coords = path.getArray().map((latlng) => [latlng.lat(), latlng.lng()]);
       setCoordinates(coords);
       setIsPolygonComplete(true);
     }
