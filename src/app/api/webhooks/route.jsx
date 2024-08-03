@@ -1,8 +1,10 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import mongoose from 'mongoose';
-import User from "@/models/User/User";export async function POST(req) {
-  
+import User from "@/models/User/User";
+
+export async function POST(req) {
+
   // Obtén el secreto del webhook desde las variables de entorno
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
