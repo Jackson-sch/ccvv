@@ -15,6 +15,7 @@ export default function AddPage() {
   const [editingUser, setEditingUser] = useState(initialUserData);
   const router = useRouter();
   const params = useParams();
+  const { UserId } = useAuth();
 
   const getUser = useCallback(async (id) => {
     const response = await fetch(`/api/user/${id}`);
@@ -27,7 +28,7 @@ export default function AddPage() {
     const fetchData = async () => {
       try {
         // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
-        if (!userId || !isAdministrator(userId)) {
+        if (!UserId || !isAdministrator(UserId)) {
           router.push("/");
           return;
         }
