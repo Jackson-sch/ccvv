@@ -5,7 +5,7 @@ import FormZonas from "@dashboard/components/zonas/FormZonas";
 import { useParams, useRouter } from "next/navigation";
 import { fetchZonas } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [coordinates, setCoordinates] = useState([]);
   const [zonas, setZonas] = useState([]);
   const [isPolygonComplete, setIsPolygonComplete] = useState(false);

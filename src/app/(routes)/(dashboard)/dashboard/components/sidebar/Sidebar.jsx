@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
 import { dataAdmin, dataGeneral } from "./Links";
-import { Divider } from "@nextui-org/react";
+import { Divider, Image } from "@nextui-org/react";
 import { cn } from "@/utils/utils";
 
 const SidebarContext = createContext();
@@ -16,7 +16,7 @@ export default function Sidebar() {
     <aside className={`h-screen ${expanded ? " overflow-y-auto" : ""}`}>
       <nav className="flex flex-col bg-background h-screen border-r border-default-50">
         <div className="p-4 pb-2 flex justify-between items-center">
-          <img
+          <Image
             src="/webby2-dark.svg"
             className={`overflow-hidden transition-all ${
               expanded ? "w-32" : "w-0"

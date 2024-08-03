@@ -13,7 +13,7 @@ import {
 import toast from "react-hot-toast";
 import { fetchClasificaciones } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [clasificacion, setClasificacion] = useState([]);
 
   useEffect(() => {

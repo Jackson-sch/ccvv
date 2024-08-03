@@ -10,7 +10,6 @@ import {
 import BottomContent from "./BottomContent";
 import TopContent from "./TopContent";
 
-
 export default function TableUI({
   data,
   columns,
@@ -43,13 +42,8 @@ export default function TableUI({
     return columns.filter((column) =>
       Array.from(visibleColumns).includes(column.uid)
     );
-  }, [visibleColumns]);
+  }, [visibleColumns, columns]);
 
-  /**
-   * Elementos filtrados basados ​​en los datos proporcionados, el valor del filtro y el filtro de estado.
-   *
-   * @type {Array} Una variedad de elementos filtrados.
-   */
   const filteredItems = useMemo(() => {
     let filteredData = [...data];
 
@@ -70,7 +64,7 @@ export default function TableUI({
     }
 
     return filteredData;
-  }, [data, filterValue, statusFilter]);
+  }, [data, filterValue, statusFilter, statusOptions, searchFields, hasSearchFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -99,7 +93,7 @@ export default function TableUI({
     }
   
     return cellValue;
-  }, []);
+  }, [columnConfig, handleDelete]);
 
   const onRowsPerPageChange = useCallback((e) => {
     setRowsPerPage(Number(e.target.value));
@@ -143,14 +137,18 @@ export default function TableUI({
     statusFilter,
     visibleColumns,
     onRowsPerPageChange,
-    data.length,
+    data,
     onSearchChange,
-    hasSearchFilter,
+    onClear,
+    columns,
+    statusOptions,
+    title,
+    url
   ]);
 
   const bottomContent = useMemo(() => {
-    return <BottomContent page={page} pages={pages} setPage={setPage}  filteredItems={filteredItems} />;
-  }, [items.length, page, pages, hasSearchFilter]);
+    return <BottomContent page={page} pages={pages} setPage={setPage} filteredItems={filteredItems} />;
+  }, [page, pages, filteredItems]);
 
   return (
     <Table

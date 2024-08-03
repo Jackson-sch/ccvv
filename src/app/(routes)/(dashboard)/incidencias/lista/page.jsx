@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { fetchIncidencias } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [incidencias, setIncidencias] = useState([]);
 
   useEffect(() => {

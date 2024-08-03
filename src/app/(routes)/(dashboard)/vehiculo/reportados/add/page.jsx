@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
@@ -13,7 +13,7 @@ import {
   fetchMarcas,
 } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [marcas, setMarcas] = useState([]);
   const [gravedades, setGravedades] = useState([]);
   const [formData, setFormData] = useState(formInitialData);
@@ -21,12 +21,12 @@ export default function page() {
   const router = useRouter();
   const params = useParams();
 
-  const getVehiculo = async (id) => {
-    const response = await fetch(`/api/vehiculo/${params.id}`);
+  const getVehiculo = useCallback(async (id) => {
+    const response = await fetch(`/api/vehiculo/${id}`);
     const data = await response.json();
     setFormData(data);
     setIsEditing(true);
-  };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,14 +39,14 @@ export default function page() {
 
         const vehiculoId = params.id;
         if (vehiculoId) {
-          getVehiculo(vehiculoId);
+          await getVehiculo(vehiculoId);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
-  }, [params.id]);
+  }, [params.id, getVehiculo]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

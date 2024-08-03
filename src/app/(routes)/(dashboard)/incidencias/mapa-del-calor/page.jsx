@@ -4,7 +4,7 @@ import Mapa from "@/components/incidencia/maps/MapaCalor/Mapa";
 import PageTitle from "@/components/PageTitle";
 import React, { useEffect, useState } from "react";
 
-export default function page() {
+export default function Page() {
   const [incidencias, setIncidencias] = useState([]);
 
   useEffect(() => {

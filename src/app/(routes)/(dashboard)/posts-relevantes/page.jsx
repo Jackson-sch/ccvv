@@ -1,12 +1,11 @@
 "use client";
 import { fetchIncidencias, fetchVehiculos } from "@/utils/fetchingData";
-import { CardContent } from "@/components/Card";
-import Posts from "@/components/users/profile/Posts";
-import PostsVehiculos from "@/components/vehiculo/Posts";
-import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
+import Posts from "@/components/incidencia/posts/Posts";
+import PostsVehiculos from "@/components/vehiculo/posts/Posts";
 import React, { useEffect, useState } from "react";
+import { Tab, Tabs } from "@nextui-org/react";
 
-export default function page() {
+export default function Page() {
   const [incidenciasRelevantes, setIncidenciasRelevantes] = useState([]);
   const [vehiculoReportado, setVehiculoReportado] = useState([]);
 

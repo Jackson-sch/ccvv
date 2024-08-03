@@ -11,13 +11,13 @@ export default function BottomContent({
     if (page < pages) {
       setPage(page + 1);
     }
-  }, [page, pages]);
+  }, [page, pages, setPage]);
 
   const onPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
     }
-  }, [page]);
+  }, [page, setPage]);
 
   return (
     <div className="py-2 px-2 flex justify-between items-center">
@@ -36,7 +36,7 @@ export default function BottomContent({
       />
       <div className="hidden sm:flex w-[30%] justify-end gap-2">
         <Button
-          isDisabled={pages === 1}
+          isDisabled={page <= 1}
           size="sm"
           variant="flat"
           color="secondary"
@@ -45,7 +45,7 @@ export default function BottomContent({
           Previous
         </Button>
         <Button
-          isDisabled={pages === 1}
+          isDisabled={page >= pages}
           size="sm"
           variant="flat"
           color="secondary"

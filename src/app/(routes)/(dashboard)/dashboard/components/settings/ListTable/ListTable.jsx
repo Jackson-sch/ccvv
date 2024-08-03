@@ -8,22 +8,20 @@ import {
   TableRow,
   Pagination,
   Input,
-  Button,
 } from "@nextui-org/react";
 import ButtonDelete from "../ButtonDelete/ButtonDelete";
 import { SearchIcon } from "lucide-react";
 
-export default function ListTable({ data, handleDelete, onSubmit }) {
+export default function ListTable({ data, handleDelete }) {
   const [filterValue, setFilterValue] = useState("");
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const pages = Math.ceil(data.length / rowsPerPage);
 
-  const hasSearchFilter = Boolean(filterValue);
   const filteredData = useMemo(() => {
     let filtered = [...data];
-    if (hasSearchFilter) {
+    if (filterValue) {
       filtered = filtered.filter((item) =>
         item.name.toLowerCase().includes(filterValue.toLowerCase())
       );
@@ -34,7 +32,6 @@ export default function ListTable({ data, handleDelete, onSubmit }) {
   const items = useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-
     return filteredData.slice(start, end);
   }, [page, filteredData, rowsPerPage]);
 
@@ -44,58 +41,9 @@ export default function ListTable({ data, handleDelete, onSubmit }) {
   }, []);
 
   const onSearchChange = useCallback((value) => {
-    if (value) {
-      setFilterValue(value);
-      setPage(1);
-    } else {
-      setFilterValue("");
-    }
+    setFilterValue(value);
+    setPage(1);
   }, []);
-
-  const topContent = useMemo(() => {
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end">
-          <Input
-            isClearable
-            classNames={{
-              base: "w-full sm:max-w-[44%]",
-              inputWrapper: "border-1",
-            }}
-            placeholder="Search by description..."
-            size="sm"
-            startContent={
-              <SearchIcon
-                size={18}
-                strokeWidth={1}
-                className="text-default-300"
-              />
-            }
-            value={filterValue}
-            variant="bordered"
-            onClear={() => setFilterValue("")}
-            onValueChange={onSearchChange}
-          />
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
-            Total {data.length} registros
-          </span>
-          <label className="flex items-center text-default-400 text-small">
-            Filas por página:
-            <select
-              className="bg-transparent outline-none text-default-400 text-small"
-              onChange={onRowsPerPageChange}
-            >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </label>
-        </div>
-      </div>
-    );
-  });
 
   const renderCell = useCallback((item, columnKey) => {
     const cellValue = item[columnKey];
@@ -111,7 +59,50 @@ export default function ListTable({ data, handleDelete, onSubmit }) {
       default:
         return cellValue;
     }
-  }, []);
+  }, [handleDelete]);
+
+  const topContent = useMemo(() => (
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between gap-3 items-end">
+        <Input
+          isClearable
+          classNames={{
+            base: "w-full sm:max-w-[44%]",
+            inputWrapper: "border-1",
+          }}
+          placeholder="Search by description..."
+          size="sm"
+          startContent={
+            <SearchIcon
+              size={18}
+              strokeWidth={1}
+              className="text-default-300"
+            />
+          }
+          value={filterValue}
+          variant="bordered"
+          onClear={() => setFilterValue("")}
+          onValueChange={onSearchChange}
+        />
+      </div>
+      <div className="flex justify-between items-center">
+        <span className="text-default-400 text-small">
+          Total {data.length} registros
+        </span>
+        <label className="flex items-center text-default-400 text-small">
+          Filas por página:
+          <select
+            className="bg-transparent outline-none text-default-400 text-small"
+            onChange={onRowsPerPageChange}
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  ), [data.length, filterValue, onRowsPerPageChange, onSearchChange]);
 
   return (
     <Table
@@ -157,7 +148,6 @@ export default function ListTable({ data, handleDelete, onSubmit }) {
 }
 
 const columns = [
-  /*   { name: "ID", uid: "id", sortable: true }, */
   { name: "DESCRIPCION", uid: "name", sortable: true },
   { name: "ACCIONES", uid: "actions", sortable: false },
 ];

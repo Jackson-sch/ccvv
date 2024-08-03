@@ -4,10 +4,10 @@ import Hero from "@dashboard/components/users/profile/Hero";
 import Profile from "@dashboard/components/users/profile/Profile";
 import { Tab, Tabs } from "@nextui-org/react";
 import Formulario from "@dashboard/components/users/Formulario";
-import Posts from "@dashboard/components/users/profile/Posts";
+import Posts from "@/components/incidencia/posts/Posts";
 import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [user, setUser] = useState([]);
   const [posts, setPosts] = useState([]);
 

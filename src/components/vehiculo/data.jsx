@@ -1,4 +1,4 @@
-import { User } from "@nextui-org/react";
+import { Chip, User } from "@nextui-org/react";
 import ActionsButtons from "../TableUI/Actions";
 
 const columns = [

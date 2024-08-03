@@ -28,12 +28,14 @@ export default function Maps({ onShapeComplete, bounds, zonas }) {
     if (mapRef.current) {
       fitBoundsAndRestrict(mapRef.current, bounds);
     }
-  }, [mapRef.current, bounds]);
+    // Excluir mapRef.current de las dependencias
+  }, [bounds]);
 
   return (
     <div style={mapContainerStyle}>
       <APIProvider apiKey={API_KEY}>
         <Map
+          ref={mapRef}  // Asegúrate de pasar el ref al componente del mapa
           gestureHandling="greedy"
           defaultCenter={center}
           zoom={zoom}

@@ -14,7 +14,7 @@ import {
 } from "@dashboard/components/ubicacion/data";
 import { fetchUbicaciones } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [ubicacion, setUbicacion] = useState([]);
 
   // Obtiene la lista de ubicaciones

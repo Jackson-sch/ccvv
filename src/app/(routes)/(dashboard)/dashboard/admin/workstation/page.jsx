@@ -5,7 +5,7 @@ import ButtonAdd from "@dashboard/components/workstation/ButtonAdd/ButtonAdd";
 import ListWorkstation from "@dashboard/components/workstation/ListWorkstation/ListWorkstation";
 import { fetchWorkstations } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [operadores, setOperadores] = useState([]);
 
   useEffect(() => {

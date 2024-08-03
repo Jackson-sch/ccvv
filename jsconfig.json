@@ -3,6 +3,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@dashboard/*": ["./src/app/(routes)/(dashboard)/dashboard/*"],
+      "@routes/*": ["./src/app/(routes)/*"]
     }
   }
 }

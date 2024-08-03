@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import MapsComponent from "@/components/maps/MapsComponent";
 import { fetchMarkers } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [newMarker, setNewMarker] = useState(null);

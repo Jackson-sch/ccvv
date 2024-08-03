@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import CardVehiculo from "@/components/vehiculo/CardVehiculo";
 import { fetchVehiculos } from "@/utils/fetchingData";
 
-export default function page() {
+export default function Page() {
   const [vehiculosReportados, setVehiculosReportados] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

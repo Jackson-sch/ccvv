@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Formulario from "@dashboard/components/users/Formulario";
 import { initialUserData } from "@/utils/initialUserData";
@@ -13,12 +13,12 @@ export default function AddPage() {
   const router = useRouter();
   const params = useParams();
 
-  const getUser = async (id) => {
-    const response = await fetch(`/api/user/${params.id}`);
+  const getUser = useCallback(async (id) => {
+    const response = await fetch(`/api/user/${id}`);
     const data = await response.json();
     setEditingUser(data);
     setIsEditing(true);
-  };
+  }, []); // La función getUser no cambia y se estabiliza con useCallback
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,7 @@ export default function AddPage() {
 
         const userId = params.id;
         if (userId) {
-          getUser(userId);
+          await getUser(userId); // Llamar a la función estabilizada
         }
       } catch (error) {
         console.log("Error fetching users:", error);
@@ -36,7 +36,7 @@ export default function AddPage() {
     };
 
     fetchData();
-  }, [params.id]);
+  }, [params.id, getUser]); // Agregar getUser a la lista de dependencias
 
   const onSubmit = async (data) => {
     const url = isEditing ? `/api/user/${params.id}` : "/api/user";

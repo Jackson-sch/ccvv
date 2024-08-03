@@ -1,8 +1,9 @@
 import React from "react";
 import { Chip, Image, ScrollShadow, User } from "@nextui-org/react";
 import PageTitle from "@/components/PageTitle";
-import MapComponent from "../ubicacion/maps/MapComponent";
-import { CardContent, Container } from "../Card";
+
+import { Container } from "../Card";
+import MapaUbicacionDetails from "@/components/incidencia/maps/MapaDetalles/MapComponent";
 
 export default function ContentDetails({ item }) {
   const center = {
@@ -64,7 +65,7 @@ const OperatorSection = ({ item }) => (
 
 const MapSection = ({ item, center }) => (
   <Container className="flex flex-col gap-4">
-    <MapComponent
+    <MapaUbicacionDetails
       item={item}
       center={center}
       zoom={16}
