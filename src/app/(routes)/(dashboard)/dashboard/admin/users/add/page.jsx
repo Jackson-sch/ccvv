@@ -8,7 +8,6 @@ import { fetchUsers } from "@/utils/fetchingData";
 
 import { useAuth } from "@clerk/nextjs";
 import { isAdministrator } from "@/utils/isAdministrator";
-import { useRouter } from "next/navigation";
 
 export default function AddPage() {
   const [users, setUsers] = useState([]);
