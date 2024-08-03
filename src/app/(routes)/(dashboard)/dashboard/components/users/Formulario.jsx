@@ -7,7 +7,12 @@ import { Eye, EyeOff } from "lucide-react";
 import { initialUserData } from "@/utils/initialUserData";
 import Link from "next/link";
 
-export default function Formulario({ onSubmit, editingUser, isEditing }) {
+export default function Formulario({
+  onSubmit,
+  editingUser,
+  isEditing,
+  resetForm,
+}) {
   const {
     handleSubmit,
     reset,
@@ -25,6 +30,12 @@ export default function Formulario({ onSubmit, editingUser, isEditing }) {
   useEffect(() => {
     reset(editingUser);
   }, [editingUser, reset]);
+
+  const handleResetForm = () => {
+    reset(initialUserData);
+    resetForm();
+    setIsInvisible(false);
+  };
 
   return (
     <CardContent>
@@ -187,17 +198,9 @@ export default function Formulario({ onSubmit, editingUser, isEditing }) {
           </div>
         </div>
         <div className="flex justify-end mt-8 gap-4">
-          <Link href="/dashboard/users">
-            <Button
-              onClick={() => {
-                reset(initialUserData);
-              }}
-              variant="shadow"
-              color="danger"
-            >
-              Cancelar
-            </Button>
-          </Link>
+          <Button onClick={handleResetForm} variant="shadow" color="danger">
+            Cancelar
+          </Button>
           <Button type="submit" variant="shadow" color="primary">
             {isEditing ? "Actualizar" : "Crear"}
           </Button>
