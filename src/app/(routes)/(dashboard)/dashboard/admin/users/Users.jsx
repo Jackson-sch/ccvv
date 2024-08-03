@@ -14,12 +14,25 @@ import PageTitle from "@/components/PageTitle";
 import toast from "react-hot-toast";
 import { fetchUsers } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Users() {
   const [users, setUsers] = useState([]);
+
+  const router = useRouter();
+  const { userId } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const usersData = await fetchUsers();
         setUsers(usersData);
       } catch (error) {

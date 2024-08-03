@@ -14,7 +14,6 @@ import {
 } from "recharts";
 export default function PieChartIncidenciasRelevantes() {
   const [data, setData] = useState([]);
-  console.log(data)
 
   useEffect(() => {
     fetch("/api/incidencia")

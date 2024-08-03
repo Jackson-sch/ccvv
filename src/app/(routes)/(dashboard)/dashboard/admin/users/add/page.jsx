@@ -6,6 +6,10 @@ import { initialUserData } from "@/utils/initialUserData";
 import toast from "react-hot-toast";
 import { fetchUsers } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function AddPage() {
   const [users, setUsers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -23,6 +27,12 @@ export default function AddPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const usersData = await fetchUsers();
         setUsers(usersData);
 

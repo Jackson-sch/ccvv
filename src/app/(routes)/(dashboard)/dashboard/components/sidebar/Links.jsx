@@ -28,7 +28,7 @@ export const dataGeneral = [
       },
     ],
   },
-  {
+/*   {
     title: "Base",
     list: [
       {
@@ -37,23 +37,23 @@ export const dataGeneral = [
         icon: <MdWork />,
       },
     ],
-  },
+  }, */
   {
     title: "Incidencias",
     list: [
       {
         title: "Registro",
-        path: "/incidencias",
+        path: "/dashboard/incidencias",
         icon: <MdLocationPin />,
       },
       {
         title: "Lista",
-        path: "/incidencias/lista",
+        path: "/dashboard/incidencias/lista",
         icon: <MdDataset />,
       },
       {
         title: "Mapa del Calor",
-        path: "/incidencias/mapa-del-calor",
+        path: "/dashboard/incidencias/mapa-del-calor",
         icon: <MdMap />,
       }
     ],
@@ -63,7 +63,7 @@ export const dataGeneral = [
     list: [
       {
         title: "Reportados",
-        path: "/vehiculo/reportados",
+        path: "/dashboard/vehiculo/reportados",
         icon: <MdPolicy />,
       },
     ],

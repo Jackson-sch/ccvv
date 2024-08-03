@@ -6,8 +6,18 @@ import Turno from "./turno/turno";
 import Gravedad from "./gravedad/gravedad";
 import Marca from "./marca/marca";
 
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { isAdministrator } from "@/utils/isAdministrator";
 
-export default function page() {
+export default async function page() {
+  const {userId }= auth()
+  const user = await currentUser();
+
+  if (!userId || !user || !isAdministrator(userId)) {
+    return redirect("/");
+  }
+  
   return (
     <div className="grid pb-8 grid-cols-1 gap-4 lg:grid-cols-2">
       <CardContent title="Comisaria">

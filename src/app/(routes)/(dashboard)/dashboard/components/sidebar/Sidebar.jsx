@@ -6,10 +6,13 @@ import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
 import { dataAdmin, dataGeneral } from "./Links";
 import { Divider, Image } from "@nextui-org/react";
 import { cn } from "@/utils/utils";
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
 
 const SidebarContext = createContext();
 
 export default function Sidebar() {
+  const { userId } = useAuth();
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -51,27 +54,44 @@ export default function Sidebar() {
             ))}
 
             <Divider />
-            <p className={cn("my-2 text-slate-500", expanded ? "" : "hidden")}>
-              ADMIN
-            </p>
-            {dataAdmin.map((cat) => (
-              <span className="ml-3" key={cat.title}>
-                <span
-                  className={`my-2 text-xs md:text-sm font-bold ${
-                    expanded ? "visible" : "hidden"
-                  }`}
+
+            {isAdministrator(userId) && (
+              <div>
+                <p
+                  className={cn(
+                    "my-2 text-slate-500",
+                    expanded ? "" : "hidden"
+                  )}
                 >
-                  {expanded ? cat.title : cat.title.slice(0, 3).toUpperCase()}
-                </span>
-                {cat.list.map((item) => (
-                  <SidebarItem key={item.title} item={item} />
+                  ADMIN
+                </p>
+                {dataAdmin.map((item) => (
+                  <span className="ml-3" key={item.title}>
+                    <span
+                      className={`my-2 text-xs md:text-sm font-bold ${
+                        expanded ? "visible" : "hidden"
+                      }`}
+                    >
+                      {expanded
+                        ? item.title
+                        : item.title.slice(0, 3).toUpperCase()}
+                    </span>
+                    {item.list.map((i) => (
+                      <SidebarItem key={i.title} item={i} />
+                    ))}
+                  </span>
                 ))}
-              </span>
-            ))}
+              </div>
+            )}
           </ul>
         </SidebarContext.Provider>
 
-        <div className={cn("border-t border-default-50 flex p-3", expanded ? "" : "hidden")}>
+        <div
+          className={cn(
+            "border-t border-default-50 flex p-3",
+            expanded ? "" : "hidden"
+          )}
+        >
           <footer className="p-3 mt-3 text-center">
             2024. Todos los derechos reservados
           </footer>

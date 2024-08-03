@@ -14,13 +14,26 @@ import {
 } from "@dashboard/components/ubicacion/data";
 import { fetchUbicaciones } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
   const [ubicacion, setUbicacion] = useState([]);
+
+  const router = useRouter();
+  const { userId } = useAuth();
 
   // Obtiene la lista de ubicaciones
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const ubicacionesData = await fetchUbicaciones();
         setUbicacion(ubicacionesData);
       } catch (error) {

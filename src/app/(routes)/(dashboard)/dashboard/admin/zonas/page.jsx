@@ -5,6 +5,9 @@ import FormZonas from "@dashboard/components/zonas/FormZonas";
 import { useRouter } from "next/navigation";
 import { fetchZonas } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+
 // Cargar el componente Maps dinámicamente solo en el cliente
 const Maps = dynamic(() => import("@dashboard/components/zonas/Maps/Maps"), {
   ssr: false, // Desactiva el renderizado en el servidor
@@ -16,9 +19,17 @@ export default function Page() {
   const [isPolygonComplete, setIsPolygonComplete] = useState(false);
   const router = useRouter();
 
+  const { userId } = useAuth();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const zonasData = await fetchZonas();
         setZonas(zonasData);
       } catch (error) {
@@ -31,7 +42,9 @@ export default function Page() {
   const handleShapeComplete = (event) => {
     if (event.type === window.google.maps.drawing.OverlayType.POLYGON) {
       const path = event.overlay.getPath();
-      const coords = path.getArray().map((latlng) => [latlng.lat(), latlng.lng()]);
+      const coords = path
+        .getArray()
+        .map((latlng) => [latlng.lat(), latlng.lng()]);
       setCoordinates(coords);
       setIsPolygonComplete(true);
     }

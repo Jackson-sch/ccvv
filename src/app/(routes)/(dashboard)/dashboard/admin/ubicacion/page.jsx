@@ -12,12 +12,19 @@ import MapsComponent from "@/components/maps/MapsComponent";
 import { fetchMarkers } from "@/utils/fetchingData";
 import { formInitialData, url } from "@dashboard/components/ubicacion/data";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(formInitialData);
+
+  const router = useRouter();
+  const { userId } = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +40,11 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
         const ubicacionesData = await fetchMarkers();
         setMarkers(ubicacionesData);
       } catch (error) {

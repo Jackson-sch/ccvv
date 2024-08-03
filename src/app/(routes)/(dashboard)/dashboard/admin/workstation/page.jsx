@@ -5,12 +5,25 @@ import ButtonAdd from "@dashboard/components/workstation/ButtonAdd/ButtonAdd";
 import ListWorkstation from "@dashboard/components/workstation/ListWorkstation/ListWorkstation";
 import { fetchWorkstations } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
   const [operadores, setOperadores] = useState([]);
+
+  const { userId } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const operadoresData = await fetchWorkstations();
         setOperadores(operadoresData);
       } catch (error) {

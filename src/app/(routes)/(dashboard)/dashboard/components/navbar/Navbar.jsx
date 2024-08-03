@@ -2,6 +2,7 @@
 
 import Clock from "@/components/Clock/Clock";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { UserButton } from "@clerk/nextjs";
 import {
   Navbar,
   NavbarBrand,
@@ -23,7 +24,7 @@ function NavbarHeader() {
       <NavbarContent justify="start">
         <Clock />
       </NavbarContent>
-      <NavbarContent justify="center">
+      {/* <NavbarContent justify="center">
         <Input
           classNames={{
             base: "max-w-full sm:max-w-[20rem] h-10",
@@ -37,11 +38,11 @@ function NavbarHeader() {
           startContent={<SearchIcon size={18} />}
           type="search"
         />
-      </NavbarContent>
+      </NavbarContent> */}
 
       <NavbarContent className="items-center" justify="end">
         <ThemeSwitcher />
-        <Dropdown placement="bottom-end" backdrop="blur">
+        {/* <Dropdown placement="bottom-end" backdrop="blur">
           <DropdownTrigger>
             <Avatar
               isBordered
@@ -88,7 +89,8 @@ function NavbarHeader() {
               </div>
             </DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown> */}
+        <UserButton />
       </NavbarContent>
     </Navbar>
   );

@@ -5,14 +5,17 @@ import toast from "react-hot-toast";
 import { fetchClasificaciones, fetchOcurrencias } from "@/utils/fetchingData";
 import Formulario from "@dashboard/components/ocurrencia/Formulario";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+
 export default function Page() {
   const [ocurrencias, setOcurrencias] = useState([]);
   const [clasificaciones, setClasificaciones] = useState([]);
-  console.log("🚀 ~ page ~ clasificaciones:", clasificaciones);
   const [isEditing, setIsEditing] = useState(false);
   const [editingOcurrencia, setEditingOcurrencia] = useState({});
   const router = useRouter();
   const params = useParams();
+  const { userId } = useAuth();
 
   // Memorizar getOcurrencia para evitar la advertencia de dependencias
   const getOcurrencia = useCallback(async (id) => {
@@ -25,6 +28,11 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
         const clasificacionesData = await fetchClasificaciones();
         setClasificaciones(clasificacionesData);
 
@@ -41,7 +49,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [params.id, getOcurrencia]);  // Incluye getOcurrencia en las dependencias
+  }, [params.id, getOcurrencia]); // Incluye getOcurrencia en las dependencias
 
   const onSubmit = async (data) => {
     const url = isEditing ? `/api/ocurrencia/${params.id}` : "/api/ocurrencia";

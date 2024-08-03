@@ -1,14 +1,19 @@
-"use client";
 import Card, { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import BarChartTurno from "@/components/incidencia/BarChartTurno";
-import BarChart from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/BarChart";
-import SalesCard from "@/app/(routes)/(dashboard)/dashboard/components/dashboard/SalesCard";
 import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
 import PieChartIncidenciasRelevantes from "@/components/incidencia/PieChartIncidenciasRelevantes";
+import BarChart from "./components/dashboard/BarChart";
+import SalesCard from "./components/dashboard/SalesCard";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default function page() {
+  const { userId } = auth();
 
+  if (!userId) {
+    redirect("/");
+  }
 
   return (
     <div className="flex flex-col gap-5 w-full pb-4">

@@ -1,4 +1,4 @@
-import NavbarHome from "@/components/NavbarHome/NavbarHome";
+import { NavbarHome } from "@/components/NavbarHome/NavbarHome";
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 import React from "react";
 

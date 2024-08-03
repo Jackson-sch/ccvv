@@ -7,12 +7,26 @@ import Formulario from "@dashboard/components/users/Formulario";
 import Posts from "@/components/incidencia/posts/Posts";
 import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
   const [user, setUser] = useState([]);
   const [posts, setPosts] = useState([]);
 
+  const router = useRouter();
+  const { userId } = useAuth();
+
   useEffect(() => {
     const fetchData = async () => {
+      // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+      if (!userId || !isAdministrator(userId)) {
+        router.push("/");
+        return;
+      }
+
+      // Obtén los datos de incidencias
       const incidenciasData = await fetchIncidencias();
       // Ordena los datos por fecha y hora. Asegúrate de ajustar 'fecha' y 'hora' a tus campos reales.
       const datosOrdenados = incidenciasData.sort((a, b) => {

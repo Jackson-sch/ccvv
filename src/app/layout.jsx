@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Toaster } from "react-hot-toast";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,13 +13,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
-      <body className={inter.className}>
-        <Providers>
-          {children}
-          <Toaster toastOptions={{ duration: 3000 }} position="top-right" />
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="es">
+        <body className={inter.className}>
+          <Providers>
+            {children}
+            <Toaster toastOptions={{ duration: 3000 }} position="top-right" />
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

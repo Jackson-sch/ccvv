@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/elements": "^0.12.1",
+    "@clerk/nextjs": "^5.2.12",
     "@formkit/tempo": "^0.1.1",
     "@googlemaps/extended-component-library": "^0.6.11",
     "@internationalized/date": "^3.5.4",

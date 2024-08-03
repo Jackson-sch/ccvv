@@ -13,12 +13,24 @@ import {
 import toast from "react-hot-toast";
 import { fetchOcurrencias } from "@/utils/fetchingData";
 
+import { useAuth } from "@clerk/nextjs";
+import { isAdministrator } from "@/utils/isAdministrator";
+import { useRouter } from "next/navigation";
+
 export default function Page() {
   const [ocurrencias, setOcurrencias] = useState([]);
+  const router = useRouter();
+  const { userId } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Verifica la identidad del usuario y redirige a la página de inicio si no es administrador
+        if (!userId || !isAdministrator(userId)) {
+          router.push("/");
+          return;
+        }
+
         const ocurrenciasData = await fetchOcurrencias();
         setOcurrencias(ocurrenciasData);
       } catch (error) {

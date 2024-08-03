@@ -1,12 +1,15 @@
+'use client'
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import Image from "next/image";
 import { User } from "lucide-react";
+import { useAuth, UserButton } from "@clerk/nextjs";
 
 
-export default function NavbarHome() {
+export  function NavbarHome() {
+  const {userId} = useAuth()
   return (
-    <Navbar className="hidden" >
+    <Navbar>
       <NavbarBrand>
         <Image src="/webby2-dark.svg" width={50} height={50} alt="logo" />
       </NavbarBrand>
@@ -17,19 +20,20 @@ export default function NavbarHome() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/dashboard">
             Dashboard
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem>
-
-          <Button as={Link} color="primary" href="/dashboard" variant="flat">
-          Iniciar sesión
+        {userId ? (
+          <UserButton />
+        ) : (
+          <Button as={Link} color="primary" href="/sign-in" variant="flat">
+            Iniciar sesión
             <User className="ml-2 w-4 h-4" />
           </Button>
-        </NavbarItem>
+        )}
       </NavbarContent>
     </Navbar>
   );
