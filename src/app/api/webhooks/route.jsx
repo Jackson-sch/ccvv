@@ -1,8 +1,7 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
-import { WebhookEvent } from '@clerk/nextjs/server';
 import mongoose from 'mongoose';
-import User from '@/models/User'; // Asegúrate de tener un modelo de usuario en tu proyecto
+import User from "@/models/User/User";// Asegúrate de tener un modelo de usuario en tu proyecto
 
 export async function POST(req) {
   // Obtén el secreto del webhook desde las variables de entorno
