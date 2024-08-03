@@ -49,7 +49,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [params.id, getOcurrencia]); // Incluye getOcurrencia en las dependencias
+  }, [params.id, getOcurrencia, userId, router]); // Incluye getOcurrencia en las dependencias
 
   const onSubmit = async (data) => {
     const url = isEditing ? `/api/ocurrencia/${params.id}` : "/api/ocurrencia";

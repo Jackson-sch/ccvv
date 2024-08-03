@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { CardContent } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
 import { Button } from "@nextui-org/react";
@@ -52,7 +52,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   const onSubmit = async (data) => {
     const response = await fetch("/api/ubicacion", {

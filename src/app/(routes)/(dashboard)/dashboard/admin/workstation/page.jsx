@@ -31,7 +31,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   const onSubmit = async (data) => {
     try {

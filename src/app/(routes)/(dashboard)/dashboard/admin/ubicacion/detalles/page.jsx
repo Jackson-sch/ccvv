@@ -41,7 +41,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   // función para eliminar una ubicacion
   const handleDelete = async (id) => {

@@ -43,7 +43,7 @@ export default function Page() {
       setUser(usersData);
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   return (
     <>

@@ -37,7 +37,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   const handleShapeComplete = (event) => {
     if (event.type === window.google.maps.drawing.OverlayType.POLYGON) {

@@ -40,7 +40,7 @@ export default function Users() {
       }
     };
     fetchData();
-  }, []);
+  }, [userId, router]);
 
   const handleDelete = async (id) => {
     try {

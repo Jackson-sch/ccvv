@@ -46,7 +46,7 @@ export default function AddPage() {
     };
 
     fetchData();
-  }, [params.id, getUser]); // Agregar getUser a la lista de dependencias
+  }, [params.id, getUser, UserId, router]); // Agregar getUser a la lista de dependencias
 
   const onSubmit = async (data) => {
     const url = isEditing ? `/api/user/${params.id}` : "/api/user";
