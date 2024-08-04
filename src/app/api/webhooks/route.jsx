@@ -34,11 +34,13 @@ export async function POST(req) {
       'svix-signature': svix_signature,
     });
 
-    const { id, email_addresses, ...userData } = evt.data;
+    const { id, email_addresses, fist_name, last_name, profile_image_url, ...userData } = evt.data;
     const eventType = evt.type;
 
     const email = email_addresses.length > 0 ? email_addresses[0].email_address : undefined;
     const clerkId = id;
+    const name = `${fist_name} ${last_name}`;
+    const imageUrl = profile_image_url;
 
     if (!email || !clerkId) {
       throw new Error('Faltan campos necesarios para la base de datos');
@@ -50,12 +52,14 @@ export async function POST(req) {
       const newUser = new User({
         clerkId,
         email,
+        name,
+        imageUrl,
         ...userData,
       });
       await newUser.save();
       console.log(`Nuevo usuario creado: ${newUser._id}`);
     } else if (eventType === 'user.updated') {
-      await User.updateOne({ clerkId }, { ...userData });
+      await User.updateOne({ clerkId }, { name, imageUrl, email, ...userData });
       console.log(`Usuario actualizado: ${clerkId}`);
     }
 
