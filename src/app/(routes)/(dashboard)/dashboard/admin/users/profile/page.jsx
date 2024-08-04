@@ -7,7 +7,7 @@ import Formulario from "@dashboard/components/users/Formulario";
 import Posts from "@/components/incidencia/posts/Posts";
 import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { isAdministrator } from "@/utils/isAdministrator";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +17,8 @@ export default function Page() {
 
   const router = useRouter();
   const { userId } = useAuth();
+  const { user: userData } = useUser();
+  console.log("🚀 ~ Page ~ userData:", userData)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +52,7 @@ export default function Page() {
       <Hero data={user} />
       <div className="grid grid-rows-3 grid-flow-col gap-4 mt-4">
         <div className="row-span-3">
-          <Profile data={user} />
+          <Profile data={userData} />
         </div>
         <div className="col-span-2 w-full h-screen">
           <Tabs aria-label="Profile Tabs">

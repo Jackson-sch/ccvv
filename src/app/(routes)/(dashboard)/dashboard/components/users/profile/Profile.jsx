@@ -4,22 +4,23 @@ import Link from "next/link";
 import React from "react";
 
 export default function Profile({data}) {
+  console.log("🚀 ~ Profile ~ data:", data)
+  const name = data?.firstName + " " + data?.lastName
+  const email = data?.emailAddresses[0].emailAddress 
+  const image = data?.imageUrl
   return (
     <CardContent className="w-96">
       <div className="flex items-center mb-6">
         <User
-          name={data?.name}
+          name={name}
           description={(
             <>
-            <p className="text-gray-500">{data?.rol}</p>
-            <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
-              {data?.email}
-            </Link>
+            <p className="text-gray-500">{email}</p>
             </>
           )}
           avatarProps={{
             className: "w-16 h-16",
-            src: "/images/user-36-02.jpg",
+            src: image,
           }}
         />
       </div>
@@ -49,11 +50,11 @@ export default function Profile({data}) {
           <div className="flex items-center mb-3">
             <div className="flex flex-col mr-3">
               <span>Correo</span>
-            <p className="text-sm text-red-500">{data.email}</p>
+            {/* <p className="text-sm text-red-500">{data.email}</p> */}
             </div>
             <div className="flex flex-col mr-3">
               <span>Nombres</span>
-            <p className="text-sm text-red-500">{data.name}</p>
+            {/* <p className="text-sm text-red-500">{data.name}</p> */}
             </div>
           </div>
       </div>

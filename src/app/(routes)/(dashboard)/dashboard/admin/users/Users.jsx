@@ -8,7 +8,6 @@ import {
   INITIAL_VISIBLE_COLUMNS,
   searchFields,
   columnConfig,
-  url,
 } from "@dashboard/components/users/data";
 import PageTitle from "@/components/PageTitle";
 import toast from "react-hot-toast";
@@ -79,7 +78,6 @@ export default function Users() {
           handleDelete={handleDelete}
           INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS}
           columnConfig={columnConfig}
-          url={url}
         />
       </CardContent>
     </>

@@ -1,6 +1,5 @@
 import { Chip, User } from "@nextui-org/react";
 import ActionsButtons from "@/components/TableUI/Actions";
-import { Verified } from "lucide-react";
 
 /**
  * Arreglo que contiene las columnas de la tabla de usuarios.
@@ -98,7 +97,7 @@ const columnConfig = {
     ),
   },
   actions: {
-    render: (item, handleDelete) => <ActionsButtons item={item} handleDelete={handleDelete} url={url} />,
+    render: (item, handleDelete) => <ActionsButtons item={item} handleDelete={handleDelete} />,
   },
 };
 
