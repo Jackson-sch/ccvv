@@ -34,12 +34,12 @@ export async function POST(req) {
       'svix-signature': svix_signature,
     });
 
-    const { id, email_addresses, fist_name, last_name, profile_image_url, ...userData } = evt.data;
+    const { id, email_addresses, first_name, last_name, profile_image_url, ...userData } = evt.data;
     const eventType = evt.type;
 
     const email = email_addresses.length > 0 ? email_addresses[0].email_address : undefined;
     const clerkId = id;
-    const name = `${fist_name} ${last_name}`;
+    const name = `${first_name} ${last_name}`;
     const imageUrl = profile_image_url;
 
     if (!email || !clerkId) {

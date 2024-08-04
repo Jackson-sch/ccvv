@@ -13,7 +13,7 @@ import ActionsButtons from "@/components/TableUI/Actions";
 const columns = [
   { name: "ID", uid: "_id", sortable: true },
   { name: "NOMBRE", uid: "name", sortable: true },
-  { name: "ROL", uid: "rol", sortable: true },
+  { name: "IMAGE", uid: "imageUrl", sortable: true },
   { name: "EMAIL", uid: "email" },
   { name: "STATUS", uid: "status", sortable: true },
   { name: "ACTIONS", uid: "actions" },
@@ -66,7 +66,7 @@ const columnConfig = {
   name: {
     render: (item) => (
       <User
-        avatarProps={{ radius: "lg", src: item.avatar }}
+        avatarProps={{ radius: "lg", src: item.imageUrl }}
         description={item.email}
         name={item.name}
       >
