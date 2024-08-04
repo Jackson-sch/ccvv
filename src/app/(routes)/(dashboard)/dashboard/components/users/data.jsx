@@ -1,5 +1,6 @@
 import { Chip, User } from "@nextui-org/react";
 import ActionsButtons from "@/components/TableUI/Actions";
+import { Verified } from "lucide-react";
 
 /**
  * Arreglo que contiene las columnas de la tabla de usuarios.
@@ -25,7 +26,7 @@ const columns = [
  * @type {Array<{ name: string, uid: string }>}
  */
 const statusOptions = [
-  { name: "Activo", uid: "active" },
+  { name: "Verificado", uid: "verified" },
   { name: "Inactivo", uid: "inactive" },
   { name: "bloqueado", uid: "blocked" },
   { name: "pendiente", uid: "pending" },
@@ -102,7 +103,7 @@ const columnConfig = {
 };
 
 const statusColorMap = {
-  active: "success",
+  verified: "success",
   inactive: "warning",
   blocked: "danger",
   pending: "secondary",
