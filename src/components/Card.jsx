@@ -46,7 +46,7 @@ export function CardButtomTransparent(props) {
     <div
       {...props}
       className={cn(
-        "to-default-50 z-50 h-96 transform rounded-md bg-gradient-to-t from-transparent shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl",
+        "to-default-50 z-50  transform rounded-md bg-gradient-to-t from-transparent shadow-md transition-all duration-300 ",
         props.className
       )}
     />

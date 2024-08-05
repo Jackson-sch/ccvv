@@ -2,25 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Hero from "@/components/profile/Hero";
 import Profile from "@/components/profile/Profile";
-import { Tab, Tabs } from "@nextui-org/react";
-import Formulario from "@dashboard/components/users/Formulario";
 import Posts from "@/components/incidencia/posts/Posts";
-import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
+import { fetchIncidencias } from "@/utils/fetchingData";
 
-import { useAuth, useUser } from "@clerk/nextjs";
-import { isAdministrator } from "@/utils/isAdministrator";
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const [user, setUser] = useState([]);
   const [posts, setPosts] = useState([]);
-  console.log("🚀 ~ Page ~ posts:", posts)
-
   const router = useRouter();
   const { user: userData } = useUser();
-  console.log("🚀 ~ Page ~ userData:", userData);
-
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +19,9 @@ export default function Page() {
       const incidenciasData = await fetchIncidencias();
 
       // Filtra los posts que correspondan al usuario actual
-      const filteredPosts = incidenciasData.filter(post => post.nombres_apellidos === userData?.fullName);
-      console.log("🚀 ~ fetchData ~ filteredPosts:", filteredPosts)
+      const filteredPosts = incidenciasData.filter(
+        (post) => post.nombres_apellidos === userData?.fullName
+      );
 
       // Ordena los datos por fecha y hora. Asegúrate de ajustar 'fecha' y 'hora' a tus campos reales.
       const datosOrdenados = filteredPosts.sort((a, b) => {
@@ -40,15 +32,9 @@ export default function Page() {
       // Toma los últimos 5 elementos después de ordenar
       const ultimosCincoRegistros = datosOrdenados.slice(0, 5);
       setPosts(ultimosCincoRegistros);
-
-      // Obten los daots de users
-      const usersData = await fetchUsers();
-      setUser(usersData);
     };
     fetchData();
   }, [router, userData?.fullName]);
-
-
 
   return (
     <>
@@ -61,7 +47,7 @@ export default function Page() {
             <Profile data={userData} />
           </div>
           <div className="flex-grow h-screen">
-            <Posts data={posts} />
+            <Posts data={posts} dataUser={userData} />
           </div>
         </div>
       </div>

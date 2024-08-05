@@ -1,4 +1,4 @@
-import { CardContent } from "@/components/Card";
+import { CardContent, CardButtomTransparent } from "@/components/Card";
 import React from "react";
 import RandomTextDisplay from "../ui/RandomTextDisplay/RandomTextDisplay";
 
@@ -7,7 +7,7 @@ export default function Hero({ data }) {
   const email = data?.emailAddresses[0].emailAddress;
   const image = data?.imageUrl;
   return (
-    <CardContent className="flex items-center">
+    <CardButtomTransparent className="flex flex-col gap-4 p-8 items-center">
         <div className="flex flex-col">
           <h1 className="text-5xl  font-bold mb-2">
             Bienvenido, {data?.firstName}!
@@ -29,7 +29,7 @@ export default function Hero({ data }) {
             <p className="text-2xl font-bold">1234</p>
           </div>
         </div>
-    </CardContent>
+    </CardButtomTransparent>
   );
 }
 

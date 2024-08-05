@@ -1,26 +1,24 @@
 import React from "react";
 import { CardContent } from "@/components/Card";
-import { Button, Divider, Image, ScrollShadow } from "@nextui-org/react";
+import { Avatar, Button, Divider, Image, ScrollShadow } from "@nextui-org/react";
 import { MessageCircle, ThumbsUp } from "lucide-react";
 import CardSkeleton from "@/components/CardSkeleton/CardSkeleton";
 
-export default function Posts({ data }) {
+export default function Posts({ data, dataUser }) {
   // si data es vacio, no hay posts carga este Skeleton
   if (!data || data.length === 0) {
     return <CardSkeleton />;
   }
+  const image = dataUser?.imageUrl
+  console.log("🚀 ~ Posts ~ image:", image)
 
   return (
     <ScrollShadow hideScrollBar className="w-full">
       <CardContent className="flex justify-center px-20 py-9">
         {data.map((post) => (
           <div key={post._id}>
-            <div className="flex items-center mb-3">
-              <Image
-                src={post.imageUrl}
-                alt="Mathew Anderson"
-                className="w-10 h-10 rounded-full mr-3"
-              />
+            <div className="flex items-center mb-6 gap-2">
+              <Avatar src={image} size="md" name={post.nombres_apellidos} />
               <div>
                 <h3 className="font-semibold">{post.nombres_apellidos}</h3>
                 <p className="text-xs text-gray-400">
