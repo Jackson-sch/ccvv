@@ -2,7 +2,7 @@ import { CardContent, CardButtomTransparent } from "@/components/Card";
 import React from "react";
 import RandomTextDisplay from "../ui/RandomTextDisplay/RandomTextDisplay";
 
-export default function Hero({ data }) {
+export default function Hero({ data, count }) {
   const name = data?.firstName + " " + data?.lastName;
   const email = data?.emailAddresses[0].emailAddress;
   const image = data?.imageUrl;
@@ -20,7 +20,7 @@ export default function Hero({ data }) {
             <p className="text-default-300 text-sm uppercase">
               Incidencias de este mes
             </p>
-            <p className="text-2xl font-bold">145</p>
+            <p className="text-2xl font-bold">{count}</p>
           </div>
           <div className="flex flex-col justify-center items-center">
             <p className="text-default-300 text-sm uppercase">

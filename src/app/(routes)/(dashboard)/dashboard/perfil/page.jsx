@@ -12,6 +12,7 @@ export default function Page() {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
   const { user: userData } = useUser();
+  const count = posts.length;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +41,7 @@ export default function Page() {
     <>
       <div className="flex flex-col space-y-4">
         <div className="w-full">
-          <Hero data={userData} />
+          <Hero data={userData} count={count} />
         </div>
         <div className="flex space-x-4">
           <div className="w-96">

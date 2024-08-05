@@ -5,12 +5,12 @@ import { MessageCircle, ThumbsUp } from "lucide-react";
 import CardSkeleton from "@/components/CardSkeleton/CardSkeleton";
 
 export default function Posts({ data, dataUser }) {
+  const image = dataUser?.imageUrl
+
   // si data es vacio, no hay posts carga este Skeleton
   if (!data || data.length === 0) {
     return <CardSkeleton />;
   }
-  const image = dataUser?.imageUrl
-  console.log("🚀 ~ Posts ~ image:", image)
 
   return (
     <ScrollShadow hideScrollBar className="w-full">
