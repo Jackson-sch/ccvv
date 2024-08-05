@@ -33,6 +33,7 @@ export default function Formulario({
   const [ocurrenciasFiltradas, setOcurrenciasFiltradas] = useState([]);
   const [imageURL, setImageURL] = useState("");
 
+
   const handleImageUpload = (url) => {
     setImageURL(url);
     // Actualiza el formData con la url de la imagen
@@ -202,12 +203,13 @@ export default function Formulario({
                   {...field}
                   type="text"
                   label="Nombres y Apellidos"
-                  onChange={handleInputChange}
                   isInvalid={errors.nombres_apellidos}
+                  onChange={handleInputChange}
                   errorMessage={
                     errors.nombres_apellidos &&
                     "Los nombres y Apellidos son Requeridos"
                   }
+                  readOnly
                 />
               )}
             />

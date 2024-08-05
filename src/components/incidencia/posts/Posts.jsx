@@ -2,8 +2,14 @@ import React from "react";
 import { CardContent } from "@/components/Card";
 import { Button, Divider, Image, ScrollShadow } from "@nextui-org/react";
 import { MessageCircle, ThumbsUp } from "lucide-react";
+import CardSkeleton from "@/components/CardSkeleton/CardSkeleton";
 
 export default function Posts({ data }) {
+  // si data es vacio, no hay posts carga este Skeleton
+  if (!data || data.length === 0) {
+    return <CardSkeleton />;
+  }
+
   return (
     <ScrollShadow hideScrollBar className="w-full">
       <CardContent className="flex justify-center px-20 py-9">
@@ -34,7 +40,7 @@ export default function Posts({ data }) {
             />
 
             <div className="flex gap-4 items-center my-6">
-              <Button variant="light" aria-label="Like">
+              <Button variant="light">
                 <ThumbsUp size={20} /> 34
               </Button>
               <Button variant="light" aria-label="Take a photo">

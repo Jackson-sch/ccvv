@@ -68,6 +68,16 @@ export const dataGeneral = [
       },
     ],
   },
+  {
+    title: "Settings",
+    list: [
+      {
+        title: "Perfil",
+        path: "/dashboard/perfil",
+        icon: <MdOutlineSettings />,
+      },
+    ],
+  }
 ];
 
 export const dataAdmin = [
@@ -84,11 +94,11 @@ export const dataAdmin = [
         path: "/dashboard/admin/users",
         icon: <MdHelpCenter />,
       },
-      {
+      /* {
         title: "Perfil Usuario",
         path: "/dashboard/admin/users/profile",
         icon: <MdSupervisedUserCircle />,
-      },
+      }, */
       {
         title: "Ubicacion Cámaras",
         path: "/dashboard/admin/ubicacion",

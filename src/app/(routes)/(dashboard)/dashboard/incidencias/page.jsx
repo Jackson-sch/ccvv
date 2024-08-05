@@ -20,6 +20,7 @@ import {
   fetchComisarias,
   fetchGravedades,
 } from "@/utils/fetchingData";
+import { useUser } from "@clerk/nextjs";
 
 export default function Page() {
   const [markers, setMarkers] = useState([]);
@@ -38,6 +39,10 @@ export default function Page() {
   const [turno, setTurno] = useState([]);
   const [comisarias, setComisarias] = useState([]);
   const [gravedades, setGravedades] = useState([]);
+    // Obtener el usuario actual
+    const { user } = useUser();
+    const name = user?.fullName;
+    console.log("🚀 ~ Page ~ name:", name)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -134,6 +139,7 @@ export default function Page() {
         setFormData={setFormData}
         fecha={fecha}
         hora={hora}
+        name={name}
       />
       <Drawer
         isOpen={isOpen}

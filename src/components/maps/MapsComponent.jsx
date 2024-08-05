@@ -26,6 +26,7 @@ export default function MapsComponent({
   children,
   fecha,
   hora,
+  name,
 }) {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
@@ -50,6 +51,7 @@ export default function MapsComponent({
       direccion,
       fecha: fecha,
       hora: hora,
+      nombres_apellidos: name,
     });
     setIsOpen(true);
   };
