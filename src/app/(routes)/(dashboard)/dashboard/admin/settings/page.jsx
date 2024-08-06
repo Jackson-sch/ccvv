@@ -41,9 +41,9 @@ export default async function page() {
         />
         <Gravedad />
       </CardContent>
-      <CardContent title="Marcas">
+      <CardContent title="Marcas de Vehículos">
         <PageTitle
-          title="Marcas"
+          title="Marcas de Vehículos"
           descripcion="En este módulo se muestras las marcas, puedes agregarlas o eliminarlas"
         />
         <Marca />

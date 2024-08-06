@@ -42,7 +42,6 @@ export default function Page() {
     // Obtener el usuario actual
     const { user } = useUser();
     const name = user?.fullName;
-    console.log("🚀 ~ Page ~ name:", name)
 
   useEffect(() => {
     const fetchData = async () => {

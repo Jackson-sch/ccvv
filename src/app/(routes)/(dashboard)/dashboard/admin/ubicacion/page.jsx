@@ -70,6 +70,7 @@ export default function Page() {
         showConfirmButton: false,
         timer: 1500,
       });
+      setMarkers([...markers, data]);
       fetchMarkers();
     } else {
       toast.error("Error al crear la ubicación");

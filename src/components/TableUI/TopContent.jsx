@@ -61,7 +61,7 @@ export default function TopContent({
               onSelectionChange={setStatusFilter}
             >
               {statusOptions.map((status) => (
-                <DropdownItem key={status.uid} className="capitalize">
+                <DropdownItem key={status.uid}>
                   {capitalize(status.name)}
                 </DropdownItem>
               ))}

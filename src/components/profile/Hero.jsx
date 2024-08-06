@@ -2,33 +2,33 @@ import { CardContent, CardButtomTransparent } from "@/components/Card";
 import React from "react";
 import RandomTextDisplay from "../ui/RandomTextDisplay/RandomTextDisplay";
 
-export default function Hero({ data, count }) {
+export default function Hero({ data, countTotal, monthlyCount }) {
   const name = data?.firstName + " " + data?.lastName;
   const email = data?.emailAddresses[0].emailAddress;
   const image = data?.imageUrl;
   return (
     <CardButtomTransparent className="flex flex-col gap-4 p-8 items-center">
-        <div className="flex flex-col">
-          <h1 className="text-5xl  font-bold mb-2">
-            Bienvenido, {data?.firstName}!
-          </h1>
-          <RandomTextDisplay texts={texts} />
-        </div>
+      <div className="flex flex-col">
+        <h1 className="text-5xl  font-bold mb-2">
+          Bienvenido, {data?.firstName}!
+        </h1>
+        <RandomTextDisplay texts={texts} />
+      </div>
 
-        <div className="flex space-x-8">
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-default-300 text-sm uppercase">
-              Incidencias de este mes
-            </p>
-            <p className="text-2xl font-bold">{count}</p>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-default-300 text-sm uppercase">
-              Total de incidencias
-            </p>
-            <p className="text-2xl font-bold">1234</p>
-          </div>
+      <div className="flex space-x-8">
+        <div className="flex flex-col justify-center items-center">
+          <p className="text-default-300 text-sm uppercase">
+            Incidencias de este mes
+          </p>
+          <p className="text-2xl font-bold">{monthlyCount}</p>
         </div>
+        <div className="flex flex-col justify-center items-center">
+          <p className="text-default-300 text-sm uppercase">
+            Total de incidencias
+          </p>
+          <p className="text-2xl font-bold">{countTotal}</p>
+        </div>
+      </div>
     </CardButtomTransparent>
   );
 }
