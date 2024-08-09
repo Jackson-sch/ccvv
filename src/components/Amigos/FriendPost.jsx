@@ -53,14 +53,16 @@ export default function FriendPost({ user }) {
   if (!filteredPost || filteredPost.length === 0) {
     return (
       <>
-        <Filtro setFilter={setFilter} />
+        <div className="mx-auto container mt-12 max-w-screen-lg">
+          <Filtro setFilter={setFilter} />
+        </div>
         <CardSkeleton />
       </>
     );
   }
 
   return (
-    <>
+    <div className="flex flex-col h-full">
       <div className="mx-auto container mt-12 max-w-screen-lg">
         <Filtro setFilter={setFilter} />
       </div>
@@ -72,6 +74,6 @@ export default function FriendPost({ user }) {
           <PostItem post={data} image={image} />
         </CardContent>
       ))}
-    </>
+    </div>
   );
 }

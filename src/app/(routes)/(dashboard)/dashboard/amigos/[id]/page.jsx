@@ -28,7 +28,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <div className="max-h-screen">
       <FriendProfile user={friendUser} />
       <FriendPost user={friendUser} />
     </div>
