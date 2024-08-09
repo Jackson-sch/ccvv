@@ -29,9 +29,11 @@ export default function Filtro({ setFilter, countTotal }) {
   return (
     <div className="flex justify-between w-full">
       <div className="flex justify-start items-center flex-row w-full">
-        <p className="text-sm text-neutral-500">
-          Mostrando 5 de {countTotal} Relevantes
-        </p>
+        {countTotal && (
+          <p className="text-sm text-neutral-500">
+            Total {countTotal} incidencias
+          </p>
+        )}
       </div>
       <div className="flex flex-row w-full gap-2 justify-end items-center">
         <Select

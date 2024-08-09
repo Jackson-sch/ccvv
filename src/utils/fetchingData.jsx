@@ -147,3 +147,13 @@ export const fetchMarkers = async () => {
       throw error;
     }
   };
+
+  export const fetchFriendProfile =  async (friendId) => {
+    try {
+      const response = await fetch(`/api/user/${friendId}`);
+      return await response.json();
+    } catch (error) {
+      console.log("Error fetching friend profile:", error);
+      throw error;
+    }
+  };

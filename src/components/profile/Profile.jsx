@@ -7,7 +7,7 @@ export default function Profile({ data }) {
   const image = data?.imageUrl;
   
   return (
-    <CardContent className="w-96 ">
+    <CardContent className="w-96">
       <div className="flex items-center mb-6">
         <User
           name={data?.fullName}

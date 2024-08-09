@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CardContent } from "@/components/Card";
-import {
-  Avatar,
-  Button,
-  Divider,
-  Image,
-  ScrollShadow,
-} from "@nextui-org/react";
-import { MessageCircle, ThumbsUp } from "lucide-react";
 import CardSkeleton from "@/components/CardSkeleton/CardSkeleton";
 import { fetchIncidencias } from "@/utils/fetchingData";
 import PostItem from "./PostItem";
-import Hero from "@/components/profile/Hero";
 
 export default function Posts({
   dataUser,
@@ -69,7 +60,9 @@ export default function Posts({
   return (
     <>
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} image={image} />
+        <CardContent key={post.id} className="mb-6 bg-[hsla(0,0%,100%,.1)]">
+          <PostItem post={post} image={image} />
+        </CardContent>
       ))}
     </>
   );

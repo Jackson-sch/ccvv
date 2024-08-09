@@ -1,11 +1,8 @@
-import { LayoutDashboard, Megaphone } from "lucide-react";
+import { LayoutDashboard, Megaphone, Users } from "lucide-react";
 import {
-  MdSupervisedUserCircle,
-  MdWork,
   MdOutlineSettings,
   MdHelpCenter,
   MdDesktopWindows,
-  MdFitbit,
   MdPolicy,
   MdMap,
   MdLocationPin,
@@ -19,16 +16,21 @@ export const dataGeneral = [
       {
         title: "Dashboard",
         path: "/dashboard",
-        icon: <LayoutDashboard width={20} height={20} strokeWidth={2}  />,
+        icon: <LayoutDashboard width={20} height={20} strokeWidth={2} />,
       },
       {
         title: "Lo más Relevante",
         path: "/dashboard/posts-relevantes",
         icon: <Megaphone width={20} height={20} strokeWidth={2} />,
       },
+      {
+        title: "Amigos",
+        path: "/dashboard/amigos",
+        icon: <Users width={20} height={20} strokeWidth={2} />,
+      },
     ],
   },
-/*   {
+  /*   {
     title: "Base",
     list: [
       {
@@ -55,7 +57,7 @@ export const dataGeneral = [
         title: "Mapa del Calor",
         path: "/dashboard/incidencias/mapa-del-calor",
         icon: <MdMap />,
-      }
+      },
     ],
   },
   {
@@ -77,7 +79,7 @@ export const dataGeneral = [
         icon: <MdOutlineSettings />,
       },
     ],
-  }
+  },
 ];
 
 export const dataAdmin = [

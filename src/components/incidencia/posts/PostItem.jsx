@@ -5,7 +5,7 @@ import { Container } from "@/components/Card";
 
 export default function PostItem({ post, image }) {
   return (
-    <div className="mt-6">
+    <div className="m-4">
       <div className="flex flex-col-1 justify-between items-center mb-3">
         <div className="flex items-center">
           <Image

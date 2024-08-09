@@ -3,6 +3,7 @@ import CardSkeleton from "@/components/CardSkeleton/CardSkeleton";
 import { fetchIncidencias, fetchUsers } from "@/utils/fetchingData";
 import PostItem from "./PostItem";
 import Filtro from "./Filtro";
+import { CardContent } from "../Card";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -65,13 +66,17 @@ export default function Posts() {
 
   return (
     <>
-      <Filtro setFilter={setFilter} countTotal={countTotal} />
+      <div className="mx-auto container mt-6 max-w-screen-lg">
+        <Filtro setFilter={setFilter} countTotal={countTotal} />
+      </div>
+
       {filteredPosts.map((post) => (
-        <PostItem
+        <CardContent
           key={post.id}
-          post={post}
-          image={userImages[post.nombres_apellidos]}
-        />
+          className="mb-6 bg-[hsla(0,0%,100%,.1)] mx-auto container mt-4 max-w-screen-lg"
+        >
+          <PostItem post={post} image={userImages[post.nombres_apellidos]} />
+        </CardContent>
       ))}
     </>
   );
